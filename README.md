@@ -6,7 +6,7 @@
 <h4 align="center"> 
 
 [Xuyang Liu](https://xuyang-liu16.github.io/)<sup>1,2*</sup>,
-Yiyu Wang<sup>1</sup>,
+Yiyu Wang<sup>1*</sup>,
 Junpeng Ma<sup>3</sup>,
 [Linfeng Zhang](http://www.zhanglinfeng.tech/)<sup>1✉</sup>
 
