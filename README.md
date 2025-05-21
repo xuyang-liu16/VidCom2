@@ -30,7 +30,7 @@ Junpeng Ma<sup>3</sup>,
 
 ## 💥 Core Codes
 
-The core implementation of our code is in [`llava/model/vidcom2.py`](https://github.com/xuyang-liu16/VidCom2/blob/main/llava/model/vidcom2.py). In llava onevision, it is called at [here](https://github.com/xuyang-liu16/VidCom2/blob/ebb4260650cba4177534cdb0f6a3642c306c607c/llava/model/llava_arch.py#L355) and in llava video, it is called at [here](https://github.com/xuyang-liu16/VidCom2/blob/ebb4260650cba4177534cdb0f6a3642c306c607c/llava/model/llava_arch.py#L324).
+The core implementation of our code is in [`llava/model/vidcom2.py`](https://github.com/xuyang-liu16/VidCom2/blob/main/llava/model/vidcom2.py). In LLaVA-OneVision, it is called at [here](https://github.com/xuyang-liu16/VidCom2/blob/ebb4260650cba4177534cdb0f6a3642c306c607c/llava/model/llava_arch.py#L355) and in LLaVA-Video, it is called at [here](https://github.com/xuyang-liu16/VidCom2/blob/ebb4260650cba4177534cdb0f6a3642c306c607c/llava/model/llava_arch.py#L324).
 
 ## 🛠 Preparation
 
@@ -53,7 +53,7 @@ pip install git+https://github.com/EvolvingLMMs-Lab/lmms-eval.git
 We use the [lmms-eval](https://github.com/EvolvingLMMs-Lab/lmms-eval) toolkit to evaluate our models. 
 👉 You can reproduce all of our ablation experiments by modifying the parameters of the [`vidcom2_compression`]([https://github.com/xuyang-liu16/GlobalCom2/blob/main/llava/model/vidcom2.py](https://github.com/xuyang-liu16/VidCom2/blob/98cf6b4b1688fc90b1cc268db50aff7c4a6de941/llava/model/vidcom2.py#L4))function! . By default, the method in our paper is used, and the retention rate is 0.25.
 
-To evaluate llava onevision 7B, you can use:
+To evaluate LLaVA-OneVision-7B, you can use:
 ```
 accelerate launch --num_processes=8 \
 -m lmms_eval \
@@ -65,7 +65,7 @@ accelerate launch --num_processes=8 \
 --log_samples_suffix llava_onevision \
 --output_path ./logs/
 ```
-To evaluate llava video 7B, you can use:
+To evaluate LLaVA-Video-7B, you can use:
 ```
 accelerate launch --num_processes=8 \
 -m lmms_eval \
@@ -96,7 +96,6 @@ Please consider citing our paper in your publications, if our findings help your
       url={https://arxiv.org/abs/2505.14454}, 
 }
 ```
-
 
 ## 👍 Acknowledgment
 We extend our gratitude to the open-source efforts of [LLaVA-OneVision](https://github.com/LLaVA-VL/LLaVA-NeXT) and [Qwen2-VL](https://github.com/QwenLM/Qwen2.5-VL).
