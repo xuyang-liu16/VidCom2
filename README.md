@@ -34,23 +34,25 @@ The core implementation of our code is in [`llava/model/vidcom2.py`](https://git
 
 ## 🛠 Preparation
 
-1. Clone this repository.
+1. Clone this repository：
 ```bash
 git clone https://github.com/xuyang-liu16/VidCom2.git
 cd VidCom2
 ```
 
-2. Install the inference package:
+2. Environment Setup and Preparation:
 ```Shell
 conda create -n VidCom2 python=3.10 -y
 conda activate VidCom2
-pip install -e .
-pip install lmms-eval
+pip install --upgrade pip  # Enable PEP 660 support.
+pip install -e ".[train]"
+pip install git+https://github.com/EvolvingLMMs-Lab/lmms-eval.git
 ```
 
 ## 🚀 Evaluation
 We use the [lmms-eval](https://github.com/EvolvingLMMs-Lab/lmms-eval) toolkit to evaluate our models. 
-👉 You can reproduce all of our ablation experiments by modifying the parameters of the vidcom2_compression function! [`llava/model/vidcom2.py`](https://github.com/xuyang-liu16/GlobalCom2/blob/main/llava/model/vidcom2.py). By default, the method in our paper is used, and the retention rate is 0.25.
+👉 You can reproduce all of our ablation experiments by modifying the parameters of the [`vidcom2_compression`]([https://github.com/xuyang-liu16/GlobalCom2/blob/main/llava/model/vidcom2.py](https://github.com/xuyang-liu16/VidCom2/blob/98cf6b4b1688fc90b1cc268db50aff7c4a6de941/llava/model/vidcom2.py#L4))function! . By default, the method in our paper is used, and the retention rate is 0.25.
+
 To evaluate llava onevision 7B, you can use:
 ```
 accelerate launch --num_processes=8 \
