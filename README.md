@@ -19,3 +19,19 @@ Junpeng Ma<sup>3</sup>,
 ## 🔥 News
 
 * **`2025.05.21`** 🤗🤗 We release our latest work [VidCom<sup>2</sup>](https://arxiv.org/abs/2505.14454), a plug-and-play inference acceleration method of **VideoLLMs**. [Code](https://github.com/xuyang-liu16/VidCom2) is available!
+
+## ✨ Overview
+
+<p align="center"> <img src="images/overview.jpg" width="1000" align="center"> </p>
+
+> **TLDR:** We present VidCom<sup>2</sup>, a plug-and-play framework that dynamically compresses video tokens based on frame uniqueness, achieving state-of-the-art efficiency and performance across various VideoLLMs and benchmarks.
+
+
+
+
+## 👍 Acknowledgment
+We extend our gratitude to the open-source efforts of [LLaVA-OneVision](https://github.com/LLaVA-VL/LLaVA-NeXT) and [Qwen2-VL](https://github.com/QwenLM/Qwen2.5-VL).
+
+
+## 📩 Contact
+For any question about our paper or code, please email `liuxuyang@stu.scu.edu.cn`.
