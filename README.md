@@ -28,6 +28,22 @@ Junpeng Ma<sup>3</sup>,
 
 
 
+## 📌 Citation
+
+Please consider citing our paper in your publications, if our findings help your research.
+
+```bibtex
+@misc{liu2025videocompressioncommanderplugandplay,
+      title={Video Compression Commander: Plug-and-Play Inference Acceleration for Video Large Language Models}, 
+      author={Xuyang Liu and Yiyu Wang and Junpeng Ma and Linfeng Zhang},
+      year={2025},
+      eprint={2505.14454},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2505.14454}, 
+}
+```
+
 
 ## 👍 Acknowledgment
 We extend our gratitude to the open-source efforts of [LLaVA-OneVision](https://github.com/LLaVA-VL/LLaVA-NeXT) and [Qwen2-VL](https://github.com/QwenLM/Qwen2.5-VL).
