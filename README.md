@@ -86,14 +86,11 @@ accelerate launch --num_processes=8 \
 Please consider citing our paper in your publications, if our findings help your research.
 
 ```bibtex
-@misc{liu2025videocompressioncommanderplugandplay,
-      title={Video Compression Commander: Plug-and-Play Inference Acceleration for Video Large Language Models}, 
-      author={Xuyang Liu and Yiyu Wang and Junpeng Ma and Linfeng Zhang},
-      year={2025},
-      eprint={2505.14454},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV},
-      url={https://arxiv.org/abs/2505.14454}, 
+@article{liu2025vidcom2,
+  title={Video Compression Commander: Plug-and-Play Inference Acceleration for Video Large Language Models},
+  author={Liu, Xuyang and Wang, Yiyu and Ma, Junpeng and Zhang, Linfeng},
+  journal={arXiv preprint arXiv:2505.14454},
+  year={2025}
 }
 ```
 
