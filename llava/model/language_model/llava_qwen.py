@@ -26,29 +26,9 @@ from transformers.generation.utils import GenerateOutput
 
 # from ...constants import IGNORE_INDEX, IMAGE_TOKEN_INDEX, DEFAULT_IMAGE_TOKEN, DEFAULT_IM_START_TOKEN, DEFAULT_IM_END_TOKEN
 from llava.model.llava_arch import LlavaMetaModel, LlavaMetaForCausalLM
-
-from llava.model.language_model.modeling_custom_qwen2 import FastvQwen2Model,PDropQwen2Model
-from transformers.models.qwen2 import modeling_qwen2
-# modeling_qwen2.Qwen2Model = FastvQwen2Model  # 直接赋值不要用函数包装
-def modify_qwen2(type_: str) -> None:
-    if type_ == "fastv":
-        modeling_qwen2.Qwen2Model = FastvQwen2Model
-        transformers.Qwen2Model = FastvQwen2Model
-
-    elif type_ == "pdrop":
-        modeling_qwen2.Qwen2Model = PDropQwen2Model
-        transformers.Qwen2Model = PDropQwen2Model
-
-    else:
-        raise ValueError("Invalid type")
-    
-# modify_qwen2(type_="pdrop")
 from transformers import Qwen2Config, Qwen2Model, Qwen2ForCausalLM
-
-
-
-
-
+# from transformers import Qwen2Config
+#from llava.model.language_model.frame_fu`sion_modelling_qwen import FastVQwen2Model
 class LlavaQwenConfig(Qwen2Config):
     model_type = "llava_qwen"
 
@@ -179,7 +159,7 @@ class LlavaQwenForCausalLM(Qwen2ForCausalLM, LlavaMetaForCausalLM):
         self.total_cuda_time += gen_time
         self.max_mem=max(gen_max_mem,self.max_mem)
         print("LLM_total_time",self.total_cuda_time,"LLM_max_mem",self.max_mem)
-        ##########################################################################################
+        ##################################################################
 
         return model_response
 
