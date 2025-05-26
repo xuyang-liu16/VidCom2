@@ -23,6 +23,7 @@ from lmms_eval.api.instance import Instance
 from lmms_eval.api.model import lmms
 from lmms_eval.api.registry import register_model
 from lmms_eval.models.model_utils.load_video import read_video_pyav
+# from llava.model.visualization import *
 
 # Suppress warnings
 warnings.filterwarnings("ignore")
@@ -177,6 +178,10 @@ class Llava_OneVision(lmms):
             self.model.to(self._device)
             self._rank = 0
             self._world_size = 1
+        #################################
+        self.total_cuda_time =0
+        self.max_mem=0
+        ##################################
 
     @property
     def config(self):
@@ -372,6 +377,12 @@ class Llava_OneVision(lmms):
         return new_list
 
     def load_video(self, video_path, max_frames_num):
+        #########################################################
+        # idx=get_counter()
+        # with open('video_info.txt', 'a') as f:
+        #     f.write(f"{idx},{video_path}\n")
+        #################################################################
+
         if type(video_path) == str:
             vr = VideoReader(video_path, ctx=cpu(0))
         else:
@@ -464,6 +475,9 @@ class Llava_OneVision(lmms):
                     elif type(visual[0]) == str:  # For video task
                         image_tensor = []
                         try:
+                            #############################################################
+                            # print(f"Video path: {visual[0]}")  # Print the current file name.
+                            ################################################
                             if self.video_decode_backend == "decord":
                                 frames = self.load_video(visual, self.max_frames_num)
                             elif self.video_decode_backend == "pyav":
@@ -551,10 +565,26 @@ class Llava_OneVision(lmms):
             if "image_aspect_ratio" in gen_kwargs.keys():
                 gen_kwargs.pop("image_aspect_ratio")
             try:
+                ########################################################
+                torch.cuda.reset_peak_memory_stats()
+                gen_start_event = torch.cuda.Event(enable_timing=True)
+                gen_end_event = torch.cuda.Event(enable_timing=True)
+                torch.cuda.synchronize()
+                gen_start_event.record()
+                #######################################################
                 with torch.inference_mode():
                     cont = self.model.generate(input_ids, attention_mask=attention_masks, pad_token_id=pad_token_ids, images=image_tensor, use_cache=self.use_cache, **gen_kwargs)
                     # cont = self.model.generate(qwen_input_ids, pad_token_id=pad_token_ids, images=image_tensor, use_cache=self.use_cache, **gen_kwargs)
+                #############################################################
+                gen_end_event.record()
+                torch.cuda.synchronize()
+                gen_time = gen_start_event.elapsed_time(gen_end_event) / 1000.0  # 秒
+                gen_max_mem = torch.cuda.max_memory_allocated() / 1024 / 1024  # MB
 
+                self.total_cuda_time += gen_time
+                self.max_mem=max(gen_max_mem,self.max_mem)
+                print("total_time",self.total_cuda_time,"max_mem",self.max_mem)
+                ###########################################################
                 text_outputs = self.tokenizer.batch_decode(cont, skip_special_tokens=True)
             except Exception as e:
                 raise e
@@ -763,9 +793,10 @@ class Llava_OneVision(lmms):
                     gen_kwargs.pop("image_aspect_ratio")
                 try:
                     with torch.inference_mode():
-                        cont = self.model.generate(input_ids, attention_mask=attention_masks, pad_token_id=pad_token_ids, images=image_tensor, use_cache=self.use_cache, **gen_kwargs)
-                        # cont = self.model.generate(qwen_input_ids, pad_token_id=pad_token_ids, images=image_tensor, use_cache=self.use_cache, **gen_kwargs)
 
+
+                        cont = self.model.generate(input_ids, attention_mask=attention_masks, pad_token_id=pad_token_ids, images=image_tensor, use_cache=self.use_cache, **gen_kwargs)
+                        
                     text_outputs = self.tokenizer.batch_decode(cont, skip_special_tokens=True)
                 except Exception as e:
                     raise e
