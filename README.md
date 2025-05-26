@@ -18,14 +18,22 @@ Junpeng Ma<sup>3</sup>,
 
 ## 🔥 News
 
+* **`2025.05.27`** 🤗🤗 We further release the code of [detailed efficiency analysis]((#Efficiency-Analysis)) in our paper. Try to experience the acceleration effect VidCom<sup>2</sup> achieved!
+
 * **`2025.05.21`** 🤗🤗 We release our latest work [VidCom<sup>2</sup>](https://arxiv.org/abs/2505.14454), a plug-and-play inference acceleration method of **VideoLLMs**. [Code](https://github.com/xuyang-liu16/VidCom2) is available!
+
+## 📝 TODO
+
+- [x] Release the inference code of LLaVA-OV and LLaVA-Video.
+- [x] Release the code of detailed efficiency analysis in our paper.
+- [ ] Release the inference code of Qwen2-VL.
+- [ ] Support more VideoLLMs (e.g., LongVILA).
 
 ## ✨ Overview
 
 <p align="center"> <img src="images/overview.jpg" width="1000" align="center"> </p>
 
 > **TLDR:** We present VidCom<sup>2</sup>, a plug-and-play framework that dynamically compresses video tokens based on frame uniqueness, achieving state-of-the-art efficiency and performance across various VideoLLMs and benchmarks.
-
 
 
 ## 💥 Core Codes
@@ -80,7 +88,7 @@ accelerate launch --num_processes=8 \
 
 
 
-## 🩻 Efficiency analysis
+## 🩻 Efficiency Analysis
 <p align="center"> <img src="images/efficiency.jpg" width="1000" align="center"> </p>
 
 Vidcom2 employs  [lmms-eval](https://github.com/EvolvingLMMs-Lab/lmms-eval) for reasoning, and all efficiency analyses are based on [llava onevision 7B](https://github.com/LLaVA-VL/LLaVA-NeXT.git).
