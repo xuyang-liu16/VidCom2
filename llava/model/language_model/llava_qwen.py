@@ -26,10 +26,27 @@ from transformers.generation.utils import GenerateOutput
 
 # from ...constants import IGNORE_INDEX, IMAGE_TOKEN_INDEX, DEFAULT_IMAGE_TOKEN, DEFAULT_IM_START_TOKEN, DEFAULT_IM_END_TOKEN
 from llava.model.llava_arch import LlavaMetaModel, LlavaMetaForCausalLM
+
+from llava.model.language_model.modeling_custom_qwen2 import FastvQwen2Model,PDropQwen2Model
+from transformers.models.qwen2 import modeling_qwen2
+# modeling_qwen2.Qwen2Model = FastvQwen2Model  # 直接赋值不要用函数包装
+def modify_qwen2(type_: str) -> None:
+    if type_ == "fastv":
+        modeling_qwen2.Qwen2Model = FastvQwen2Model
+        transformers.Qwen2Model = FastvQwen2Model
+
+    elif type_ == "pdrop":
+        modeling_qwen2.Qwen2Model = PDropQwen2Model
+        transformers.Qwen2Model = PDropQwen2Model
+
+    else:
+        raise ValueError("Invalid type")
+    
+# modify_qwen2(type_="pdrop")
 from transformers import Qwen2Config, Qwen2Model, Qwen2ForCausalLM
 
-# from .qwen.modeling_qwen import QWenLMHeadModel, QWenModel
-# from .qwen.configuration_qwen import QWenConfig
+
+
 
 
 class LlavaQwenConfig(Qwen2Config):
@@ -56,6 +73,10 @@ class LlavaQwenForCausalLM(Qwen2ForCausalLM, LlavaMetaForCausalLM):
         self.lm_head = nn.Linear(config.hidden_size, config.vocab_size, bias=False)
         # Initialize weights and apply final processing
         self.post_init()
+        #################################
+        self.total_cuda_time =0
+        self.max_mem=0
+        ##################################
 
     def get_model(self):
         return self.model
@@ -69,7 +90,7 @@ class LlavaQwenForCausalLM(Qwen2ForCausalLM, LlavaMetaForCausalLM):
         inputs_embeds: Optional[torch.FloatTensor] = None,
         labels: Optional[torch.LongTensor] = None,
         use_cache: Optional[bool] = None,
-        output_attentions: Optional[bool] = None,
+        output_attentions: Optional[bool] = True,
         output_hidden_states: Optional[bool] = None,
         images: Optional[torch.FloatTensor] = None,
         image_sizes: Optional[List[List[int]]] = None,
@@ -77,12 +98,16 @@ class LlavaQwenForCausalLM(Qwen2ForCausalLM, LlavaMetaForCausalLM):
         modalities: Optional[List[str]] = ["image"],
         dpo_forward: Optional[bool] = False,
         cache_position=None,
+        image_feature_length = None
     ) -> Union[Tuple, CausalLMOutputWithPast]:
+        
+        image_feature_length = None
 
         if inputs_embeds is None:
             (input_ids, position_ids, attention_mask, past_key_values, inputs_embeds, labels) = self.prepare_inputs_labels_for_multimodal(input_ids, position_ids, attention_mask, past_key_values, labels, images, modalities, image_sizes)
-
+            
         if dpo_forward:
+
             outputs = self.model(
                 input_ids=input_ids,
                 attention_mask=attention_mask,
@@ -93,6 +118,7 @@ class LlavaQwenForCausalLM(Qwen2ForCausalLM, LlavaMetaForCausalLM):
                 output_attentions=output_attentions,
                 output_hidden_states=output_hidden_states,
                 return_dict=return_dict,
+                image_feature_length=image_feature_length
             )
 
             hidden_states = outputs[0]
@@ -100,6 +126,7 @@ class LlavaQwenForCausalLM(Qwen2ForCausalLM, LlavaMetaForCausalLM):
             return logits, labels
 
         else:
+
             return super().forward(
                 input_ids=input_ids,
                 attention_mask=attention_mask,
@@ -111,6 +138,7 @@ class LlavaQwenForCausalLM(Qwen2ForCausalLM, LlavaMetaForCausalLM):
                 output_attentions=output_attentions,
                 output_hidden_states=output_hidden_states,
                 return_dict=return_dict,
+                image_feature_length=image_feature_length
             )
 
     @torch.no_grad()
@@ -128,11 +156,32 @@ class LlavaQwenForCausalLM(Qwen2ForCausalLM, LlavaMetaForCausalLM):
             raise NotImplementedError("`inputs_embeds` is not supported")
 
         if images is not None:
-            (inputs, position_ids, attention_mask, _, inputs_embeds, _) = self.prepare_inputs_labels_for_multimodal(inputs, position_ids, attention_mask, None, None, images, modalities, image_sizes=image_sizes)
+            (inputs,position_ids, attention_mask, _, inputs_embeds, _) = self.prepare_inputs_labels_for_multimodal(inputs, position_ids, attention_mask, None, None, images, modalities, image_sizes=image_sizes)
+            
         else:
             inputs_embeds = self.get_model().embed_tokens(inputs)
 
-        return super().generate(position_ids=position_ids, attention_mask=attention_mask, inputs_embeds=inputs_embeds, **kwargs)
+
+        ##############################################################
+        torch.cuda.reset_peak_memory_stats()
+        gen_start_event = torch.cuda.Event(enable_timing=True)
+        gen_end_event = torch.cuda.Event(enable_timing=True)
+        torch.cuda.synchronize()
+        gen_start_event.record()
+        #######################################################
+        model_response = super().generate(position_ids=position_ids, attention_mask=attention_mask, inputs_embeds=inputs_embeds, **kwargs)
+        ###########################################################                
+        gen_end_event.record()
+        torch.cuda.synchronize()
+        gen_time = gen_start_event.elapsed_time(gen_end_event) / 1000.0  # second
+        gen_max_mem = torch.cuda.max_memory_allocated() / 1024 / 1024  # MB
+
+        self.total_cuda_time += gen_time
+        self.max_mem=max(gen_max_mem,self.max_mem)
+        print("LLM_total_time",self.total_cuda_time,"LLM_max_mem",self.max_mem)
+        ##########################################################################################
+
+        return model_response
 
     def prepare_inputs_for_generation(self, input_ids, past_key_values=None, inputs_embeds=None, **kwargs):
         images = kwargs.pop("images", None)
@@ -143,6 +192,8 @@ class LlavaQwenForCausalLM(Qwen2ForCausalLM, LlavaMetaForCausalLM):
         if image_sizes is not None:
             inputs["image_sizes"] = image_sizes
         return inputs
+
+
 
 
 AutoConfig.register("llava_qwen", LlavaQwenConfig)
