@@ -143,7 +143,7 @@ class LlavaQwenForCausalLM(Qwen2ForCausalLM, LlavaMetaForCausalLM):
 
 
         ##############################################################
-        torch.cuda.reset_peak_memory_stats()
+        # torch.cuda.reset_peak_memory_stats()
         gen_start_event = torch.cuda.Event(enable_timing=True)
         gen_end_event = torch.cuda.Event(enable_timing=True)
         torch.cuda.synchronize()
@@ -154,11 +154,11 @@ class LlavaQwenForCausalLM(Qwen2ForCausalLM, LlavaMetaForCausalLM):
         gen_end_event.record()
         torch.cuda.synchronize()
         gen_time = gen_start_event.elapsed_time(gen_end_event) / 1000.0  # second
-        gen_max_mem = torch.cuda.max_memory_allocated() / 1024 / 1024  # MB
+        # gen_max_mem = torch.cuda.max_memory_allocated() / 1024 / 1024  # MB
 
         self.total_cuda_time += gen_time
-        self.max_mem=max(gen_max_mem,self.max_mem)
-        print("LLM_total_time",self.total_cuda_time,"LLM_max_mem",self.max_mem)
+        # self.max_mem=max(gen_max_mem,self.max_mem)
+        print("LLM_total_time",self.total_cuda_time)
         ##################################################################
 
         return model_response
