@@ -18,7 +18,7 @@ Junpeng Ma<sup>3</sup>,
 
 ## 🔥 News
 
-* **`2025.05.27`** 🤗🤗 We further release the code of [detailed efficiency analysis]((#Efficiency-Analysis)) in our paper. Try to experience the acceleration effect VidCom<sup>2</sup> achieved!
+* **`2025.05.27`** 🤗🤗 We further release the code of [detailed efficiency analysis](#efficiency-analysis) in our paper. Try to experience the acceleration effect VidCom<sup>2</sup> achieved!
 
 * **`2025.05.21`** 🤗🤗 We release our latest work [VidCom<sup>2</sup>](https://arxiv.org/abs/2505.14454), a plug-and-play inference acceleration method of **VideoLLMs**. [Code](https://github.com/xuyang-liu16/VidCom2) is available!
 
