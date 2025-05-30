@@ -64,12 +64,14 @@ pip install git+https://github.com/EvolvingLMMs-Lab/lmms-eval.git
 We use the [lmms-eval](https://github.com/EvolvingLMMs-Lab/lmms-eval) toolkit to evaluate our models. 
 👉 You can reproduce all of our ablation experiments by modifying the parameters of the [`vidcom2_compression`]([https://github.com/xuyang-liu16/GlobalCom2/blob/main/llava/model/vidcom2.py](https://github.com/xuyang-liu16/VidCom2/blob/98cf6b4b1688fc90b1cc268db50aff7c4a6de941/llava/model/vidcom2.py#L4))function! . By default, the method in our paper is used, and the retention rate is 0.25.
 
+You can choose whether to use flash attention, but in our efficiency analysis, if flash attention can be used, then it should be used.
+
 To evaluate LLaVA-OneVision-7B, you can use:
 ```
 accelerate launch --num_processes=8 \
 -m lmms_eval \
 --model llava_onevision \
---model_args pretrained=lmms-lab/llava-onevision-qwen2-7b-ov,conv_template=qwen_1_5,model_name=llava_qwen,attn_implementation=flash_attention_2 \# You can choose whether to use flash attention, but in our efficiency analysis, if flash attention can be used, then it should be used.
+--model_args pretrained=lmms-lab/llava-onevision-qwen2-7b-ov,conv_template=qwen_1_5,model_name=llava_qwen,attn_implementation=flash_attention_2 \
 --tasks videomme,mlvu_dev,longvideobench_val_v,mvbench \
 --batch_size 1 \
 --log_samples \
