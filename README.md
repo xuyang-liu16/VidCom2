@@ -58,6 +58,9 @@ pip install git+https://github.com/EvolvingLMMs-Lab/lmms-eval.git
 ```
 
 ## 🚀 Evaluation
+
+<p align="center"> <img src="images/performance.jpg" width="1000" align="center"> </p>
+
 We use the [lmms-eval](https://github.com/EvolvingLMMs-Lab/lmms-eval) toolkit to evaluate our models. 
 👉 You can reproduce all of our ablation experiments by modifying the parameters of the [`vidcom2_compression`]([https://github.com/xuyang-liu16/GlobalCom2/blob/main/llava/model/vidcom2.py](https://github.com/xuyang-liu16/VidCom2/blob/98cf6b4b1688fc90b1cc268db50aff7c4a6de941/llava/model/vidcom2.py#L4))function! . By default, the method in our paper is used, and the retention rate is 0.25.
 
