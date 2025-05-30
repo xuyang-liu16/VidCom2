@@ -38,7 +38,7 @@ Junpeng Ma<sup>3</sup>,
 
 ## 💥 Core Codes
 
-The core implementation of our code is in [`llava/model/vidcom2.py`](https://github.com/xuyang-liu16/VidCom2/blob/main/llava/model/vidcom2.py). In LLaVA-OneVision, it is called at [here](https://github.com/xuyang-liu16/VidCom2/blob/ebb4260650cba4177534cdb0f6a3642c306c607c/llava/model/llava_arch.py#L355) and in LLaVA-Video, it is called at [here](https://github.com/xuyang-liu16/VidCom2/blob/ebb4260650cba4177534cdb0f6a3642c306c607c/llava/model/llava_arch.py#L324).
+The core implementation of our code is in [`llava/model/vidcom2.py`](https://github.com/xuyang-liu16/VidCom2/blob/main/llava/model/vidcom2.py). In LLaVA-OneVision, it is called at [here](https://github.com/xuyang-liu16/VidCom2/blob/ebb4260650cba4177534cdb0f6a3642c306c607c/llava/model/llava_arch.py#L355) and in LLaVA-Video, it is called at [here](https://github.com/xuyang-liu16/VidCom2/blob/ebb4260650cba4177534cdb0f6a3642c306c607c/llava/model/llava_arch.py#L324).The implementation of qwen2 vl is located in [transformers/models/qwen2_vl/modeling_qwen2_vl.py](transformers/models/qwen2_vl/modeling_qwen2_vl.py).
 
 ## 🛠 Preparation
 
@@ -69,7 +69,7 @@ To evaluate LLaVA-OneVision-7B, you can use:
 accelerate launch --num_processes=8 \
 -m lmms_eval \
 --model llava_onevision \
---model_args pretrained=lmms-lab/llava-onevision-qwen2-7b-ov,conv_template=qwen_1_5,model_name=llava_qwen \
+--model_args pretrained=lmms-lab/llava-onevision-qwen2-7b-ov,conv_template=qwen_1_5,model_name=llava_qwen,attn_implementation=flash_attention_2 \# You can choose whether to use flash attention, but in our efficiency analysis, if flash attention can be used, then it should be used.
 --tasks videomme,mlvu_dev,longvideobench_val_v,mvbench \
 --batch_size 1 \
 --log_samples \
@@ -81,14 +81,26 @@ To evaluate LLaVA-Video-7B, you can use:
 accelerate launch --num_processes=8 \
 -m lmms_eval \
 --model llava_vid \
---model_args pretrained=lmms-lab/LLaVA-Video-7B-Qwen2,conv_template=qwen_1_5,max_frames_num=64,mm_spatial_pool_mode=average \
+--model_args pretrained=lmms-lab/LLaVA-Video-7B-Qwen2,conv_template=qwen_1_5,max_frames_num=64,mm_spatial_pool_mode=average,attn_implementation=flash_attention_2 \
 --tasks videomme,mlvu_dev,longvideobench_val_v,mvbench \
 --batch_size 1 \
 --log_samples \
 --log_samples_suffix llava_vid \
 --output_path ./logs/
 ```
+To evaluate Qwen2-VL, you can use:
+```
+accelerate launch --num_processes=2 \
+-m lmms_eval \
+--model qwen2_vl \
+--model_args=pretrained=Qwen/Qwen2-VL-7B-Instruct,attn_implementation=flash_attention_2 \
+--tasks videomme,mlvu_dev,longvideobench_val_v,mvbench \
+--batch_size 1
+--log_samples
+--log_samples_suffix reproduce
+--output_path ./logs/
 
+```
 
 ## 🩻 Efficiency Analysis
 <p align="center"> <img src="images/efficiency.jpg" width="1000" align="center"> </p>
