@@ -26,7 +26,7 @@ Junpeng Ma<sup>3</sup>,
 
 - [x] Release the inference code of LLaVA-OV and LLaVA-Video.
 - [x] Release the code of detailed efficiency analysis in our paper.
-- [ ] Release the inference code of Qwen2-VL.
+- [x] Release the inference code of Qwen2-VL.
 - [ ] Support more VideoLLMs (e.g., LongVILA).
 
 ## ✨ Overview
