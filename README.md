@@ -59,7 +59,7 @@ pip install -e ".[train]"
 pip install git+https://github.com/EvolvingLMMs-Lab/lmms-eval.git
 ```
 
-## 🚀 Evaluation
+## 🚀 Performance Evaluation
 
 <p align="center"> <img src="images/performance.jpg" width="1000" align="center"> </p>
 
