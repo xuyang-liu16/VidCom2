@@ -20,13 +20,6 @@ Junpeng Ma<sup>3</sup>,
 
 * **`2025.05.21`** 🤗🤗 We release our latest work [VidCom<sup>2</sup>](https://arxiv.org/abs/2505.14454), a plug-and-play inference acceleration method of **VideoLLMs**. [Code](https://github.com/xuyang-liu16/VidCom2) is available!
 
-## 📝 TODO
-
-- [x] Release the inference code of LLaVA-OV and LLaVA-Video.
-- [x] Release the code of detailed efficiency analysis in our paper.
-- [x] Release the inference code of Qwen2-VL.
-- [ ] Support more VideoLLMs (e.g., LongVILA).
-
 ## 📌 Highlights
 
 - **Model Adaptability:** Compatible with most VideoLLMs (e.g., LLaVA, Qwen-VL series).
@@ -43,7 +36,7 @@ Junpeng Ma<sup>3</sup>,
 
 ## 💥 Core Codes
 
-The core implementation of our code is in [`llava/model/vidcom2.py`](https://github.com/xuyang-liu16/VidCom2/blob/main/llava/model/vidcom2.py). In LLaVA-OneVision, it is called at [here](https://github.com/xuyang-liu16/VidCom2/blob/ebb4260650cba4177534cdb0f6a3642c306c607c/llava/model/llava_arch.py#L355) and in LLaVA-Video, it is called at [here](https://github.com/xuyang-liu16/VidCom2/blob/ebb4260650cba4177534cdb0f6a3642c306c607c/llava/model/llava_arch.py#L324).The implementation of qwen2 vl is located in [transformers/models/qwen2_vl/modeling_qwen2_vl.py](transformers/models/qwen2_vl/modeling_qwen2_vl.py).
+The core implementation of our code is in [`llava/model/vidcom2.py`](https://github.com/xuyang-liu16/VidCom2/blob/main/llava/model/vidcom2.py). In **LLaVA-OneVision**, it is called at [here](https://github.com/xuyang-liu16/VidCom2/blob/ebb4260650cba4177534cdb0f6a3642c306c607c/llava/model/llava_arch.py#L355) and in **LLaVA-Video**, it is called at [here](https://github.com/xuyang-liu16/VidCom2/blob/ebb4260650cba4177534cdb0f6a3642c306c607c/llava/model/llava_arch.py#L324).The implementation of **Qwen2-VL** is located in [transformers/models/qwen2_vl/modeling_qwen2_vl.py](transformers/models/qwen2_vl/modeling_qwen2_vl.py).
 
 ## 🛠 Preparation
 
