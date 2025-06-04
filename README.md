@@ -23,10 +23,10 @@ Junpeng Ma<sup>3</sup>,
 ## 📌 Highlights
 
 - **Model Adaptability:** Compatible with most VideoLLMs (e.g., LLaVA, Qwen-VL series).
+- **Operator Compatibility:** Works seamlessly with efficient operators like Flash Attention 2.
 - **Strong Performance:** Uses only 25% of tokens while maintaining 99.6% performance of LLaVA-OV.
 - **High Efficiency:** Cuts LLaVA-OV generation time by 70.8% and overall latency by 43.0%.
-- **Operator Compatibility:** Works seamlessly with efficient operators like Flash Attention 2.
-  
+
 ## ✨ Overview
 
 <p align="center"> <img src="images/overview.jpg" width="1000" align="center"> </p>
