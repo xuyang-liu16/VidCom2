@@ -60,45 +60,45 @@ pip install git+https://github.com/EvolvingLMMs-Lab/lmms-eval.git
 <p align="center"> <img src="images/performance.jpg" width="1000" align="center"> </p>
 
 We use the [lmms-eval](https://github.com/EvolvingLMMs-Lab/lmms-eval) toolkit to evaluate our models. 
-👉 You can reproduce all of our ablation experiments by modifying the parameters of the [`vidcom2_compression`]([https://github.com/xuyang-liu16/GlobalCom2/blob/main/llava/model/vidcom2.py](https://github.com/xuyang-liu16/VidCom2/blob/98cf6b4b1688fc90b1cc268db50aff7c4a6de941/llava/model/vidcom2.py#L4))function! . By default, the method in our paper is used, and the retention rate is 0.25.
+👉 You can reproduce all of our ablation experiments by modifying the parameters of the [`vidcom2_compression`]([https://github.com/xuyang-liu16/GlobalCom2/blob/main/llava/model/vidcom2.py](https://github.com/xuyang-liu16/VidCom2/blob/98cf6b4b1688fc90b1cc268db50aff7c4a6de941/llava/model/vidcom2.py#L4))function! By default, the retention ratio is 0.25.
 
 You can choose whether to use flash attention, but in our efficiency analysis, if flash attention can be used, then it should be used.
 
 To evaluate LLaVA-OneVision-7B, you can use:
 ```
 accelerate launch --num_processes=8 \
--m lmms_eval \
---model llava_onevision \
---model_args pretrained=lmms-lab/llava-onevision-qwen2-7b-ov,conv_template=qwen_1_5,model_name=llava_qwen,attn_implementation=flash_attention_2 \
---tasks videomme,mlvu_dev,longvideobench_val_v,mvbench \
---batch_size 1 \
---log_samples \
---log_samples_suffix llava_onevision \
---output_path ./logs/
+  -m lmms_eval \
+  --model llava_onevision \
+  --model_args pretrained=lmms-lab/llava-onevision-qwen2-7b-ov,conv_template=qwen_1_5,model_name=llava_qwen,attn_implementation=flash_attention_2 \
+  --tasks videomme,mlvu_dev,longvideobench_val_v,mvbench \
+  --batch_size 1 \
+  --log_samples \
+  --log_samples_suffix llava_onevision \
+  --output_path ./logs/
 ```
 To evaluate LLaVA-Video-7B, you can use:
 ```
 accelerate launch --num_processes=8 \
--m lmms_eval \
---model llava_vid \
---model_args pretrained=lmms-lab/LLaVA-Video-7B-Qwen2,conv_template=qwen_1_5,max_frames_num=64,mm_spatial_pool_mode=average,attn_implementation=flash_attention_2 \
---tasks videomme,mlvu_dev,longvideobench_val_v,mvbench \
---batch_size 1 \
---log_samples \
---log_samples_suffix llava_vid \
---output_path ./logs/
+  -m lmms_eval \
+  --model llava_vid \
+  --model_args pretrained=lmms-lab/LLaVA-Video-7B-Qwen2,conv_template=qwen_1_5,max_frames_num=64,mm_spatial_pool_mode=average,attn_implementation=flash_attention_2 \
+  --tasks videomme,mlvu_dev,longvideobench_val_v,mvbench \
+  --batch_size 1 \
+  --log_samples \
+  --log_samples_suffix llava_vid \
+  --output_path ./logs/
 ```
 To evaluate Qwen2-VL, you can use:
 ```
-accelerate launch --num_processes=2 \
--m lmms_eval \
---model qwen2_vl \
---model_args=pretrained=Qwen/Qwen2-VL-7B-Instruct,attn_implementation=flash_attention_2 \
---tasks videomme,mlvu_dev,longvideobench_val_v,mvbench \
---batch_size 1
---log_samples
---log_samples_suffix reproduce
---output_path ./logs/
+accelerate launch --num_processes=8 \
+  -m lmms_eval \
+  --model qwen2_vl \
+  --model_args=pretrained=Qwen/Qwen2-VL-7B-Instruct,attn_implementation=flash_attention_2 \
+  --tasks videomme,mlvu_dev,longvideobench_val_v,mvbench \
+  --batch_size 1
+  --log_samples
+  --log_samples_suffix reproduce
+  --output_path ./logs/
 
 ```
 
@@ -110,7 +110,6 @@ VidCom<sup>2</sup> employs  [lmms-eval](https://github.com/EvolvingLMMs-Lab/lmms
 The code of measuring the total time for **model generation** and **GPU peak memory** is located in [lmms_eval/models/llava_onevision.py](https://github.com/xuyang-liu16/VidCom2/blob/3be0e66d563c16e980145f925a55949ea431a2d8/lmms-eval/lmms_eval/models/llava_onevision.py#L568).
 
 The code of measuring the total time for **LLM generation**  is located in [llava/model/language_model/llava_qwen.py](https://github.com/xuyang-liu16/VidCom2/blob/3be0e66d563c16e980145f925a55949ea431a2d8/llava/model/language_model/llava_qwen.py#L145).
-
 
 
 ## 📌 Citation
