@@ -34,9 +34,13 @@ Junpeng Ma<sup>3</sup>,
 > **TLDR:** We present VidCom<sup>2</sup>, a plug-and-play framework that dynamically compresses video tokens based on frame uniqueness, achieving state-of-the-art efficiency and performance across various VideoLLMs and benchmarks.
 
 
-## 💥 Core Codes
+## 💥 Core Codes and Supported Models
 
-The core implementation of our code is in [`llava/model/vidcom2.py`](https://github.com/xuyang-liu16/VidCom2/blob/main/llava/model/vidcom2.py). In **LLaVA-OneVision**, it is called at [here](https://github.com/xuyang-liu16/VidCom2/blob/ebb4260650cba4177534cdb0f6a3642c306c607c/llava/model/llava_arch.py#L355) and in **LLaVA-Video**, it is called at [here](https://github.com/xuyang-liu16/VidCom2/blob/ebb4260650cba4177534cdb0f6a3642c306c607c/llava/model/llava_arch.py#L324). The implementation of **Qwen2-VL** is located in [here](https://github.com/xuyang-liu16/VidCom2/blob/main/transformers/models/qwen2_vl/modeling_qwen2_vl.py#L55).
+The core implementation of our code is in [`llava/model/vidcom2.py`](https://github.com/xuyang-liu16/VidCom2/blob/main/llava/model/vidcom2.py). 
+
+- **LLaVA-OneVision:** It is called at [`llava/model/llava_arch.py`](https://github.com/xuyang-liu16/VidCom2/blob/ebb4260650cba4177534cdb0f6a3642c306c607c/llava/model/llava_arch.py#L355).
+- **LLaVA-OneVision:** It is called at [`llava/model/llava_arch.py`](https://github.com/xuyang-liu16/VidCom2/blob/ebb4260650cba4177534cdb0f6a3642c306c607c/llava/model/llava_arch.py#L324).
+- **Qwen2-VL:** It is called at [`transformers/models/qwen2_vl/modeling_qwen2_vl.py`](https://github.com/xuyang-liu16/VidCom2/blob/main/transformers/models/qwen2_vl/modeling_qwen2_vl.py#L55).
 
 ## 🛠 Preparation
 
