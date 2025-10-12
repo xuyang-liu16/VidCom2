@@ -57,8 +57,6 @@ pip install git+https://github.com/EvolvingLMMs-Lab/lmms-eval.git
 
 ## 🚀 Performance Evaluation
 
-<p align="center"> <img src="images/performance.jpg" width="1000" align="center"> </p>
-
 We use the [lmms-eval](https://github.com/EvolvingLMMs-Lab/lmms-eval) toolkit to evaluate our models. 
 👉 You can reproduce all of our ablation experiments by modifying the parameters of the [`vidcom2_compression`]([https://github.com/xuyang-liu16/GlobalCom2/blob/main/llava/model/vidcom2.py](https://github.com/xuyang-liu16/VidCom2/blob/98cf6b4b1688fc90b1cc268db50aff7c4a6de941/llava/model/vidcom2.py#L4))function! By default, the retention ratio is 0.25.
 
@@ -102,7 +100,7 @@ accelerate launch --num_processes=8 \
 
 ```
 
-## 🩻 Efficiency Analysis
+## ⚡ Efficiency Analysis
 <p align="center"> <img src="images/efficiency.jpg" width="1000" align="center"> </p>
 
 VidCom<sup>2</sup> employs  [lmms-eval](https://github.com/EvolvingLMMs-Lab/lmms-eval) for inference, and all efficiency analyses are based on [LLaVA-OneVision-7B](https://github.com/LLaVA-VL/LLaVA-NeXT.git).
