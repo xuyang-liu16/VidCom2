@@ -7,7 +7,7 @@ Xiyan Gui<sup>3*</sup>,
 Yuchao Zhang<sup>1</sup>,
 [Linfeng Zhang](http://www.zhanglinfeng.tech/)<sup>1✉</sup>
 
-<sup>1</sup>Shanghai Jiao Tong University, <sup>2</sup>Sichuan University, <sup>3</sup>Huazhong University of Science and Technology
+<sup>1</sup>EPIC Lab, Shanghai Jiao Tong University, <sup>2</sup>Sichuan University, <sup>3</sup>Huazhong University of Science and Technology
 
 </h4>
 
