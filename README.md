@@ -1,8 +1,5 @@
 <div align=center>
-
 <h1> 🚀 Mixing Importance with Diversity: Joint Optimization for KV Cache Compression in Large Vision-Language Models </h1>
-
-
 <h4 align="center"> 
 
 [Xuyang Liu](https://xuyang-liu16.github.io/)<sup>1,2*</sup>,
