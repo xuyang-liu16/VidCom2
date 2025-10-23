@@ -96,11 +96,11 @@ To evaluate Qwen2-VL, you can use:
 accelerate launch --num_processes=8 \
   -m lmms_eval \
   --model qwen2_vl \
-  --model_args=pretrained=Qwen/Qwen2-VL-7B-Instruct,attn_implementation=flash_attention_2 \
+  --model_args pretrained=Qwen/Qwen2-VL-7B-Instruct,use_flash_attention_2=True \
   --tasks videomme,mlvu_dev,longvideobench_val_v,mvbench \
   --batch_size 1
   --log_samples
-  --log_samples_suffix reproduce
+  --log_samples_suffix qwen2_vl
   --output_path ./logs/
 
 ```
