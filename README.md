@@ -67,7 +67,7 @@ We use the [lmms-eval](https://github.com/EvolvingLMMs-Lab/lmms-eval) toolkit to
 
 You can choose whether to use flash attention, but in our efficiency analysis, if flash attention can be used, then it should be used.
 
-To evaluate LLaVA-OneVision-7B, you can use:
+To evaluate **LLaVA-OneVision-7B**, you can use:
 ```
 accelerate launch --num_processes=8 \
   -m lmms_eval \
@@ -79,7 +79,7 @@ accelerate launch --num_processes=8 \
   --log_samples_suffix llava_onevision \
   --output_path ./logs/
 ```
-To evaluate LLaVA-Video-7B, you can use:
+To evaluate **LLaVA-Video-7B**, you can use:
 ```
 accelerate launch --num_processes=8 \
   -m lmms_eval \
@@ -91,7 +91,7 @@ accelerate launch --num_processes=8 \
   --log_samples_suffix llava_vid \
   --output_path ./logs/
 ```
-To evaluate Qwen2-VL, you can use:
+To evaluate **Qwen2-VL-7B-Instruct**, you can use:
 ```
 accelerate launch --num_processes=8 \
   -m lmms_eval \
