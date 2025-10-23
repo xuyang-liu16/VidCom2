@@ -1,0 +1,14 @@
+Metadata-Version: 2.1
+Name: tiny_pkg
+Version: 0.0.0
+Summary: Tiny cuda and c api binding for pytorch.
+License: UNKNOWN
+Platform: UNKNOWN
+Requires-Python: >=3.7
+License-File: LICENSE
+Requires-Dist: torch
+Requires-Dist: einops
+Requires-Dist: packaging
+Requires-Dist: ninja
+
+UNKNOWN

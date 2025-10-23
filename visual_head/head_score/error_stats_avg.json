@@ -1,0 +1,674 @@
+{
+    "0_0": {
+        "key_mse_token": 519.02575,
+        "key_mse_channel": 0.06626907348632813,
+        "value_mse_token": 0.003807014465332031,
+        "value_mse_channel": 0.003461819648742676
+    },
+    "0_1": {
+        "key_mse_token": 330.135625,
+        "key_mse_channel": 0.12203411865234375,
+        "value_mse_token": 0.004006906509399414,
+        "value_mse_channel": 0.004043801307678223
+    },
+    "0_2": {
+        "key_mse_token": 236.61075,
+        "key_mse_channel": 0.054065673828125,
+        "value_mse_token": 0.010370826721191407,
+        "value_mse_channel": 0.0031711616516113283
+    },
+    "0_3": {
+        "key_mse_token": 27.0483046875,
+        "key_mse_channel": 0.04265200805664063,
+        "value_mse_token": 0.008185173034667969,
+        "value_mse_channel": 0.0038948278427124025
+    },
+    "1_0": {
+        "key_mse_token": 21.60525,
+        "key_mse_channel": 0.06801068115234375,
+        "value_mse_token": 0.0034392623901367187,
+        "value_mse_channel": 0.002307295799255371
+    },
+    "1_1": {
+        "key_mse_token": 2.1805263671875,
+        "key_mse_channel": 0.16759832763671875,
+        "value_mse_token": 0.0031764936447143555,
+        "value_mse_channel": 0.0027441015243530272
+    },
+    "1_2": {
+        "key_mse_token": 4.5634765625,
+        "key_mse_channel": 0.2727879638671875,
+        "value_mse_token": 0.0023276262283325197,
+        "value_mse_channel": 0.0018733062744140626
+    },
+    "1_3": {
+        "key_mse_token": 1.35891064453125,
+        "key_mse_channel": 0.124132080078125,
+        "value_mse_token": 0.0025254011154174803,
+        "value_mse_channel": 0.002043224334716797
+    },
+    "2_0": {
+        "key_mse_token": 0.3885413818359375,
+        "key_mse_channel": 0.155738525390625,
+        "value_mse_token": 0.011228252410888671,
+        "value_mse_channel": 0.007912860870361329
+    },
+    "2_1": {
+        "key_mse_token": 5.17215625,
+        "key_mse_channel": 0.13372637939453125,
+        "value_mse_token": 0.00874915885925293,
+        "value_mse_channel": 0.007249320983886719
+    },
+    "2_2": {
+        "key_mse_token": 1.24818994140625,
+        "key_mse_channel": 0.09168438720703125,
+        "value_mse_token": 0.011055763244628907,
+        "value_mse_channel": 0.009214324951171875
+    },
+    "2_3": {
+        "key_mse_token": 1.7690634765625,
+        "key_mse_channel": 0.12582220458984375,
+        "value_mse_token": 0.00900420379638672,
+        "value_mse_channel": 0.007654209136962891
+    },
+    "3_0": {
+        "key_mse_token": 23.4141640625,
+        "key_mse_channel": 0.16161447143554689,
+        "value_mse_token": 0.012790695190429687,
+        "value_mse_channel": 0.013266456604003907
+    },
+    "3_1": {
+        "key_mse_token": 0.86575732421875,
+        "key_mse_channel": 0.16955596923828126,
+        "value_mse_token": 0.013273189544677735,
+        "value_mse_channel": 0.0093314208984375
+    },
+    "3_2": {
+        "key_mse_token": 1.449876953125,
+        "key_mse_channel": 0.135425048828125,
+        "value_mse_token": 0.011381427764892578,
+        "value_mse_channel": 0.010352657318115235
+    },
+    "3_3": {
+        "key_mse_token": 8.348462890625,
+        "key_mse_channel": 0.15639654541015624,
+        "value_mse_token": 0.007455707550048828,
+        "value_mse_channel": 0.006723878860473632
+    },
+    "4_0": {
+        "key_mse_token": 0.5931878662109376,
+        "key_mse_channel": 0.13469122314453125,
+        "value_mse_token": 0.02637688446044922,
+        "value_mse_channel": 0.020801414489746095
+    },
+    "4_1": {
+        "key_mse_token": 0.510938232421875,
+        "key_mse_channel": 0.310294677734375,
+        "value_mse_token": 0.05014637756347656,
+        "value_mse_channel": 0.01635392379760742
+    },
+    "4_2": {
+        "key_mse_token": 0.73676953125,
+        "key_mse_channel": 0.13029681396484374,
+        "value_mse_token": 0.025555984497070312,
+        "value_mse_channel": 0.01991551971435547
+    },
+    "4_3": {
+        "key_mse_token": 0.608669921875,
+        "key_mse_channel": 0.17461810302734376,
+        "value_mse_token": 0.02405065155029297,
+        "value_mse_channel": 0.01820497131347656
+    },
+    "5_0": {
+        "key_mse_token": 0.834950439453125,
+        "key_mse_channel": 0.13732080078125,
+        "value_mse_token": 0.041550003051757815,
+        "value_mse_channel": 0.024852149963378905
+    },
+    "5_1": {
+        "key_mse_token": 0.7017099609375,
+        "key_mse_channel": 0.10495205688476562,
+        "value_mse_token": 0.0410494384765625,
+        "value_mse_channel": 0.031208999633789064
+    },
+    "5_2": {
+        "key_mse_token": 0.6176871337890625,
+        "key_mse_channel": 0.20123846435546874,
+        "value_mse_token": 0.03769342041015625,
+        "value_mse_channel": 0.028605186462402343
+    },
+    "5_3": {
+        "key_mse_token": 0.429938232421875,
+        "key_mse_channel": 0.18239007568359375,
+        "value_mse_token": 0.045205337524414066,
+        "value_mse_channel": 0.024329391479492188
+    },
+    "6_0": {
+        "key_mse_token": 0.634153076171875,
+        "key_mse_channel": 0.14801690673828125,
+        "value_mse_token": 0.0330599365234375,
+        "value_mse_channel": 0.022608840942382812
+    },
+    "6_1": {
+        "key_mse_token": 0.781029296875,
+        "key_mse_channel": 0.1296300048828125,
+        "value_mse_token": 0.031100028991699218,
+        "value_mse_channel": 0.02451604461669922
+    },
+    "6_2": {
+        "key_mse_token": 2.41817578125,
+        "key_mse_channel": 0.09436959838867187,
+        "value_mse_token": 0.02961375427246094,
+        "value_mse_channel": 0.020191131591796876
+    },
+    "6_3": {
+        "key_mse_token": 0.4168983154296875,
+        "key_mse_channel": 0.16543255615234376,
+        "value_mse_token": 0.019258567810058594,
+        "value_mse_channel": 0.016662551879882814
+    },
+    "7_0": {
+        "key_mse_token": 0.81443603515625,
+        "key_mse_channel": 0.16081976318359376,
+        "value_mse_token": 0.04310879516601562,
+        "value_mse_channel": 0.0347666015625
+    },
+    "7_1": {
+        "key_mse_token": 0.68583154296875,
+        "key_mse_channel": 0.15027337646484376,
+        "value_mse_token": 0.03891534423828125,
+        "value_mse_channel": 0.03588600158691406
+    },
+    "7_2": {
+        "key_mse_token": 0.8640205078125,
+        "key_mse_channel": 0.113732421875,
+        "value_mse_token": 0.05378533935546875,
+        "value_mse_channel": 0.04564060974121094
+    },
+    "7_3": {
+        "key_mse_token": 1.03960693359375,
+        "key_mse_channel": 0.11730831909179687,
+        "value_mse_token": 0.033089111328125,
+        "value_mse_channel": 0.030236328125
+    },
+    "8_0": {
+        "key_mse_token": 0.4219647216796875,
+        "key_mse_channel": 0.11994305419921875,
+        "value_mse_token": 0.05182258605957031,
+        "value_mse_channel": 0.03505848693847656
+    },
+    "8_1": {
+        "key_mse_token": 0.799799560546875,
+        "key_mse_channel": 0.18401666259765626,
+        "value_mse_token": 0.05998870849609375,
+        "value_mse_channel": 0.0413316650390625
+    },
+    "8_2": {
+        "key_mse_token": 0.633255126953125,
+        "key_mse_channel": 0.161454833984375,
+        "value_mse_token": 0.03020353698730469,
+        "value_mse_channel": 0.02449091339111328
+    },
+    "8_3": {
+        "key_mse_token": 0.5066910400390625,
+        "key_mse_channel": 0.260582275390625,
+        "value_mse_token": 0.06755827331542968,
+        "value_mse_channel": 0.03750411987304687
+    },
+    "9_0": {
+        "key_mse_token": 0.630861572265625,
+        "key_mse_channel": 0.14647247314453124,
+        "value_mse_token": 0.04893389892578125,
+        "value_mse_channel": 0.04215150451660156
+    },
+    "9_1": {
+        "key_mse_token": 0.4662381591796875,
+        "key_mse_channel": 0.1539547119140625,
+        "value_mse_token": 0.050417037963867185,
+        "value_mse_channel": 0.041996856689453126
+    },
+    "9_2": {
+        "key_mse_token": 0.55197607421875,
+        "key_mse_channel": 0.10810824584960937,
+        "value_mse_token": 0.06483403015136718,
+        "value_mse_channel": 0.05509205627441406
+    },
+    "9_3": {
+        "key_mse_token": 0.5302156982421875,
+        "key_mse_channel": 0.1552755126953125,
+        "value_mse_token": 0.04163723754882812,
+        "value_mse_channel": 0.03459979248046875
+    },
+    "10_0": {
+        "key_mse_token": 0.5088616943359375,
+        "key_mse_channel": 0.11789508056640625,
+        "value_mse_token": 0.03175198364257813,
+        "value_mse_channel": 0.022835700988769532
+    },
+    "10_1": {
+        "key_mse_token": 0.723056884765625,
+        "key_mse_channel": 0.18168035888671874,
+        "value_mse_token": 0.033921722412109376,
+        "value_mse_channel": 0.028326995849609377
+    },
+    "10_2": {
+        "key_mse_token": 0.681501220703125,
+        "key_mse_channel": 0.1448734130859375,
+        "value_mse_token": 0.050014892578125,
+        "value_mse_channel": 0.03300167846679687
+    },
+    "10_3": {
+        "key_mse_token": 0.80699755859375,
+        "key_mse_channel": 0.1633505859375,
+        "value_mse_token": 0.0386817626953125,
+        "value_mse_channel": 0.02727338409423828
+    },
+    "11_0": {
+        "key_mse_token": 0.4853663330078125,
+        "key_mse_channel": 0.14380712890625,
+        "value_mse_token": 0.060129257202148435,
+        "value_mse_channel": 0.03089856719970703
+    },
+    "11_1": {
+        "key_mse_token": 0.5330252685546875,
+        "key_mse_channel": 0.1879581298828125,
+        "value_mse_token": 0.06727824401855469,
+        "value_mse_channel": 0.041708969116210935
+    },
+    "11_2": {
+        "key_mse_token": 0.660930419921875,
+        "key_mse_channel": 0.1728204345703125,
+        "value_mse_token": 0.033475997924804685,
+        "value_mse_channel": 0.027574020385742186
+    },
+    "11_3": {
+        "key_mse_token": 0.793423828125,
+        "key_mse_channel": 0.25530511474609374,
+        "value_mse_token": 0.04978607177734375,
+        "value_mse_channel": 0.03368017578125
+    },
+    "12_0": {
+        "key_mse_token": 1.278208984375,
+        "key_mse_channel": 0.14003961181640626,
+        "value_mse_token": 0.04738337707519531,
+        "value_mse_channel": 0.03670515441894531
+    },
+    "12_1": {
+        "key_mse_token": 0.2901114501953125,
+        "key_mse_channel": 0.14388333129882813,
+        "value_mse_token": 0.06988522338867187,
+        "value_mse_channel": 0.046528167724609375
+    },
+    "12_2": {
+        "key_mse_token": 0.504255126953125,
+        "key_mse_channel": 0.168071533203125,
+        "value_mse_token": 0.05333140563964844,
+        "value_mse_channel": 0.04434614562988281
+    },
+    "12_3": {
+        "key_mse_token": 0.5556671142578125,
+        "key_mse_channel": 0.21410369873046875,
+        "value_mse_token": 0.04787213134765625,
+        "value_mse_channel": 0.03088709259033203
+    },
+    "13_0": {
+        "key_mse_token": 6.893701171875,
+        "key_mse_channel": 0.15517645263671875,
+        "value_mse_token": 0.04397366333007813,
+        "value_mse_channel": 0.037364013671875
+    },
+    "13_1": {
+        "key_mse_token": 0.511000244140625,
+        "key_mse_channel": 0.15681243896484376,
+        "value_mse_token": 0.05753984069824219,
+        "value_mse_channel": 0.041354583740234374
+    },
+    "13_2": {
+        "key_mse_token": 1.91619482421875,
+        "key_mse_channel": 0.19253143310546875,
+        "value_mse_token": 0.05822477722167969,
+        "value_mse_channel": 0.04602973937988281
+    },
+    "13_3": {
+        "key_mse_token": 1.2415908203125,
+        "key_mse_channel": 0.19357275390625,
+        "value_mse_token": 0.054863555908203125,
+        "value_mse_channel": 0.044965606689453125
+    },
+    "14_0": {
+        "key_mse_token": 0.52791259765625,
+        "key_mse_channel": 0.22835638427734375,
+        "value_mse_token": 0.0946729736328125,
+        "value_mse_channel": 0.052217864990234376
+    },
+    "14_1": {
+        "key_mse_token": 0.76911083984375,
+        "key_mse_channel": 0.20798193359375,
+        "value_mse_token": 0.07988444519042968,
+        "value_mse_channel": 0.04633642578125
+    },
+    "14_2": {
+        "key_mse_token": 0.4505478515625,
+        "key_mse_channel": 0.2071697998046875,
+        "value_mse_token": 0.04884829711914063,
+        "value_mse_channel": 0.04409553527832031
+    },
+    "14_3": {
+        "key_mse_token": 0.4299796142578125,
+        "key_mse_channel": 0.17225677490234376,
+        "value_mse_token": 0.046355377197265624,
+        "value_mse_channel": 0.034086898803710936
+    },
+    "15_0": {
+        "key_mse_token": 0.3750606689453125,
+        "key_mse_channel": 0.1822332763671875,
+        "value_mse_token": 0.05564604187011719,
+        "value_mse_channel": 0.039743667602539064
+    },
+    "15_1": {
+        "key_mse_token": 0.487830810546875,
+        "key_mse_channel": 0.1630025634765625,
+        "value_mse_token": 0.05076589965820313,
+        "value_mse_channel": 0.03624861145019531
+    },
+    "15_2": {
+        "key_mse_token": 0.43411865234375,
+        "key_mse_channel": 0.2316671142578125,
+        "value_mse_token": 0.08543258666992187,
+        "value_mse_channel": 0.05507801818847656
+    },
+    "15_3": {
+        "key_mse_token": 2.819587890625,
+        "key_mse_channel": 0.15196270751953125,
+        "value_mse_token": 0.07000782775878907,
+        "value_mse_channel": 0.05158280944824219
+    },
+    "16_0": {
+        "key_mse_token": 0.9794951171875,
+        "key_mse_channel": 0.23153472900390626,
+        "value_mse_token": 0.08379022216796875,
+        "value_mse_channel": 0.057967910766601564
+    },
+    "16_1": {
+        "key_mse_token": 0.4217196044921875,
+        "key_mse_channel": 0.1825218505859375,
+        "value_mse_token": 0.0757264404296875,
+        "value_mse_channel": 0.06252143859863281
+    },
+    "16_2": {
+        "key_mse_token": 0.59751220703125,
+        "key_mse_channel": 0.2513372802734375,
+        "value_mse_token": 0.05732566833496094,
+        "value_mse_channel": 0.046488449096679686
+    },
+    "16_3": {
+        "key_mse_token": 0.958533203125,
+        "key_mse_channel": 0.142265625,
+        "value_mse_token": 0.04589572143554688,
+        "value_mse_channel": 0.03818745422363281
+    },
+    "17_0": {
+        "key_mse_token": 0.62255908203125,
+        "key_mse_channel": 0.16500341796875,
+        "value_mse_token": 0.059124237060546876,
+        "value_mse_channel": 0.0420341796875
+    },
+    "17_1": {
+        "key_mse_token": 0.4405699462890625,
+        "key_mse_channel": 0.1593433837890625,
+        "value_mse_token": 0.06472268676757813,
+        "value_mse_channel": 0.058301422119140626
+    },
+    "17_2": {
+        "key_mse_token": 0.4452120361328125,
+        "key_mse_channel": 0.18329058837890624,
+        "value_mse_token": 0.09326321411132812,
+        "value_mse_channel": 0.07517658996582031
+    },
+    "17_3": {
+        "key_mse_token": 0.4740677490234375,
+        "key_mse_channel": 0.2012928466796875,
+        "value_mse_token": 0.07710617065429687,
+        "value_mse_channel": 0.062232437133789065
+    },
+    "18_0": {
+        "key_mse_token": 0.4262021484375,
+        "key_mse_channel": 0.12919677734375,
+        "value_mse_token": 0.059295120239257815,
+        "value_mse_channel": 0.050710296630859374
+    },
+    "18_1": {
+        "key_mse_token": 0.641572021484375,
+        "key_mse_channel": 0.136727783203125,
+        "value_mse_token": 0.06301028442382813,
+        "value_mse_channel": 0.051964126586914065
+    },
+    "18_2": {
+        "key_mse_token": 0.559185302734375,
+        "key_mse_channel": 0.1836846923828125,
+        "value_mse_token": 0.06695578002929688,
+        "value_mse_channel": 0.05050413513183594
+    },
+    "18_3": {
+        "key_mse_token": 0.76806689453125,
+        "key_mse_channel": 0.11897430419921876,
+        "value_mse_token": 0.0917227783203125,
+        "value_mse_channel": 0.08675944519042969
+    },
+    "19_0": {
+        "key_mse_token": 9.84690625,
+        "key_mse_channel": 0.14548333740234376,
+        "value_mse_token": 0.063439697265625,
+        "value_mse_channel": 0.04674313354492188
+    },
+    "19_1": {
+        "key_mse_token": 0.4941605224609375,
+        "key_mse_channel": 0.12417706298828125,
+        "value_mse_token": 0.04593089294433594,
+        "value_mse_channel": 0.040703994750976566
+    },
+    "19_2": {
+        "key_mse_token": 0.5164041748046875,
+        "key_mse_channel": 0.22436529541015626,
+        "value_mse_token": 0.152020263671875,
+        "value_mse_channel": 0.10120285034179688
+    },
+    "19_3": {
+        "key_mse_token": 1.2491787109375,
+        "key_mse_channel": 0.22053948974609375,
+        "value_mse_token": 0.10710549926757812,
+        "value_mse_channel": 0.09388015747070312
+    },
+    "20_0": {
+        "key_mse_token": 0.406101806640625,
+        "key_mse_channel": 0.13196713256835937,
+        "value_mse_token": 0.07033177185058594,
+        "value_mse_channel": 0.05672395324707031
+    },
+    "20_1": {
+        "key_mse_token": 0.402960693359375,
+        "key_mse_channel": 0.15419854736328126,
+        "value_mse_token": 0.0967335205078125,
+        "value_mse_channel": 0.08323300170898437
+    },
+    "20_2": {
+        "key_mse_token": 0.4336004638671875,
+        "key_mse_channel": 0.18404327392578124,
+        "value_mse_token": 0.08872088623046875,
+        "value_mse_channel": 0.07347666931152344
+    },
+    "20_3": {
+        "key_mse_token": 0.3909847412109375,
+        "key_mse_channel": 0.18585003662109376,
+        "value_mse_token": 0.1059798583984375,
+        "value_mse_channel": 0.08802305603027344
+    },
+    "21_0": {
+        "key_mse_token": 0.622583740234375,
+        "key_mse_channel": 0.20572723388671876,
+        "value_mse_token": 0.1708428955078125,
+        "value_mse_channel": 0.15359490966796874
+    },
+    "21_1": {
+        "key_mse_token": 0.5423682861328125,
+        "key_mse_channel": 0.14754669189453126,
+        "value_mse_token": 0.08108969116210937,
+        "value_mse_channel": 0.06894656372070312
+    },
+    "21_2": {
+        "key_mse_token": 0.66729736328125,
+        "key_mse_channel": 0.13878692626953126,
+        "value_mse_token": 0.13056716918945313,
+        "value_mse_channel": 0.09677096557617187
+    },
+    "21_3": {
+        "key_mse_token": 0.70762060546875,
+        "key_mse_channel": 0.20625238037109375,
+        "value_mse_token": 0.103728515625,
+        "value_mse_channel": 0.082976806640625
+    },
+    "22_0": {
+        "key_mse_token": 0.5482655029296875,
+        "key_mse_channel": 0.22263421630859376,
+        "value_mse_token": 0.21135101318359376,
+        "value_mse_channel": 0.19348321533203125
+    },
+    "22_1": {
+        "key_mse_token": 0.577771240234375,
+        "key_mse_channel": 0.19724859619140625,
+        "value_mse_token": 0.1572841796875,
+        "value_mse_channel": 0.145038330078125
+    },
+    "22_2": {
+        "key_mse_token": 0.5947620849609375,
+        "key_mse_channel": 0.15378778076171876,
+        "value_mse_token": 0.11064495849609375,
+        "value_mse_channel": 0.09483493041992187
+    },
+    "22_3": {
+        "key_mse_token": 0.5524447021484375,
+        "key_mse_channel": 0.1999530029296875,
+        "value_mse_token": 0.181537353515625,
+        "value_mse_channel": 0.14484466552734376
+    },
+    "23_0": {
+        "key_mse_token": 0.531846923828125,
+        "key_mse_channel": 0.16570855712890625,
+        "value_mse_token": 0.1632359619140625,
+        "value_mse_channel": 0.14785870361328124
+    },
+    "23_1": {
+        "key_mse_token": 0.655053955078125,
+        "key_mse_channel": 0.20818719482421874,
+        "value_mse_token": 0.43675830078125,
+        "value_mse_channel": 0.4239842529296875
+    },
+    "23_2": {
+        "key_mse_token": 0.56296630859375,
+        "key_mse_channel": 0.1947662353515625,
+        "value_mse_token": 0.3932421875,
+        "value_mse_channel": 0.3844366455078125
+    },
+    "23_3": {
+        "key_mse_token": 0.5453603515625,
+        "key_mse_channel": 0.127896240234375,
+        "value_mse_token": 0.16803570556640626,
+        "value_mse_channel": 0.06652481079101563
+    },
+    "24_0": {
+        "key_mse_token": 0.876439697265625,
+        "key_mse_channel": 0.1440340576171875,
+        "value_mse_token": 0.12907284545898437,
+        "value_mse_channel": 0.09569619750976563
+    },
+    "24_1": {
+        "key_mse_token": 0.4921173095703125,
+        "key_mse_channel": 0.120474365234375,
+        "value_mse_token": 0.314722900390625,
+        "value_mse_channel": 0.274410400390625
+    },
+    "24_2": {
+        "key_mse_token": 0.6189769287109375,
+        "key_mse_channel": 0.1679642333984375,
+        "value_mse_token": 0.15990957641601564,
+        "value_mse_channel": 0.13112350463867187
+    },
+    "24_3": {
+        "key_mse_token": 0.644915771484375,
+        "key_mse_channel": 0.20321160888671874,
+        "value_mse_token": 0.3362608642578125,
+        "value_mse_channel": 0.3335784912109375
+    },
+    "25_0": {
+        "key_mse_token": 0.97813818359375,
+        "key_mse_channel": 0.13180877685546874,
+        "value_mse_token": 0.11035003662109374,
+        "value_mse_channel": 0.10067782592773437
+    },
+    "25_1": {
+        "key_mse_token": 0.358201171875,
+        "key_mse_channel": 0.13388079833984376,
+        "value_mse_token": 0.6766328125,
+        "value_mse_channel": 0.665631591796875
+    },
+    "25_2": {
+        "key_mse_token": 0.3847188720703125,
+        "key_mse_channel": 0.1294923095703125,
+        "value_mse_token": 0.2112138671875,
+        "value_mse_channel": 0.11108880615234375
+    },
+    "25_3": {
+        "key_mse_token": 0.694636962890625,
+        "key_mse_channel": 0.16112646484375,
+        "value_mse_token": 0.6651689453125,
+        "value_mse_channel": 0.647854248046875
+    },
+    "26_0": {
+        "key_mse_token": 0.4096954345703125,
+        "key_mse_channel": 0.12810479736328126,
+        "value_mse_token": 1.174439453125,
+        "value_mse_channel": 1.20457177734375
+    },
+    "26_1": {
+        "key_mse_token": 0.5808472900390625,
+        "key_mse_channel": 0.1399781494140625,
+        "value_mse_token": 0.74573583984375,
+        "value_mse_channel": 0.67236328125
+    },
+    "26_2": {
+        "key_mse_token": 0.47155419921875,
+        "key_mse_channel": 0.15072137451171874,
+        "value_mse_token": 1.36525146484375,
+        "value_mse_channel": 1.37668505859375
+    },
+    "26_3": {
+        "key_mse_token": 0.49157275390625,
+        "key_mse_channel": 0.1794012451171875,
+        "value_mse_token": 0.2799934692382812,
+        "value_mse_channel": 0.2328056640625
+    },
+    "27_0": {
+        "key_mse_token": 0.471192138671875,
+        "key_mse_channel": 0.13551641845703125,
+        "value_mse_token": 1.587392578125,
+        "value_mse_channel": 1.61750732421875
+    },
+    "27_1": {
+        "key_mse_token": 409.28125,
+        "key_mse_channel": 0.12400604248046875,
+        "value_mse_token": 0.67371875,
+        "value_mse_channel": 0.614114013671875
+    },
+    "27_2": {
+        "key_mse_token": 0.51721826171875,
+        "key_mse_channel": 0.13891375732421876,
+        "value_mse_token": 1.510626953125,
+        "value_mse_channel": 1.53280029296875
+    },
+    "27_3": {
+        "key_mse_token": 0.46521484375,
+        "key_mse_channel": 0.13937347412109374,
+        "value_mse_token": 1.490689453125,
+        "value_mse_channel": 1.448623046875
+    }
+}
