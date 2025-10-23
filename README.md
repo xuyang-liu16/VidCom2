@@ -13,6 +13,10 @@ Yuchao Zhang<sup>1</sup>,
 
 </div>
 
+## 🔥 News
+
+* **`2025.10.24`** 🤗🤗 We release our latest work [MixKV](https://github.com/xuyang-liu16/MixKV), a novel KV cache compression method of LVLMs. [Code](https://github.com/xuyang-liu16/MixKV) is available!
+
 ## 🛠 Preparation
 
 1. Clone this repository:
