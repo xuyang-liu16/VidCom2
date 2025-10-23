@@ -21,7 +21,7 @@ Yuchao Zhang<sup>1</sup>,
 1. Clone this repository:
 ```bash 
 git clone https://github.com/xuyang-liu16/MixKV.git
-cd SparseMM
+cd MixKV
 ```
 
 2. Init your environment
