@@ -53,7 +53,8 @@ pip install qwen-vl-utils
 We use the [lmms-eval](https://github.com/EvolvingLMMs-Lab/lmms-eval) toolkit to evaluate all methods and models. Please install lmms-eval:
 
 ```bash
-pip install git+https://github.com/EvolvingLMMs-Lab/lmms-eval.git
+cd lmms-eval
+pip install -e . 
 ```
 ## 🚀 Performance Evaluation
 
