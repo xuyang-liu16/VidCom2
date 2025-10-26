@@ -78,6 +78,19 @@ To evaluate the latency and peak memory by different settings, you can use:
 bash scripts/others/speed_and_memory.sh
 ```
 
+## 📌 Citation
+
+Please consider citing our paper in your publications, if our findings help your research.
+
+```bibtex
+@article{liu2025mixkv,
+  title={Mixing Importance with Diversity: Joint Optimization for KV Cache Compression in Large Vision-Language Models},
+  author={Liu, Xuyang and Gui, Xiyan and Zhang, Yuchao and Zhang, Linfeng},
+  journal={arXiv preprint arXiv:2510.20707},
+  year={2025}
+}
+```
+
 ## 👍 Acknowledgment
 
 Our codebase is conducted on [SparseMM](https://github.com/CR400AF-A/SparseMM) and we extend our gratitude to the open-source efforts.
