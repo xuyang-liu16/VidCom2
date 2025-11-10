@@ -10,7 +10,7 @@ Yiyu Wang<sup>1*</sup>,
 Junpeng Ma<sup>3</sup>,
 [Linfeng Zhang](http://www.zhanglinfeng.tech/)<sup>1✉</sup>
 
-<sup>1</sup>Shanghai Jiao Tong University, <sup>2</sup>Sichuan University, <sup>3</sup>Fudan University
+<sup>1</sup> EPIC Lab, Shanghai Jiao Tong University, <sup>2</sup>Sichuan University, <sup>3</sup>Fudan University
 
 </h4>
 
