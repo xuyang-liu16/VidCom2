@@ -1,10 +1,9 @@
-
 ratios=(0.1)
-methods=( "adakv") # "snapkv" "pyramidkv" "adakv" "mixsparsemm"
-select_methods=("attn" "headwisemixkv") # "attn" "headwisemixkv"
-budgets=(   64 128 256 ) 
+methods=("adakv") # "snapkv" "pyramidkv" "adakv" "mixsparsemm"
+select_methods=("headwisemixkv") # "attn" "headwisemixkv"
+budgets=(64) # 64 128 256
 mask_ratio=0.1 # only used for "mask" / "mask_random" "ocrbench" "chartqa" "textcaps" "textvqa" "docvqa"
-tasks=("ocrbench" "chartqa" "textcaps" "textvqa" "docvqa"  )
+tasks=("ocrbench") # "ocrbench" "chartqa" "textcaps" "textvqa" "docvqa"
 for budget in ${budgets[@]}; do
     for ratio in ${ratios[@]}; do
         for task in ${tasks[@]}; do
@@ -37,4 +36,3 @@ for budget in ${budgets[@]}; do
     done
   done
 done
-
