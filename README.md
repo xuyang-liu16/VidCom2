@@ -14,6 +14,8 @@ Junpeng Ma<sup>3</sup>,
 
 </h4>
 
+<p align="center"><i> ⚡ The <strong>first</strong> token compression framework for VideoLLMs featuring <strong>dynamic frame budget allocation</strong>. ⚡ </i></p>
+
 </div>
 
 ## 🔥 News
