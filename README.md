@@ -22,10 +22,10 @@ Yuchao Zhang<sup>1</sup>,
 
 ## 📌 Highlights
 
-- **Model Compatibility:** Works seamlessly with a wide range of LVLMs and LLMs (e.g., LLaVA, Qwen-VL, InternVL, Llama, Mistral).
-- **Seamless Integration:** Easily plugs into existing KV cache compression methods (e.g., SnapKV, AdaKV, SparseMM).
-- **Universal Improvements:** Consistently boosts the performance of baseline KV cache compressors across models and tasks.
-- **High Efficiency:** Delivers substantial improvements without compromising original inference speed or memory efficiency.
+- **Model Compatibility:** Works with diverse LVLMs and LLMs (e.g., LLaVA, Qwen-VL, InternVL, Llama, Mistral).
+- **Seamless Integration:** Plugs into existing KV cache compressors (e.g., SnapKV, AdaKV, SparseMM).
+- **Universal Improvements:** Boosts baseline compressor performance across models and tasks.
+- **High Efficiency:** Delivers gains without compromising speed or memory efficiency.
 
   
 ## 🛠 Preparation
