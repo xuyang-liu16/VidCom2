@@ -1,5 +1,5 @@
 <div align=center>
-<h1> 🚀 Mixing Importance with Diversity: Joint Optimization for KV Cache Compression in Large Vision-Language Models </h1>
+<h1> ✂️ Mixing Importance with Diversity: Joint Optimization for KV Cache Compression in Large Vision-Language Models </h1>
 <h4 align="center"> 
 
 [Xuyang Liu](https://xuyang-liu16.github.io/)<sup>1,2*</sup>,
@@ -20,6 +20,14 @@ Yuchao Zhang<sup>1</sup>,
 
 * **`2025.10.24`** 🤗🤗 We release our latest work [MixKV](https://arxiv.org/pdf/2510.20707), a novel KV cache compression method of LVLMs. [Code](https://github.com/xuyang-liu16/MixKV) is available!
 
+## 📌 Highlights
+
+- **Model Compatibility:** Works seamlessly with a wide range of LVLMs and LLMs (e.g., LLaVA, Qwen-VL, InternVL, Llama, Mistral).
+- **Seamless Integration:** Easily plugs into existing KV cache compression methods (e.g., SnapKV, AdaKV, SparseMM).
+- **Universal Improvements:** Consistently boosts the performance of baseline KV cache compressors across models and tasks.
+- **High Efficiency:** Delivers substantial improvements without compromising original inference speed or memory efficiency.
+
+  
 ## 🛠 Preparation
 
 1. Clone this repository:
