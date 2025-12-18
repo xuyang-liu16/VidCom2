@@ -30,7 +30,6 @@ from llava.mm_utils import get_anyres_image_grid_shape
 from llava.utils import rank0_print, rank_print
 import random
 
-from llava.model.vidcom2 import *
 
 class LlavaMetaModel:
 
@@ -312,17 +311,7 @@ class LlavaMetaForCausalLM(ABC):
                         # rank0_print("Video")
                         if mm_newline_position == "grid":
                             # Grid-wise
-
-                            ######################################################
-                            flattened_image_feature = image_feature.reshape(-1, image_feature.shape[-1])
-                            ######################################################
                             image_feature = self.add_token_per_grid(image_feature)
-
-                            model="llava_vid"
-                            image_feature=image_feature
-                            image_feature=vidcom2_compression(flattened_image_feature,model,image_feature)
-                            #################################################################
-
                             if getattr(self.config, "add_faster_video", False):
                                 faster_video_feature = self.add_token_per_grid(all_faster_video_features[image_idx])
                                 # Add a token for each frame
@@ -349,13 +338,6 @@ class LlavaMetaForCausalLM(ABC):
                             # one-token
                             image_feature = image_feature.flatten(0, 1)
                             if 'unpad' in mm_patch_merge_type:
-                                
-
-                                ###################################################################
-                                image_feature=vidcom2_compression(image_feature)
-                                ###################################################################
-
-
                                 image_feature = torch.cat((
                                     image_feature,
                                     self.model.image_newline[None].to(image_feature.device)

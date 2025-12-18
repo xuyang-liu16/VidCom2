@@ -61,6 +61,17 @@ conda create -n VidCom2 python=3.10 -y
 conda activate VidCom2
 pip install --upgrade pip  # Enable PEP 660 support.
 pip install -e ".[train]"
+```
+
+3. install lmms-eval
+If you want to measure the time and video memory, please use the custom installation.
+```Shell
+cd lmms-eval
+pip install -e .
+
+```
+Or you can also use the official installation.
+```Shell
 pip install git+https://github.com/EvolvingLMMs-Lab/lmms-eval.git
 ```
 

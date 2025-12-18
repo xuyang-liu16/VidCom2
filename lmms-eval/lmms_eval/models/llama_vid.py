@@ -95,6 +95,7 @@ class LLaMAVid(lmms):
 
         self._config = self._model.config
         self.model.eval()
+        
         self.model.tie_weights()
         self.truncation = truncation
         self.batch_size_per_gpu = int(batch_size)

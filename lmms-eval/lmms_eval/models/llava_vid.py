@@ -186,6 +186,17 @@ class LlavaVid(lmms):
                 self._tokenizer.pad_token_id = 151643
 
         self.model.eval()
+        ###################### Replace ###########################################################
+        import types
+        from token_compressor.models.llava import cus_prepare_inputs_labels_for_multimodal
+        
+        if os.getenv('COMPRESSOR') == 'vidcom2':
+            self.model.prepare_inputs_labels_for_multimodal = types.MethodType(cus_prepare_inputs_labels_for_multimodal, self.model)
+            eval_logger.success(
+                "[VidCom2] Successfully integrated VidCom2 with LLaVA-Video-7B."
+            )
+        ########################################################################################
+        
         if tie_weights:
             self.model.tie_weights()
         self.truncation = truncation

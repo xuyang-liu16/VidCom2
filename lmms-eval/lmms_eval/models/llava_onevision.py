@@ -138,6 +138,18 @@ class Llava_OneVision(lmms):
 
         self._config = self._model.config
         self.model.eval()
+        ###################### Replace ###########################################################
+        import types
+        import os
+        from token_compressor.models.llava import cus_prepare_inputs_labels_for_multimodal
+        if os.getenv('COMPRESSOR') == 'vidcom2':
+        
+            self.model.prepare_inputs_labels_for_multimodal = types.MethodType(cus_prepare_inputs_labels_for_multimodal, self.model)
+            eval_logger.success(
+                "[VidCom2] Successfully integrated VidCom2 with LLaVA-OneVision-7B."
+            )
+        ########################################################################################
+        
         self.truncation = truncation
         self.batch_size_per_gpu = int(batch_size)
         self.conv_template = conv_template
