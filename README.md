@@ -41,11 +41,13 @@ Junpeng Ma<sup>3</sup>,
 
 ## 💥 Core Codes and Supported Models
 
-The core implementation of our code is in [`llava/model/vidcom2.py`](https://github.com/xuyang-liu16/VidCom2/blob/main/llava/model/vidcom2.py). 
+The core implementation of our code is in [`tokencompressor/vidcom2.py`](https://github.com/xuyang-liu16/VidCom2/blob/main/tokencompressor/vidcom2.py). 
 
-- **LLaVA-OneVision:** It is called at [`llava/model/llava_arch.py`](https://github.com/xuyang-liu16/VidCom2/blob/ebb4260650cba4177534cdb0f6a3642c306c607c/llava/model/llava_arch.py#L355).
-- **LLaVA-Video:** It is called at [`llava/model/llava_arch.py`](https://github.com/xuyang-liu16/VidCom2/blob/ebb4260650cba4177534cdb0f6a3642c306c607c/llava/model/llava_arch.py#L324).
-- **Qwen2-VL:** It is called at [`transformers/models/qwen2_vl/modeling_qwen2_vl.py`](https://github.com/xuyang-liu16/VidCom2/blob/main/transformers/models/qwen2_vl/modeling_qwen2_vl.py#L55).
+- **LLaVA-OneVision:** It is called at [`tokencompressor/model/llava.py`](https://github.com/xuyang-liu16/VidCom2/blob/main/tokencompressor/model/llava.py).
+- **LLaVA-Video:** It is called at [`tokencompressor/model/llava.py`](https://github.com/xuyang-liu16/VidCom2/blob/main/tokencompressor/model/llava.py).
+- **Qwen2-VL:** It is called at [`tokencompressor/models/qwen2_vl.py`](https://github.com/xuyang-liu16/VidCom2/blob/main/tokencompressor/model/qwen2_vl.py).
+
+
 
 ## 🛠 Preparation
 
@@ -81,10 +83,10 @@ We use the [lmms-eval](https://github.com/EvolvingLMMs-Lab/lmms-eval) toolkit to
 👉 You can reproduce all of our ablation experiments by modifying the parameters of the [`vidcom2_compression`]([https://github.com/xuyang-liu16/GlobalCom2/blob/main/llava/model/vidcom2.py](https://github.com/xuyang-liu16/VidCom2/blob/98cf6b4b1688fc90b1cc268db50aff7c4a6de941/llava/model/vidcom2.py#L4))function! By default, the retention ratio is 0.25.
 
 You can choose whether to use flash attention, but in our efficiency analysis, if flash attention can be used, then it should be used.
-
-To evaluate **LLaVA-OneVision-7B**, you can use:
+You can enable the compression of vidcom2 by adding "COMPRESSOR=vidcom2" before the startup command, for example：
+To evaluate **LLaVA-OneVision-7B** with VidCom2, you can use:
 ```
-accelerate launch --num_processes=8 \
+COMPRESSOR=vidcom2 accelerate launch --num_processes=8 \
   -m lmms_eval \
   --model llava_onevision \
   --model_args pretrained=lmms-lab/llava-onevision-qwen2-7b-ov,conv_template=qwen_1_5,model_name=llava_qwen,attn_implementation=flash_attention_2 \
@@ -94,9 +96,9 @@ accelerate launch --num_processes=8 \
   --log_samples_suffix llava_onevision \
   --output_path ./logs/
 ```
-To evaluate **LLaVA-Video-7B**, you can use:
+To evaluate **LLaVA-Video-7B** with VidCom2, you can use:
 ```
-accelerate launch --num_processes=8 \
+COMPRESSOR=vidcom2 accelerate launch --num_processes=8 \
   -m lmms_eval \
   --model llava_vid \
   --model_args pretrained=lmms-lab/LLaVA-Video-7B-Qwen2,conv_template=qwen_1_5,max_frames_num=64,mm_spatial_pool_mode=average,attn_implementation=flash_attention_2 \
@@ -106,9 +108,9 @@ accelerate launch --num_processes=8 \
   --log_samples_suffix llava_vid \
   --output_path ./logs/
 ```
-To evaluate **Qwen2-VL-7B-Instruct**, you can use:
+To evaluate **Qwen2-VL-7B-Instruct** with VidCom2, you can use:
 ```
-accelerate launch --num_processes=8 \
+COMPRESSOR=vidcom2 accelerate launch --num_processes=8 \
   -m lmms_eval \
   --model qwen2_vl \
   --model_args pretrained=Qwen/Qwen2-VL-7B-Instruct,use_flash_attention_2=True \
