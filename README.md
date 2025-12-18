@@ -79,11 +79,16 @@ pip install git+https://github.com/EvolvingLMMs-Lab/lmms-eval.git
 
 ## 🚀 Performance Evaluation
 
-We use the [lmms-eval](https://github.com/EvolvingLMMs-Lab/lmms-eval) toolkit to evaluate our models. 
-👉 You can reproduce all of our ablation experiments by modifying the parameters of the [`vidcom2_compression`]([https://github.com/xuyang-liu16/GlobalCom2/blob/main/llava/model/vidcom2.py](https://github.com/xuyang-liu16/VidCom2/blob/98cf6b4b1688fc90b1cc268db50aff7c4a6de941/llava/model/vidcom2.py#L4))function! By default, the retention ratio is 0.25.
+We utilize the [lmms-eval](https://github.com/EvolvingLMMs-Lab/lmms-eval) toolkit for model evaluation.
 
-You can choose whether to use flash attention, but in our efficiency analysis, if flash attention can be used, then it should be used.
-You can enable the compression of vidcom2 by adding "COMPRESSOR=vidcom2" before the startup command, for example：
+> **💡 Configuration Notes:**
+> * **VidCom2 Compression:** Enable by prepending `COMPRESSOR=vidcom2` to the command.
+> * **Retention Ratio:** The default retention ratio is set to **0.25**.
+> * **Flash Attention:** While optional, we **strongly recommend** enabling Flash Attention 2 to replicate the efficiency results reported in our paper.
+
+Below are the evaluation scripts for supported models:
+
+
 To evaluate **LLaVA-OneVision-7B** with VidCom2, you can use:
 ```
 COMPRESSOR=vidcom2 accelerate launch --num_processes=8 \
