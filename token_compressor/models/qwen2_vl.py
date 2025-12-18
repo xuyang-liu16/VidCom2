@@ -5,7 +5,7 @@ from torch.nn import CrossEntropyLoss
 from transformers.models.qwen2_vl.modeling_qwen2_vl import Qwen2VLCausalLMOutputWithPast
 
 from token_compressor.vidcom2 import *
-
+import os
 
 def Qwen2VL_ViT_forward(self, hidden_states: torch.Tensor, grid_thw: torch.Tensor) -> torch.Tensor:
     hidden_states = self.patch_embed(hidden_states)#([106652, 1176])->([106652, 1280]) #106652=t*h*w
@@ -37,7 +37,8 @@ def Qwen2VL_ViT_forward(self, hidden_states: torch.Tensor, grid_thw: torch.Tenso
     resize_w=w//2
     token_per_frame=resize_h*resize_w
     model="qwen2_vl"
-    base_scale=0.25
+    base_scale = float(os.getenv('R_RATIO', '0.25'))
+    
     frame_token_lenth=token_per_frame
     keep_index=vidcom2_compression(flattened_feat=merged_hidden_states,model=model,base_scale=base_scale,frame_token_len=frame_token_lenth)
     return merged_hidden_states,keep_index

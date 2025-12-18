@@ -83,7 +83,7 @@ We utilize the [lmms-eval](https://github.com/EvolvingLMMs-Lab/lmms-eval) toolki
 
 > **💡 Configuration Notes:**
 > * **VidCom2 Compression:** Enable by prepending `COMPRESSOR=vidcom2` to the command.
-> * **Retention Ratio:** The default retention ratio is set to **0.25**.
+> * **Retention Ratio:** Setting by prepending `R_RATIO` to the command. The default retention ratio is set to **0.25**.
 > * **Flash Attention:** While optional, we **strongly recommend** enabling Flash Attention 2 to replicate the efficiency results reported in our paper.
 
 Below are the evaluation scripts for supported models:
@@ -91,7 +91,7 @@ Below are the evaluation scripts for supported models:
 
 To evaluate **LLaVA-OneVision-7B** with VidCom2, you can use:
 ```
-COMPRESSOR=vidcom2 accelerate launch --num_processes=8 \
+COMPRESSOR=vidcom2 R_RATIO=0.25 accelerate launch --num_processes=8 \
   -m lmms_eval \
   --model llava_onevision \
   --model_args pretrained=lmms-lab/llava-onevision-qwen2-7b-ov,conv_template=qwen_1_5,model_name=llava_qwen,attn_implementation=flash_attention_2 \
@@ -103,7 +103,7 @@ COMPRESSOR=vidcom2 accelerate launch --num_processes=8 \
 ```
 To evaluate **LLaVA-Video-7B** with VidCom2, you can use:
 ```
-COMPRESSOR=vidcom2 accelerate launch --num_processes=8 \
+COMPRESSOR=vidcom2 R_RATIO=0.25 accelerate launch --num_processes=8 \
   -m lmms_eval \
   --model llava_vid \
   --model_args pretrained=lmms-lab/LLaVA-Video-7B-Qwen2,conv_template=qwen_1_5,max_frames_num=64,mm_spatial_pool_mode=average,attn_implementation=flash_attention_2 \
@@ -115,7 +115,7 @@ COMPRESSOR=vidcom2 accelerate launch --num_processes=8 \
 ```
 To evaluate **Qwen2-VL-7B-Instruct** with VidCom2, you can use:
 ```
-COMPRESSOR=vidcom2 accelerate launch --num_processes=8 \
+COMPRESSOR=vidcom2 R_RATIO=0.25 accelerate launch --num_processes=8 \
   -m lmms_eval \
   --model qwen2_vl \
   --model_args pretrained=Qwen/Qwen2-VL-7B-Instruct,use_flash_attention_2=True \

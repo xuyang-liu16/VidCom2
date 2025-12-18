@@ -13,7 +13,7 @@ from llava.constants import IGNORE_INDEX, IMAGE_TOKEN_INDEX, DEFAULT_IMAGE_PATCH
 from llava.mm_utils import get_anyres_image_grid_shape
 from llava.utils import rank0_print, rank_print
 import random
-
+import os
 from token_compressor.vidcom2 import *
 
 
@@ -121,7 +121,10 @@ def cus_prepare_inputs_labels_for_multimodal(self, input_ids, position_ids, atte
 
                         model="llava_vid"
                         image_feature=image_feature
-                        image_feature=vidcom2_compression(flattened_image_feature,model,img_feat=image_feature)
+                        base_scale = float(os.getenv('R_RATIO', '0.25'))
+
+                        
+                        image_feature=vidcom2_compression(flattened_image_feature,model,base_scale=base_scale,img_feat=image_feature)
                         #################################################################
 
                         if getattr(self.config, "add_faster_video", False):
@@ -153,7 +156,9 @@ def cus_prepare_inputs_labels_for_multimodal(self, input_ids, position_ids, atte
                             
 
                             ###################################################################
-                            image_feature=vidcom2_compression(image_feature)
+                            base_scale = float(os.getenv('R_RATIO', '0.25'))
+                            
+                            image_feature=vidcom2_compression(image_feature,base_scale=base_scale)
                             ###################################################################
 
 
