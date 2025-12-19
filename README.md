@@ -129,7 +129,6 @@ COMPRESSOR=vidcom2 R_RATIO=0.25 accelerate launch --num_processes=8 \
   --log_samples
   --log_samples_suffix qwen2_vl
   --output_path ./logs/
-
 ```
 
 ## ⚡ Efficiency Analysis
@@ -160,4 +159,4 @@ We extend our gratitude to the open-source efforts of [LLaVA-OneVision](https://
 
 
 ## 📩 Contact
-For any question about our paper or code, please email `liuxuyang@stu.scu.edu.cn`.
+For any question about our paper or code, please email `liuxuyang@stu.scu.edu.cn` or `ustywan8@ljmu.ac.uk`.
