@@ -1,6 +1,6 @@
 <div align=center>
 
-<h1> 📹 Video Compression Commander: Plug-and-Play Inference Acceleration for Video Large Language Models 🚀 </h1>
+<h1> 📹 Video Compression Commander: Plug-and-Play Inference Acceleration for Video Large Language Models </h1>
 
 
 <h4 align="center"> 
@@ -65,8 +65,9 @@ pip install --upgrade pip  # Enable PEP 660 support.
 pip install -e ".[train]"
 ```
 
-3. install lmms-eval
-If you want to measure the time and video memory, please use the custom installation.
+3. Install lmms-eval:
+
+If you want to measure the latency and GPU memory, please use the custom installation.
 ```Shell
 cd lmms-eval
 pip install -e .
@@ -82,14 +83,14 @@ pip install git+https://github.com/EvolvingLMMs-Lab/lmms-eval.git
 We utilize the [lmms-eval](https://github.com/EvolvingLMMs-Lab/lmms-eval) toolkit for model evaluation.
 
 > **💡 Configuration Notes:**
-> * **VidCom2 Compression:** Enable by prepending `COMPRESSOR=vidcom2` to the command.
+> * **VidCom<sup>2</sup> Compression:** Enable by prepending `COMPRESSOR=vidcom2` to the command.
 > * **Retention Ratio:** Setting by prepending `R_RATIO` to the command. The default retention ratio is set to **0.25**.
 > * **Flash Attention:** While optional, we **strongly recommend** enabling Flash Attention 2 to replicate the efficiency results reported in our paper.
 
 Below are the evaluation scripts for supported models:
 
 
-To evaluate **LLaVA-OneVision-7B** with VidCom2, you can use:
+To evaluate **LLaVA-OneVision-7B** with VidCom<sup>2</sup>, you can use:
 ```
 COMPRESSOR=vidcom2 R_RATIO=0.25 accelerate launch --num_processes=8 \
   -m lmms_eval \
@@ -101,7 +102,7 @@ COMPRESSOR=vidcom2 R_RATIO=0.25 accelerate launch --num_processes=8 \
   --log_samples_suffix llava_onevision \
   --output_path ./logs/
 ```
-To evaluate **LLaVA-Video-7B** with VidCom2, you can use:
+To evaluate **LLaVA-Video-7B** with VidCom<sup>2</sup>, you can use:
 ```
 COMPRESSOR=vidcom2 R_RATIO=0.25 accelerate launch --num_processes=8 \
   -m lmms_eval \
@@ -113,7 +114,7 @@ COMPRESSOR=vidcom2 R_RATIO=0.25 accelerate launch --num_processes=8 \
   --log_samples_suffix llava_vid \
   --output_path ./logs/
 ```
-To evaluate **Qwen2-VL-7B-Instruct** with VidCom2, you can use:
+To evaluate **Qwen2-VL-7B-Instruct** with VidCom<sup>2</sup>, you can use:
 ```
 COMPRESSOR=vidcom2 R_RATIO=0.25 accelerate launch --num_processes=8 \
   -m lmms_eval \
