@@ -25,12 +25,16 @@ Junpeng Ma<sup>3</sup>,
 * **`2025.05.30`** ⚡⚡ We are excited to release VidCom<sup>2</sup> implementation for **Qwen2-VL**! To accelerate your Qwen2-VL inference, simply replace the original `modeling_qwen2_vl.py` file with our optimized version: [`modeling_qwen2_vl.py`](https://github.com/xuyang-liu16/VidCom2/blob/main/transformers/models/qwen2_vl/modeling_qwen2_vl.py#L55).
 * **`2025.05.21`** 🤗🤗 We release [VidCom<sup>2</sup>](https://arxiv.org/abs/2505.14454), a plug-and-play inference acceleration method of **VideoLLMs**. [Code](https://github.com/xuyang-liu16/VidCom2) is available!
 
-## 📌 Highlights
+## 🎯 Highlights
 
 - **Model Adaptability:** Compatible with most VideoLLMs (e.g., LLaVA, Qwen-VL series).
 - **Operator Compatibility:** Works seamlessly with efficient operators like Flash Attention 2.
 - **Strong Performance:** Uses only 25% of tokens while maintaining 99.6% performance of LLaVA-OV.
 - **High Efficiency:** Cuts LLaVA-OV generation time by 70.8% and overall latency by 43.0%.
+
+## 📌 TODO
+- [x] Restructure the codebase
+- [ ] Integration with Qwen3-VL
 
 ## ✨ Overview
 
