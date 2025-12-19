@@ -6,8 +6,8 @@
 <h4 align="center"> 
 
 [Xuyang Liu](https://xuyang-liu16.github.io/)<sup>1,2*</sup>,
-Yiyu Wang<sup>1*</sup>,
-Junpeng Ma<sup>3</sup>,
+[Yiyu Wang](https://github.com/lern-to-write)<sup>1*</sup>,
+[Junpeng Ma](https://scholar.google.com/citations?user=FH3u-hsAAAAJ)<sup>3</sup>,
 [Linfeng Zhang](http://www.zhanglinfeng.tech/)<sup>1✉</sup>
 
 <sup>1</sup> EPIC Lab, Shanghai Jiao Tong University, <sup>2</sup>Sichuan University, <sup>3</sup>Fudan University
@@ -15,6 +15,12 @@ Junpeng Ma<sup>3</sup>,
 </h4>
 
 <p align="center"><i> ⚡ The <strong>first</strong> token compression framework for VideoLLMs featuring <strong>dynamic frame budget allocation</strong>. </i></p>
+
+[![arXiv](https://img.shields.io/badge/arXiv-2505.14454-AD1C18?logo=arXiv&logoColor=white)](https://arxiv.org/abs/2505.14454)
+[![EMNLP](https://img.shields.io/badge/EMNLP-2025-pink)](https://aclanthology.org/2025.emnlp-main.98/)
+[![PR](https://img.shields.io/badge/PR-@机器之心-green)](https://www.jiqizhixin.com/articles/2025-12-15-6)
+[![PR](https://img.shields.io/badge/PR-@PaperWeekly-blue)](https://mp.weixin.qq.com/s/hQhEPlBWd4noVGSOWT4_XQ)
+[![Stars](https://img.shields.io/github/stars/xuyang-liu16/VidCom2?style=social)](https://github.com/xuyang-liu16/VidCom2/stargazers)
 
 </div>
 
