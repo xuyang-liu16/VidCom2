@@ -51,6 +51,7 @@ AVAILABLE_MODELS = {
     "qwen2_5_vl_interleave": "Qwen2_5_VL_Interleave",
     "qwen2_audio": "Qwen2_Audio",
     "qwen2_vl": "Qwen2_VL",
+    "qwen3_vl": "Qwen3_VL",
     "qwen_vl": "Qwen_VL",
     "qwen_vl_api": "Qwen_VL_API",
     "reka": "Reka",

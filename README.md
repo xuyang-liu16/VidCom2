@@ -40,7 +40,7 @@
 
 ## 📌 TODO
 - [x] Restructure the codebase
-- [ ] Integration with Qwen3-VL
+- [x] Integration with Qwen3-VL
 
 ## ✨ Overview
 
@@ -56,6 +56,7 @@ The core implementation of our code is in [`tokencompressor/vidcom2.py`](https:/
 - **LLaVA-OneVision:** It is called at [`tokencompressor/model/llava.py`](https://github.com/xuyang-liu16/VidCom2/blob/main/tokencompressor/model/llava.py).
 - **LLaVA-Video:** It is called at [`tokencompressor/model/llava.py`](https://github.com/xuyang-liu16/VidCom2/blob/main/tokencompressor/model/llava.py).
 - **Qwen2-VL:** It is called at [`tokencompressor/models/qwen2_vl.py`](https://github.com/xuyang-liu16/VidCom2/blob/main/tokencompressor/model/qwen2_vl.py).
+- **Qwen3-VL:** It is called at [`tokencompressor/models/qwen3_vl.py`](token_compressor/models/qwen3_vl.py).
 
 
 
