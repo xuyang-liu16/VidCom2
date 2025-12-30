@@ -3,6 +3,7 @@ import json
 import logging
 import math
 import re
+import time
 import warnings
 from datetime import timedelta
 from typing import List, Optional, Tuple, Union
@@ -23,7 +24,6 @@ from lmms_eval.api.instance import Instance
 from lmms_eval.api.model import lmms
 from lmms_eval.api.registry import register_model
 from lmms_eval.models.model_utils.load_video import read_video_pyav
-# from llava.model.visualization import *
 
 # Suppress warnings
 warnings.filterwarnings("ignore")
@@ -145,9 +145,7 @@ class Llava_OneVision(lmms):
         if os.getenv('COMPRESSOR') == 'vidcom2':
         
             self.model.prepare_inputs_labels_for_multimodal = types.MethodType(cus_prepare_inputs_labels_for_multimodal, self.model)
-            eval_logger.success(
-                "[VidCom2] Successfully integrated VidCom2 with LLaVA-OneVision-7B."
-            )
+            eval_logger.info("[VidCom2] Successfully integrated VidCom2 with LLaVA-OneVision-7B.")
         ########################################################################################
         
         self.truncation = truncation
@@ -407,6 +405,7 @@ class Llava_OneVision(lmms):
 
     def generate_until(self, requests: List[Instance]) -> List[str]:
         res = []
+        wall_start = time.time()
 
         def _collate(x):
             # the negative sign on len(toks) sorts descending - this has a few advantages:
@@ -594,8 +593,7 @@ class Llava_OneVision(lmms):
                 gen_max_mem = torch.cuda.max_memory_allocated() / 1024 / 1024  # MB
 
                 self.total_cuda_time += gen_time
-                self.max_mem=max(gen_max_mem,self.max_mem)
-                print("total_time",self.total_cuda_time,"max_mem",self.max_mem)
+                self.max_mem = max(gen_max_mem, self.max_mem)
                 ###########################################################
                 text_outputs = self.tokenizer.batch_decode(cont, skip_special_tokens=True)
             except Exception as e:
@@ -609,6 +607,13 @@ class Llava_OneVision(lmms):
         res = re_ords.get_original(res)
 
         pbar.close()
+        if self.rank == 0:
+            wall_time = time.time() - wall_start
+            eval_logger.info("Efficiency Analysis")
+            eval_logger.info("Metric           Value")
+            eval_logger.info(f"LLM_time_s      {self.total_cuda_time:.3f}")
+            eval_logger.info(f"Total_time_s    {wall_time:.3f}")
+            eval_logger.info(f"Peak_mem_MB     {self.max_mem:.1f}")
         return res
 
     def generate_until_multi_round(self, requests: List[Instance]) -> List[str]:

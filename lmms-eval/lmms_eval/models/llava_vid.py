@@ -1,6 +1,7 @@
 import glob
 import math
 import os
+import time
 from datetime import timedelta
 from typing import List, Optional, Tuple, Union
 
@@ -143,6 +144,8 @@ class LlavaVid(lmms):
         # self.add_faster_video = add_faster_video
         # self.faster_token_stride = faster_token_stride
         self.torch_dtype = torch_dtype
+        self.total_cuda_time = 0
+        self.max_mem = 0
         if self.overwrite == True:
             overwrite_config = {}
             # overwrite_config["mm_resampler_type"] = self.mm_resampler_type
@@ -414,6 +417,7 @@ class LlavaVid(lmms):
 
     def generate_until(self, requests) -> List[str]:
         res = []
+        wall_start = time.time()
         pbar = tqdm(total=len(requests), disable=(self.rank != 0), desc="Model Responding")
 
         for contexts, gen_kwargs, doc_to_visual, doc_id, task, split in [reg.args for reg in requests]:
@@ -515,6 +519,11 @@ class LlavaVid(lmms):
                 gen_kwargs["num_beams"] = 1
 
             # import pdb;pdb.set_trace()
+            torch.cuda.reset_peak_memory_stats()
+            gen_start_event = torch.cuda.Event(enable_timing=True)
+            gen_end_event = torch.cuda.Event(enable_timing=True)
+            torch.cuda.synchronize()
+            gen_start_event.record()
             with torch.inference_mode():
                 output_ids = self.model.generate(
                     inputs=input_ids,
@@ -529,6 +538,12 @@ class LlavaVid(lmms):
                     num_beams=gen_kwargs["num_beams"],
                     max_new_tokens=gen_kwargs["max_new_tokens"],
                 )
+            gen_end_event.record()
+            torch.cuda.synchronize()
+            gen_time = gen_start_event.elapsed_time(gen_end_event) / 1000.0
+            gen_max_mem = torch.cuda.max_memory_allocated() / 1024 / 1024
+            self.total_cuda_time += gen_time
+            self.max_mem = max(gen_max_mem, self.max_mem)
                 # output_ids_2 = self.model.generate(inputs=input_ids, images=videos, attention_mask=attention_masks, modalities="video", do_sample=False, max_new_tokens=50,stopping_criteria=[stopping_criteria])
                 # output_ids = self.model.generate(inputs=input_ids, images=videos, attention_mask=attention_masks, modalities="video", do_sample=True, temperature=0.2, max_new_tokens=50,use_cache=True)
 
@@ -538,6 +553,14 @@ class LlavaVid(lmms):
             # import pdb;pdb.set_trace()
             res.append(outputs)
             pbar.update(1)
+        pbar.close()
+        if self.rank == 0:
+            wall_time = time.time() - wall_start
+            print("Efficiency Analysis", flush=True)
+            print("Metric           Value", flush=True)
+            print(f"LLM_time_s      {self.total_cuda_time:.3f}", flush=True)
+            print(f"Total_time_s    {wall_time:.3f}", flush=True)
+            print(f"Peak_mem_MB     {self.max_mem:.1f}", flush=True)
         return res
 
     def generate_until_multi_round(self, requests) -> List[str]:

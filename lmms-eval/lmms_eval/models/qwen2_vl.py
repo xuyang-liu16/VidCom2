@@ -11,7 +11,7 @@ from loguru import logger as eval_logger
 from PIL import Image
 from tqdm import tqdm
 from transformers import AutoProcessor, AutoTokenizer, Qwen2VLForConditionalGeneration
-import os
+
 # TODO: Consider moving flatten to lmms_eval.utils
 # from lmms_eval import utils
 from lmms_eval.api.instance import Instance
@@ -49,7 +49,6 @@ class Qwen2_VL(lmms):
         reasoning_prompt: Optional[str] = None,
         **kwargs,
     ) -> None:
-        
         super().__init__()
         # Do not use kwargs for now
         assert kwargs == {}, f"Unexpected kwargs: {kwargs}"
@@ -73,17 +72,6 @@ class Qwen2_VL(lmms):
             ).eval()
         else:
             self._model = Qwen2VLForConditionalGeneration.from_pretrained(pretrained, torch_dtype="auto", device_map=self.device_map).eval()
-        ############################################### Replace ##################################
-        if os.getenv('COMPRESSOR') == 'vidcom2':
-        
-            import types
-            from token_compressor.models.qwen2_vl import Qwen2VL_ViT_forward, Qwen2VLGeneration_forward
-            self._model.model.visual.forward = types.MethodType(Qwen2VL_ViT_forward, self._model.model.visual)
-            self._model.forward = types.MethodType(Qwen2VLGeneration_forward, self._model)
-            eval_logger.suceval_loggercess(
-                    "[VidCom2] Successfully integrated VidCom2 with Qwen2-VL-7B."
-                )
-        ###############################################################################
         self.processor = AutoProcessor.from_pretrained(pretrained, max_pixels=max_pixels, min_pixels=min_pixels)
         self.max_pixels = max_pixels
         self.min_pixels = min_pixels
