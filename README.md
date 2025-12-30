@@ -59,7 +59,6 @@ The core implementation of our code is in [`token_compressor/vidcom2.py`](https:
 - **Qwen3-VL:** It is called at [`token_compressor/models/qwen3_vl.py`](https://github.com/xuyang-liu16/VidCom2/blob/main/token_compressor/models/qwen3_vl.py).
 
 
-
 ## 🛠 Preparation
 
 1. Clone this repository：
@@ -93,7 +92,7 @@ pip install git+https://github.com/EvolvingLMMs-Lab/lmms-eval.git
 
 We utilize the [lmms-eval](https://github.com/EvolvingLMMs-Lab/lmms-eval) toolkit for model evaluation.
 
-> **Branch Note:** The **main** branch only supports **LLaVA** series inference. To run **Qwen** models, please switch to the `qwen` branch.
+> **Branch Note:** The **main** branch only supports **LLaVA** series inference. To run **Qwen** models, please switch to the [`qwen`](https://github.com/xuyang-liu16/VidCom2/tree/qwen) branch.
 
 > **💡 Configuration Notes:**
 > * **VidCom<sup>2</sup> Compression:** Enable by prepending `COMPRESSOR=vidcom2` to the command.
@@ -101,7 +100,6 @@ We utilize the [lmms-eval](https://github.com/EvolvingLMMs-Lab/lmms-eval) toolki
 > * **Flash Attention:** While optional, we **strongly recommend** enabling Flash Attention 2 to replicate the efficiency results reported in our paper.
 
 Below are the evaluation scripts for supported models:
-
 
 To evaluate **LLaVA-OneVision-7B** with VidCom<sup>2</sup>, you can use:
 ```
