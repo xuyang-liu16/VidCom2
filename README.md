@@ -92,6 +92,8 @@ pip install git+https://github.com/EvolvingLMMs-Lab/lmms-eval.git
 
 We utilize the [lmms-eval](https://github.com/EvolvingLMMs-Lab/lmms-eval) toolkit for model evaluation.
 
+> **Branch Note:** The **main** branch only supports LLaVA series inference. To run Qwen models, please switch to the `qwen` branch.
+
 > **💡 Configuration Notes:**
 > * **VidCom<sup>2</sup> Compression:** Enable by prepending `COMPRESSOR=vidcom2` to the command.
 > * **Retention Ratio:** Setting by prepending `R_RATIO` to the command. The default retention ratio is set to **0.25**.

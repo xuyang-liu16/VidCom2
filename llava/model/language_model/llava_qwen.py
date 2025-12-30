@@ -158,7 +158,6 @@ class LlavaQwenForCausalLM(Qwen2ForCausalLM, LlavaMetaForCausalLM):
 
         self.total_cuda_time += gen_time
         # self.max_mem=max(gen_max_mem,self.max_mem)
-        print("LLM_total_time",self.total_cuda_time)
         ##################################################################
 
         return model_response
