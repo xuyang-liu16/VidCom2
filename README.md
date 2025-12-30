@@ -51,11 +51,12 @@
 
 ## 💥 Core Codes and Supported Models
 
-The core implementation of our code is in [`tokencompressor/vidcom2.py`](https://github.com/xuyang-liu16/VidCom2/blob/main/tokencompressor/vidcom2.py). 
+The core implementation of our code is in [`token_compressor/vidcom2.py`](https://github.com/xuyang-liu16/VidCom2/blob/main/token_compressor/vidcom2.py).
 
-- **LLaVA-OneVision:** It is called at [`tokencompressor/model/llava.py`](https://github.com/xuyang-liu16/VidCom2/blob/main/tokencompressor/model/llava.py).
-- **LLaVA-Video:** It is called at [`tokencompressor/model/llava.py`](https://github.com/xuyang-liu16/VidCom2/blob/main/tokencompressor/model/llava.py).
-- **Qwen2-VL:** It is called at [`tokencompressor/models/qwen2_vl.py`](https://github.com/xuyang-liu16/VidCom2/blob/main/tokencompressor/model/qwen2_vl.py).
+- **LLaVA-OneVision:** It is called at [`token_compressor/models/llava.py`](https://github.com/xuyang-liu16/VidCom2/blob/main/token_compressor/models/llava.py).
+- **LLaVA-Video:** It is called at [`token_compressor/models/llava.py`](https://github.com/xuyang-liu16/VidCom2/blob/main/token_compressor/models/llava.py).
+- **Qwen2-VL:** It is called at [`token_compressor/models/qwen2_vl.py`](https://github.com/xuyang-liu16/VidCom2/blob/main/token_compressor/models/qwen2_vl.py).
+- **Qwen3-VL:** It is called at [`token_compressor/models/qwen3_vl.py`](https://github.com/xuyang-liu16/VidCom2/blob/main/token_compressor/models/qwen3_vl.py).
 
 
 
@@ -92,7 +93,7 @@ pip install git+https://github.com/EvolvingLMMs-Lab/lmms-eval.git
 
 We utilize the [lmms-eval](https://github.com/EvolvingLMMs-Lab/lmms-eval) toolkit for model evaluation.
 
-> **Branch Note:** The **main** branch only supports LLaVA series inference. To run Qwen models, please switch to the `qwen` branch.
+> **Branch Note:** The **main** branch only supports **LLaVA** series inference. To run **Qwen** models, please switch to the `qwen` branch.
 
 > **💡 Configuration Notes:**
 > * **VidCom<sup>2</sup> Compression:** Enable by prepending `COMPRESSOR=vidcom2` to the command.
@@ -126,19 +127,6 @@ COMPRESSOR=vidcom2 R_RATIO=0.25 accelerate launch --num_processes=8 \
   --log_samples_suffix llava_vid \
   --output_path ./logs/
 ```
-To evaluate **Qwen2-VL-7B-Instruct** with VidCom<sup>2</sup>, you can use:
-```
-COMPRESSOR=vidcom2 R_RATIO=0.25 accelerate launch --num_processes=8 \
-  -m lmms_eval \
-  --model qwen2_vl \
-  --model_args pretrained=Qwen/Qwen2-VL-7B-Instruct,use_flash_attention_2=True \
-  --tasks videomme,mlvu_dev,longvideobench_val_v,mvbench \
-  --batch_size 1
-  --log_samples
-  --log_samples_suffix qwen2_vl
-  --output_path ./logs/
-```
-
 ## ⚡ Efficiency Analysis
 <p align="center"> <img src="images/efficiency.jpg" width="1000" align="center"> </p>
 
