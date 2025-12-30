@@ -26,6 +26,7 @@
 
 ## 🔥 News
 
+* **`2025.12.30`** ✅✅ We update **Qwen3-VL** support in this [`qwen`](https://github.com/xuyang-liu16/VidCom2/tree/qwen) branch. Thanks for using!
 * **`2025.12.02`** 🤗🤗 We release our latest work [STC](https://arxiv.org/pdf/2512.00891), **the first** plug-and-play inference acceleration framework for streaming video understanding! [Code](https://github.com/lern-to-write/STC) is available!
 * **`2025.08.21`** 🎉🎉 Our [VidCom<sup>2</sup>](https://arxiv.org/abs/2505.14454) has been accepted by **EMNLP 2025** main conference!
 * **`2025.05.30`** ⚡⚡ We are excited to release VidCom<sup>2</sup> implementation for **Qwen2-VL**!
@@ -38,9 +39,6 @@
 - **Strong Performance:** Uses only 25% of tokens while maintaining 99.6% performance of LLaVA-OV.
 - **High Efficiency:** Cuts LLaVA-OV generation time by 70.8% and overall latency by 43.0%.
 
-## 📌 TODO
-- [x] Restructure the codebase
-- [ ] Integration with Qwen3-VL
 
 ## ✨ Overview
 
@@ -93,7 +91,7 @@ pip install git+https://github.com/EvolvingLMMs-Lab/lmms-eval.git
 
 We utilize the [lmms-eval](https://github.com/EvolvingLMMs-Lab/lmms-eval) toolkit for model evaluation.
 
-> **Branch Note:** The **main** branch only supports **LLaVA** series inference. To run **Qwen** models, please switch to the `qwen` branch.
+> **Branch Note:** The **main** branch only supports **LLaVA** series inference. To run **Qwen** models, please switch to the [`qwen`](https://github.com/xuyang-liu16/VidCom2/tree/qwen) branch.
 
 > **💡 Configuration Notes:**
 > * **VidCom<sup>2</sup> Compression:** Enable by prepending `COMPRESSOR=vidcom2` to the command.
