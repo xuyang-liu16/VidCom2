@@ -50,13 +50,20 @@
 ## 💥 Core Codes and Supported Models
 
 The core implementation of our code is in [`token_compressor/vidcom2.py`](https://github.com/xuyang-liu16/VidCom2/blob/main/token_compressor/vidcom2.py).
+<<<<<<< HEAD
 
 - **LLaVA-OneVision:** It is called at [`token_compressor/models/llava.py`](https://github.com/xuyang-liu16/VidCom2/blob/main/token_compressor/models/llava.py).
 - **LLaVA-Video:** It is called at [`token_compressor/models/llava.py`](https://github.com/xuyang-liu16/VidCom2/blob/main/token_compressor/models/llava.py).
 - **Qwen2-VL:** It is called at [`token_compressor/models/qwen2_vl.py`](https://github.com/xuyang-liu16/VidCom2/blob/main/token_compressor/models/qwen2_vl.py).
 - **Qwen3-VL:** It is called at [`token_compressor/models/qwen3_vl.py`](https://github.com/xuyang-liu16/VidCom2/blob/main/token_compressor/models/qwen3_vl.py).
 
+=======
+>>>>>>> llava
 
+- **LLaVA-OneVision:** It is called at [`token_compressor/models/llava.py`](https://github.com/xuyang-liu16/VidCom2/blob/main/token_compressor/models/llava.py).
+- **LLaVA-Video:** It is called at [`token_compressor/models/llava.py`](https://github.com/xuyang-liu16/VidCom2/blob/main/token_compressor/models/llava.py).
+- **Qwen2-VL:** It is called at [`token_compressor/models/qwen2_vl.py`](https://github.com/xuyang-liu16/VidCom2/blob/main/token_compressor/models/qwen2_vl.py).
+- **Qwen3-VL:** It is called at [`token_compressor/models/qwen3_vl.py`](https://github.com/xuyang-liu16/VidCom2/blob/main/token_compressor/models/qwen3_vl.py).
 
 ## 🛠 Preparation
 
