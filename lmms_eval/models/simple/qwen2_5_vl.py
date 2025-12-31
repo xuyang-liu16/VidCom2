@@ -1,5 +1,7 @@
 import base64
+import os
 import re
+import time
 from io import BytesIO
 from typing import List, Optional, Tuple, Union
 
@@ -28,6 +30,21 @@ try:
     from qwen_vl_utils import process_vision_info
 except ImportError:
     eval_logger.warning("Failed to import qwen_vl_utils; Please install it via `pip install qwen-vl-utils`")
+
+
+def _format_efficiency_table(rows, title="Efficiency Analysis"):
+    headers = ("Metric", "Value")
+    col_widths = [
+        max(len(headers[0]), max(len(row[0]) for row in rows)),
+        max(len(headers[1]), max(len(row[1]) for row in rows)),
+    ]
+    border = f"+{'-' * (col_widths[0] + 2)}+{'-' * (col_widths[1] + 2)}+"
+    header_line = f"| {headers[0]:<{col_widths[0]}} | {headers[1]:<{col_widths[1]}} |"
+    lines = [title, border, header_line, border]
+    for metric, value in rows:
+        lines.append(f"| {metric:<{col_widths[0]}} | {value:<{col_widths[1]}} |")
+    lines.append(border)
+    return "\n".join(lines)
 
 
 @register_model("qwen2_5_vl")
@@ -93,6 +110,13 @@ class Qwen2_5_VL(lmms):
             model_kwargs["attn_implementation"] = attn_implementation
 
         self._model = Qwen2_5_VLForConditionalGeneration.from_pretrained(pretrained, **model_kwargs).eval()
+        if os.getenv("COMPRESSOR") == "vidcom2":
+            import types
+
+            from token_compressor.models.qwen2_5_vl import Qwen2_5_VLModel_forward
+
+            self._model.model.forward = types.MethodType(Qwen2_5_VLModel_forward, self._model.model)
+            eval_logger.success("[VidCom2] Successfully integrated VidCom2 with Qwen2.5-VL.")
         self.max_pixels = max_pixels
         self.min_pixels = min_pixels
         self.max_num_frames = max_num_frames
@@ -110,6 +134,8 @@ class Qwen2_5_VL(lmms):
         self._max_length = kwargs.get("max_length", 2048)
         self.batch_size_per_gpu = int(batch_size)
         self.use_cache = use_cache
+        self.total_cuda_time = 0
+        self.max_mem = 0
 
         if accelerator.num_processes > 1:
             assert accelerator.distributed_type in [
@@ -182,6 +208,7 @@ class Qwen2_5_VL(lmms):
 
     def generate_until(self, requests: List[Instance]) -> List[str]:
         res = []
+        wall_start = time.time()
 
         def _collate(x):
             # the negative sign on len(toks) sorts descending - this has a few advantages:
@@ -319,6 +346,11 @@ class Qwen2_5_VL(lmms):
                 current_gen_kwargs["temperature"] = None
                 current_gen_kwargs["top_p"] = None
 
+            torch.cuda.reset_peak_memory_stats()
+            gen_start_event = torch.cuda.Event(enable_timing=True)
+            gen_end_event = torch.cuda.Event(enable_timing=True)
+            torch.cuda.synchronize()
+            gen_start_event.record()
             cont = self.model.generate(
                 **inputs,
                 eos_token_id=self.tokenizer.eos_token_id,
@@ -330,6 +362,12 @@ class Qwen2_5_VL(lmms):
                 max_new_tokens=current_gen_kwargs["max_new_tokens"],
                 use_cache=self.use_cache,
             )
+            gen_end_event.record()
+            torch.cuda.synchronize()
+            gen_time = gen_start_event.elapsed_time(gen_end_event) / 1000.0
+            gen_max_mem = torch.cuda.max_memory_allocated() / 1024 / 1024
+            self.total_cuda_time += gen_time
+            self.max_mem = max(gen_max_mem, self.max_mem)
 
             generated_ids_trimmed = [out_ids[len(in_ids) :] for in_ids, out_ids in zip(inputs.input_ids, cont)]
             answers = self.processor.batch_decode(generated_ids_trimmed, skip_special_tokens=True, clean_up_tokenization_spaces=False)
@@ -352,6 +390,16 @@ class Qwen2_5_VL(lmms):
         res = re_ords.get_original(res)
 
         pbar.close()
+        if self.rank == 0:
+            wall_time = time.time() - wall_start
+            table = _format_efficiency_table(
+                [
+                    ("LLM_time_s", f"{self.total_cuda_time:.3f}"),
+                    ("Total_time_s", f"{wall_time:.3f}"),
+                    ("Peak_mem_MB", f"{self.max_mem:.1f}"),
+                ]
+            )
+            print(table, flush=True)
         return res
 
     def generate_until_multi_round(self, requests) -> List[str]:

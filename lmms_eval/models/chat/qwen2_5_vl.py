@@ -2,6 +2,7 @@ import time
 from typing import List, Optional, Tuple, Union
 
 import numpy as np
+import torch
 from loguru import logger as eval_logger
 from PIL import Image
 from tqdm import tqdm
@@ -22,12 +23,28 @@ except ImportError:
     eval_logger.warning("Failed to import qwen_vl_utils; Please install it via `pip install qwen-vl-utils`")
 
 
+def _format_efficiency_table(rows, title="Efficiency Analysis"):
+    headers = ("Metric", "Value")
+    col_widths = [
+        max(len(headers[0]), max(len(row[0]) for row in rows)),
+        max(len(headers[1]), max(len(row[1]) for row in rows)),
+    ]
+    border = f"+{'-' * (col_widths[0] + 2)}+{'-' * (col_widths[1] + 2)}+"
+    header_line = f"| {headers[0]:<{col_widths[0]}} | {headers[1]:<{col_widths[1]}} |"
+    lines = [title, border, header_line, border]
+    for metric, value in rows:
+        lines.append(f"| {metric:<{col_widths[0]}} | {value:<{col_widths[1]}} |")
+    lines.append(border)
+    return "\n".join(lines)
+
+
 @register_model("qwen2_5_vl_chat")
 class Qwen2_5_VL(Qwen2_5_VLSimple):
     is_simple = False
 
     def generate_until(self, requests: List[Instance]) -> List[str]:
         res = []
+        wall_start = time.time()
 
         # A dummy collate here to sort by doc id
         def _collate(x):
@@ -103,6 +120,12 @@ class Qwen2_5_VL(Qwen2_5_VLSimple):
                 current_gen_kwargs["top_k"] = None
 
             start_time = time.time()
+            if torch.cuda.is_available():
+                torch.cuda.reset_peak_memory_stats()
+                gen_start_event = torch.cuda.Event(enable_timing=True)
+                gen_end_event = torch.cuda.Event(enable_timing=True)
+                torch.cuda.synchronize()
+                gen_start_event.record()
             cont = self.model.generate(
                 **inputs,
                 eos_token_id=self.tokenizer.eos_token_id,
@@ -115,6 +138,13 @@ class Qwen2_5_VL(Qwen2_5_VLSimple):
                 top_k=current_gen_kwargs.get("top_k", None),
                 use_cache=self.use_cache,
             )
+            if torch.cuda.is_available():
+                gen_end_event.record()
+                torch.cuda.synchronize()
+                gen_time = gen_start_event.elapsed_time(gen_end_event) / 1000.0
+                gen_max_mem = torch.cuda.max_memory_allocated() / 1024 / 1024
+                self.total_cuda_time += gen_time
+                self.max_mem = max(gen_max_mem, self.max_mem)
             end_time = time.time()
 
             generated_ids_trimmed = [out_ids[len(in_ids) :] for in_ids, out_ids in zip(inputs.input_ids, cont)]
@@ -150,4 +180,14 @@ class Qwen2_5_VL(Qwen2_5_VLSimple):
         log_metrics(**metric_dict)
 
         pbar.close()
+        if self.rank == 0:
+            wall_time = time.time() - wall_start
+            table = _format_efficiency_table(
+                [
+                    ("LLM_time_s", f"{self.total_cuda_time:.3f}"),
+                    ("Total_time_s", f"{wall_time:.3f}"),
+                    ("Peak_mem_MB", f"{self.max_mem:.1f}"),
+                ]
+            )
+            print(table, flush=True)
         return res

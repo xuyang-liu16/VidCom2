@@ -26,7 +26,7 @@
 
 ## 🔥 News
 
-* **`2025.12.30`** ✅✅ We update **Qwen3-VL** support in this [`qwen`](https://github.com/xuyang-liu16/VidCom2/tree/qwen) branch. Thanks for using!
+* **`2025.12.30`** ✅✅ We further support **Qwen2.5-VL** and **Qwen3-VL** in this [`qwen`](https://github.com/xuyang-liu16/VidCom2/tree/qwen) branch. Thanks for using!
 * **`2025.12.02`** 🤗🤗 We release our latest work [STC](https://arxiv.org/pdf/2512.00891), **the first** plug-and-play inference acceleration framework for streaming video understanding! [Code](https://github.com/lern-to-write/STC) is available!
 * **`2025.08.21`** 🎉🎉 Our [VidCom<sup>2</sup>](https://arxiv.org/abs/2505.14454) has been accepted by **EMNLP 2025** main conference!
 * **`2025.05.30`** ⚡⚡ We are excited to release VidCom<sup>2</sup> implementation for **Qwen2-VL**!
@@ -44,6 +44,7 @@
 The core implementation of our code is in [`token_compressor/vidcom2.py`](https://github.com/xuyang-liu16/VidCom2/blob/main/token_compressor/vidcom2.py).
 
 - **Qwen2-VL:** It is called at [`token_compressor/models/qwen2_vl.py`](https://github.com/xuyang-liu16/VidCom2/blob/main/token_compressor/models/qwen2_vl.py).
+- **Qwen2.5-VL:** It is called at [`token_compressor/models/qwen2_5_vl.py`](https://github.com/xuyang-liu16/VidCom2/blob/main/token_compressor/models/qwen2_5_vl.py).
 - **Qwen3-VL:** It is called at [`token_compressor/models/qwen3_vl.py`](https://github.com/xuyang-liu16/VidCom2/blob/main/token_compressor/models/qwen3_vl.py).
 
 ## 🛠 Preparation
@@ -70,6 +71,19 @@ COMPRESSOR=vidcom2 R_RATIO=0.25 accelerate launch --num_processes=8 \
   --output_path ./logs/
 ```
 
+### Qwen2.5-VL
+```bash
+COMPRESSOR=vidcom2 R_RATIO=0.25 accelerate launch --num_processes=8 \
+  -m lmms_eval \
+  --model qwen2_5_vl \
+  --model_args pretrained=Qwen/Qwen2.5-VL-7B-Instruct,attn_implementation=flash_attention_2,max_num_frames=32 \
+  --tasks videomme \
+  --batch_size 1 \
+  --log_samples \
+  --log_samples_suffix qwen2_5_vl \
+  --output_path ./logs/
+```
+
 ### Qwen3-VL
 ```bash
 COMPRESSOR=vidcom2 R_RATIO=0.25 accelerate launch --num_processes=8 \
@@ -84,10 +98,13 @@ COMPRESSOR=vidcom2 R_RATIO=0.25 accelerate launch --num_processes=8 \
 ```
 
 ## ⚡ Efficiency Analysis
-At the end of each run, the model prints a plain-text summary with:
-- LLM_time_s
-- Total_time_s
-- Peak_mem_MB
+Example format for Qwen3-VL with VidCom<sup>2</sup> (R_RATIO=0.25) on 8*H100 GPUs:
+
+| Metric | Value |
+| --- | --- |
+| LLM_time_s | 135.056 |
+| Total_time_s | 950.597 |
+| Peak_mem_MB | 19478.9 |
 
 ## 📌 Citation
 
