@@ -26,7 +26,7 @@
 
 ## 🔥 News
 
-* **`2025.12.30`** ✅✅ We update **Qwen3-VL** support in this [`qwen`](https://github.com/xuyang-liu16/VidCom2/tree/qwen) branch. Thanks for using!
+* **`2025.12.30`** ✅✅ We further support **Qwen2.5-VL** and **Qwen3-VL** in this [`qwen`](https://github.com/xuyang-liu16/VidCom2/tree/qwen) branch. Thanks for using!
 * **`2025.12.02`** 🤗🤗 We release our latest work [STC](https://arxiv.org/pdf/2512.00891), **the first** plug-and-play inference acceleration framework for streaming video understanding! [Code](https://github.com/lern-to-write/STC) is available!
 * **`2025.08.21`** 🎉🎉 Our [VidCom<sup>2</sup>](https://arxiv.org/abs/2505.14454) has been accepted by **EMNLP 2025** main conference!
 * **`2025.05.30`** ⚡⚡ We are excited to release VidCom<sup>2</sup> implementation for **Qwen2-VL**!
@@ -54,6 +54,7 @@ The core implementation of our code is in [`token_compressor/vidcom2.py`](https:
 - **LLaVA-OneVision:** It is called at [`token_compressor/models/llava.py`](https://github.com/xuyang-liu16/VidCom2/blob/main/token_compressor/models/llava.py).
 - **LLaVA-Video:** It is called at [`token_compressor/models/llava.py`](https://github.com/xuyang-liu16/VidCom2/blob/main/token_compressor/models/llava.py).
 - **Qwen2-VL:** It is called at [`token_compressor/models/qwen2_vl.py`](https://github.com/xuyang-liu16/VidCom2/blob/main/token_compressor/models/qwen2_vl.py).
+- **Qwen2.5-VL:** It is called at [`token_compressor/models/qwen2_5_vl.py`](https://github.com/xuyang-liu16/VidCom2/blob/main/token_compressor/models/qwen2_5_vl.py).
 - **Qwen3-VL:** It is called at [`token_compressor/models/qwen3_vl.py`](https://github.com/xuyang-liu16/VidCom2/blob/main/token_compressor/models/qwen3_vl.py).
 
 ## 🛠 Preparation
