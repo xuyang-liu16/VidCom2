@@ -127,11 +127,18 @@ COMPRESSOR=vidcom2 R_RATIO=0.25 accelerate launch --num_processes=8 \
 ## ⚡ Efficiency Analysis
 <p align="center"> <img src="images/efficiency.jpg" width="1000" align="center"> </p>
 
-VidCom<sup>2</sup> employs [lmms-eval](https://github.com/EvolvingLMMs-Lab/lmms-eval) for inference, and all efficiency analyses are based on [LLaVA-OneVision-7B](https://github.com/LLaVA-VL/LLaVA-NeXT.git).
+Running our customized lmms-eval yields an efficiency summary table. Example (LLaVA-OV-7B with VidCom<sup>2</sup>, `R_RATIO=0.25`, 8*H100 GPUs):
 
-The code of measuring the total time for **model generation** and **GPU peak memory** is located in [lmms_eval/models/llava_onevision.py](https://github.com/xuyang-liu16/VidCom2/blob/3be0e66d563c16e980145f925a55949ea431a2d8/lmms-eval/lmms_eval/models/llava_onevision.py#L568).
-
-The code of measuring the total time for **LLM generation**  is located in [llava/model/language_model/llava_qwen.py](https://github.com/xuyang-liu16/VidCom2/blob/3be0e66d563c16e980145f925a55949ea431a2d8/llava/model/language_model/llava_qwen.py#L145).
+```
+Efficiency Analysis
++------------+--------+
+| Metric     | Value  |
++------------+--------+
+| LLM_time_s | 96.264 |
+| Total_time_s | 560.816 |
+| Peak_mem_MB | 19057.5 |
++------------+--------+
+```
 
 
 ## 📌 Citation
