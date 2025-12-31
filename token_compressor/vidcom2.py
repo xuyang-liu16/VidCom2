@@ -8,18 +8,19 @@ MODEL_SPECS = {
     "llava_ov": {"tpf": 196, "mapper": "linear"},
     "llava_vid": {"tpf": 169, "mapper": "grid_vid", "grid": 13},
     "qwen2_vl": {"tpf": None, "mapper": "linear"},  # tpf provided dynamically
+    "qwen2_5_vl": {"tpf": None, "mapper": "linear"},  # tpf provided dynamically
     "qwen3_vl": {"tpf": None, "mapper": "linear"},  # tpf provided dynamically
 }
 
 def vidcom2_compression(flattened_feat: torch.Tensor, model: str = "llava_ov",
                         base_scale: float = 0.25, frame_token_len: Optional[int] = None,
                         img_feat: Optional[torch.Tensor] = None) -> torch.Tensor:
-    """Compression pipeline supporting llava_ov, llava_vid, qwen2_vl, and qwen3_vl."""
+    """Compression pipeline supporting llava_ov, llava_vid, qwen2_vl, qwen2_5_vl, and qwen3_vl."""
     if model not in MODEL_SPECS: raise ValueError(f"Unknown model: {model}")
     
     spec = MODEL_SPECS[model]
-    # Use dynamic tpf for qwen2_vl/qwen3_vl, else use constant from spec
-    tpf = frame_token_len if model in {"qwen2_vl", "qwen3_vl"} else spec["tpf"]
+    # Use dynamic tpf for qwen2_vl/qwen2_5_vl/qwen3_vl, else use constant from spec
+    tpf = frame_token_len if model in {"qwen2_vl", "qwen2_5_vl", "qwen3_vl"} else spec["tpf"]
     if tpf is None: raise ValueError(f"frame_token_len required for {model}")
 
     # 1. Feature Analysis (Vectorized Gaussian Scores)
