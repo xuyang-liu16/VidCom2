@@ -26,7 +26,7 @@
 
 ## 🔥 News
 
-* **`2025.12.30`** ✅✅ We update **Qwen3-VL** support in this [`qwen`](https://github.com/xuyang-liu16/VidCom2/tree/qwen) branch. Thanks for using!
+* **`2025.12.30`** ✅✅ We further support **Qwen2.5-VL** and **Qwen3-VL** in this [`qwen`](https://github.com/xuyang-liu16/VidCom2/tree/qwen) branch. Thanks for using!
 * **`2025.12.02`** 🤗🤗 We release our latest work [STC](https://arxiv.org/pdf/2512.00891), **the first** plug-and-play inference acceleration framework for streaming video understanding! [Code](https://github.com/lern-to-write/STC) is available!
 * **`2025.08.21`** 🎉🎉 Our [VidCom<sup>2</sup>](https://arxiv.org/abs/2505.14454) has been accepted by **EMNLP 2025** main conference!
 * **`2025.05.30`** ⚡⚡ We are excited to release VidCom<sup>2</sup> implementation for **Qwen2-VL**!
@@ -54,6 +54,7 @@ The core implementation of our code is in [`token_compressor/vidcom2.py`](https:
 - **LLaVA-OneVision:** It is called at [`token_compressor/models/llava.py`](https://github.com/xuyang-liu16/VidCom2/blob/main/token_compressor/models/llava.py).
 - **LLaVA-Video:** It is called at [`token_compressor/models/llava.py`](https://github.com/xuyang-liu16/VidCom2/blob/main/token_compressor/models/llava.py).
 - **Qwen2-VL:** It is called at [`token_compressor/models/qwen2_vl.py`](https://github.com/xuyang-liu16/VidCom2/blob/main/token_compressor/models/qwen2_vl.py).
+- **Qwen2.5-VL:** It is called at [`token_compressor/models/qwen2_5_vl.py`](https://github.com/xuyang-liu16/VidCom2/blob/main/token_compressor/models/qwen2_5_vl.py).
 - **Qwen3-VL:** It is called at [`token_compressor/models/qwen3_vl.py`](https://github.com/xuyang-liu16/VidCom2/blob/main/token_compressor/models/qwen3_vl.py).
 
 ## 🛠 Preparation
@@ -126,11 +127,13 @@ COMPRESSOR=vidcom2 R_RATIO=0.25 accelerate launch --num_processes=8 \
 ## ⚡ Efficiency Analysis
 <p align="center"> <img src="images/efficiency.jpg" width="1000" align="center"> </p>
 
-VidCom<sup>2</sup> employs [lmms-eval](https://github.com/EvolvingLMMs-Lab/lmms-eval) for inference, and all efficiency analyses are based on [LLaVA-OneVision-7B](https://github.com/LLaVA-VL/LLaVA-NeXT.git).
+Example format for LLaVA-OV-7B with VidCom<sup>2</sup> (R_RATIO=0.25) on 8*H100 GPUs:
 
-The code of measuring the total time for **model generation** and **GPU peak memory** is located in [lmms_eval/models/llava_onevision.py](https://github.com/xuyang-liu16/VidCom2/blob/3be0e66d563c16e980145f925a55949ea431a2d8/lmms-eval/lmms_eval/models/llava_onevision.py#L568).
-
-The code of measuring the total time for **LLM generation**  is located in [llava/model/language_model/llava_qwen.py](https://github.com/xuyang-liu16/VidCom2/blob/3be0e66d563c16e980145f925a55949ea431a2d8/llava/model/language_model/llava_qwen.py#L145).
+| Metric | Value |
+| --- | --- |
+| LLM_time_s | 96.264 |
+| Total_time_s | 560.816 |
+| Peak_mem_MB | 19057.5 |
 
 
 ## 📌 Citation
