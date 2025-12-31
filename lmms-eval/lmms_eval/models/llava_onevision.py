@@ -62,6 +62,21 @@ else:
     best_fit_attn_implementation = "eager"
 
 
+def _format_efficiency_table(rows, title="Efficiency Analysis"):
+    headers = ("Metric", "Value")
+    col_widths = [
+        max(len(headers[0]), max(len(row[0]) for row in rows)),
+        max(len(headers[1]), max(len(row[1]) for row in rows)),
+    ]
+    border = f"+{'-' * (col_widths[0] + 2)}+{'-' * (col_widths[1] + 2)}+"
+    header_line = f"| {headers[0]:<{col_widths[0]}} | {headers[1]:<{col_widths[1]}} |"
+    lines = [title, border, header_line, border]
+    for metric, value in rows:
+        lines.append(f"| {metric:<{col_widths[0]}} | {value:<{col_widths[1]}} |")
+    lines.append(border)
+    return "\n".join(lines)
+
+
 @register_model("llava_onevision")
 class Llava_OneVision(lmms):
     """
@@ -609,11 +624,14 @@ class Llava_OneVision(lmms):
         pbar.close()
         if self.rank == 0:
             wall_time = time.time() - wall_start
-            eval_logger.info("Efficiency Analysis")
-            eval_logger.info("Metric           Value")
-            eval_logger.info(f"LLM_time_s      {self.total_cuda_time:.3f}")
-            eval_logger.info(f"Total_time_s    {wall_time:.3f}")
-            eval_logger.info(f"Peak_mem_MB     {self.max_mem:.1f}")
+            table = _format_efficiency_table(
+                [
+                    ("LLM_time_s", f"{self.total_cuda_time:.3f}"),
+                    ("Total_time_s", f"{wall_time:.3f}"),
+                    ("Peak_mem_MB", f"{self.max_mem:.1f}"),
+                ]
+            )
+            print(table, flush=True)
         return res
 
     def generate_until_multi_round(self, requests: List[Instance]) -> List[str]:
