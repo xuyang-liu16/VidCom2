@@ -125,6 +125,8 @@ COMPRESSOR=vidcom2 R_RATIO=0.25 accelerate launch --num_processes=8 \
   --output_path ./logs/
 ```
 ## ⚡ Efficiency Analysis
+<p align="center"> <img src="images/efficiency.jpg" width="1000" align="center"> </p>
+
 Example format for LLaVA-OV-7B with VidCom<sup>2</sup> (R_RATIO=0.25) on 8*H100 GPUs:
 
 | Metric | Value |
