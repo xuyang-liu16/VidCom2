@@ -43,9 +43,11 @@
 
 The core implementation of our code is in [`token_compressor/vidcom2.py`](https://github.com/xuyang-liu16/VidCom2/blob/main/token_compressor/vidcom2.py).
 
-- **Qwen2-VL:** It is called at [`token_compressor/models/qwen2_vl.py`](https://github.com/xuyang-liu16/VidCom2/blob/main/token_compressor/models/qwen2_vl.py).
-- **Qwen2.5-VL:** It is called at [`token_compressor/models/qwen2_5_vl.py`](https://github.com/xuyang-liu16/VidCom2/blob/main/token_compressor/models/qwen2_5_vl.py).
-- **Qwen3-VL:** It is called at [`token_compressor/models/qwen3_vl.py`](https://github.com/xuyang-liu16/VidCom2/blob/main/token_compressor/models/qwen3_vl.py).
+| Model | Path |
+| --- | --- |
+| Qwen2-VL | [`token_compressor/models/qwen2_vl.py`](https://github.com/xuyang-liu16/VidCom2/blob/main/token_compressor/models/qwen2_vl.py) |
+| Qwen2.5-VL | [`token_compressor/models/qwen2_5_vl.py`](https://github.com/xuyang-liu16/VidCom2/blob/main/token_compressor/models/qwen2_5_vl.py) |
+| Qwen3-VL | [`token_compressor/models/qwen3_vl.py`](https://github.com/xuyang-liu16/VidCom2/blob/main/token_compressor/models/qwen3_vl.py) |
 
 ## 🛠 Preparation
 
