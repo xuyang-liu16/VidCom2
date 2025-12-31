@@ -100,7 +100,7 @@ COMPRESSOR=vidcom2 R_RATIO=0.25 accelerate launch --num_processes=8 \
 ```
 
 ## ⚡ Efficiency Analysis
-Example format for Qwen3-VL with VidCom<sup>2</sup> (R_RATIO=0.25) on 8*H100 GPUs:
+Example format for Qwen3-VL-7B with VidCom<sup>2</sup> (R_RATIO=0.25) on 8*H100 GPUs:
 
 | Metric | Value |
 | --- | --- |
