@@ -50,7 +50,9 @@ The core implementation of our code is in [`token_compressor/vidcom2.py`](https:
 ## 🛠 Preparation
 
 ```bash
+git clone https://github.com/xuyang-liu16/VidCom2.git
 cd VidCom2
+git checkout qwen
 pip install -e .
 ```
 
