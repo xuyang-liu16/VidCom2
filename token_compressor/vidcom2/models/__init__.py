@@ -1,1 +1,1 @@
-"""Model-specific VidCom2 integrations."""
+"""Model-specific VidCom2 integrations for Qwen VL models."""
