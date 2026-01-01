@@ -206,7 +206,7 @@ def _format_efficiency_table(rows, title="Efficiency Analysis"):
         self.model.eval()
         ###################### Replace ###########################################################
         import types
-        from token_compressor.models.llava import cus_prepare_inputs_labels_for_multimodal
+        from token_compressor.vidcom2.models.llava import cus_prepare_inputs_labels_for_multimodal
         
         if os.getenv('COMPRESSOR') == 'vidcom2':
             self.model.prepare_inputs_labels_for_multimodal = types.MethodType(cus_prepare_inputs_labels_for_multimodal, self.model)
