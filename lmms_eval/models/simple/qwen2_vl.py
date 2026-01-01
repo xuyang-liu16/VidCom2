@@ -92,7 +92,7 @@ class Qwen2_VL(lmms):
         if os.getenv("COMPRESSOR") == "vidcom2":
             import types
 
-            from token_compressor.models.qwen2_vl import Qwen2VL_ViT_forward, Qwen2VLGeneration_forward
+            from token_compressor.vidcom2.models.qwen2_vl import Qwen2VL_ViT_forward, Qwen2VLGeneration_forward
 
             self._model.model.visual.forward = types.MethodType(Qwen2VL_ViT_forward, self._model.model.visual)
             self._model.forward = types.MethodType(Qwen2VLGeneration_forward, self._model)

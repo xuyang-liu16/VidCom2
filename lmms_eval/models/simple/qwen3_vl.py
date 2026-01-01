@@ -117,7 +117,7 @@ class Qwen3_VL(lmms):
         if os.getenv("COMPRESSOR") == "vidcom2":
             import types
 
-            from token_compressor.models.qwen3_vl import Qwen3VLModel_forward
+            from token_compressor.vidcom2.models.qwen3_vl import Qwen3VLModel_forward
 
             self._model.model.forward = types.MethodType(Qwen3VLModel_forward, self._model.model)
             eval_logger.success("[VidCom2] Successfully integrated VidCom2 with Qwen3-VL.")
