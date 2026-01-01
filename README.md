@@ -49,15 +49,15 @@
 
 ## 💥 Core Codes and Supported Models
 
-The core implementation of our code is in [`token_compressor/vidcom2.py`](https://github.com/xuyang-liu16/VidCom2/blob/main/token_compressor/vidcom2.py).
+The core implementation of our code is in [`token_compressor/vidcom2/vidcom2.py`](https://github.com/xuyang-liu16/VidCom2/blob/main/token_compressor/vidcom2/vidcom2.py).
 
 | Model | Path |
 | --- | --- |
-| LLaVA-OneVision | [`token_compressor/models/llava.py`](https://github.com/xuyang-liu16/VidCom2/blob/main/token_compressor/models/llava.py) |
-| LLaVA-Video | [`token_compressor/models/llava.py`](https://github.com/xuyang-liu16/VidCom2/blob/main/token_compressor/models/llava.py) |
-| Qwen2-VL | [`token_compressor/models/qwen2_vl.py`](https://github.com/xuyang-liu16/VidCom2/blob/main/token_compressor/models/qwen2_vl.py) |
-| Qwen2.5-VL | [`token_compressor/models/qwen2_5_vl.py`](https://github.com/xuyang-liu16/VidCom2/blob/main/token_compressor/models/qwen2_5_vl.py) |
-| Qwen3-VL | [`token_compressor/models/qwen3_vl.py`](https://github.com/xuyang-liu16/VidCom2/blob/main/token_compressor/models/qwen3_vl.py) |
+| LLaVA-OneVision | [`token_compressor/vidcom2/models/llava.py`](https://github.com/xuyang-liu16/VidCom2/blob/main/token_compressor/vidcom2/models/llava.py) |
+| LLaVA-Video | [`token_compressor/vidcom2/models/llava.py`](https://github.com/xuyang-liu16/VidCom2/blob/main/token_compressor/vidcom2/models/llava.py) |
+| Qwen2-VL | [`token_compressor/vidcom2/models/qwen2_vl.py`](https://github.com/xuyang-liu16/VidCom2/blob/main/token_compressor/vidcom2/models/qwen2_vl.py) |
+| Qwen2.5-VL | [`token_compressor/vidcom2/models/qwen2_5_vl.py`](https://github.com/xuyang-liu16/VidCom2/blob/main/token_compressor/vidcom2/models/qwen2_5_vl.py) |
+| Qwen3-VL | [`token_compressor/vidcom2/models/qwen3_vl.py`](https://github.com/xuyang-liu16/VidCom2/blob/main/token_compressor/vidcom2/models/qwen3_vl.py) |
 
 ## 🛠 Preparation
 
