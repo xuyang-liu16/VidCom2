@@ -26,6 +26,7 @@
 
 ## 🔥 News
 
+- **`2026.01.08`** ✅✅ We further support **Qwen2.5-Omni** and **Qwen3-Omni** in this [`omni`](https://github.com/xuyang-liu16/VidCom2/tree/omni) branch. Thanks for using!
 * **`2025.12.30`** ✅✅ We further support **Qwen2.5-VL** and **Qwen3-VL** in this [`qwen`](https://github.com/xuyang-liu16/VidCom2/tree/qwen) branch. Thanks for using!
 * **`2025.12.02`** 🤗🤗 We release our latest work [STC](https://arxiv.org/pdf/2512.00891), **the first** plug-and-play inference acceleration framework for streaming video understanding! [Code](https://github.com/lern-to-write/STC) is available!
 * **`2025.08.21`** 🎉🎉 Our [VidCom<sup>2</sup>](https://arxiv.org/abs/2505.14454) has been accepted by **EMNLP 2025** main conference!
@@ -34,7 +35,7 @@
 
 ## 🎯 Highlights
 
-- **Model Adaptability:** Compatible with most VideoLLMs (e.g., LLaVA, Qwen-VL series).
+- **Model Adaptability:** Compatible with most VideoLLMs (e.g., LLaVA, Qwen-VL, Qwen-Omni series).
 - **Operator Compatibility:** Works seamlessly with efficient operators like Flash Attention 2.
 - **Strong Performance:** Uses only 25% of tokens while maintaining 99.6% performance of LLaVA-OV.
 - **High Efficiency:** Cuts LLaVA-OV generation time by 70.8% and overall latency by 43.0%.
@@ -58,6 +59,8 @@ The core implementation of our code is in [`token_compressor/vidcom2/vidcom2.py`
 | Qwen2-VL | [`token_compressor/vidcom2/models/qwen2_vl.py`](https://github.com/xuyang-liu16/VidCom2/blob/main/token_compressor/vidcom2/models/qwen2_vl.py) |
 | Qwen2.5-VL | [`token_compressor/vidcom2/models/qwen2_5_vl.py`](https://github.com/xuyang-liu16/VidCom2/blob/main/token_compressor/vidcom2/models/qwen2_5_vl.py) |
 | Qwen3-VL | [`token_compressor/vidcom2/models/qwen3_vl.py`](https://github.com/xuyang-liu16/VidCom2/blob/main/token_compressor/vidcom2/models/qwen3_vl.py) |
+| Qwen2.5-Omni | [`token_compressor/vidcom2/models/qwen2_5_omni.py`](https://github.com/xuyang-liu16/VidCom2/blob/omni/token_compressor/vidcom2/models/qwen2_5_omni.py) |
+| Qwen3-Omni | [`token_compressor/vidcom2/models/qwen3_omni.py`](https://github.com/xuyang-liu16/VidCom2/blob/omni/token_compressor/vidcom2/models/qwen3_omni.py) |
 
 ## 🛠 Preparation
 
