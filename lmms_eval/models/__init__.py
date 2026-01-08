@@ -58,6 +58,7 @@ AVAILABLE_SIMPLE_MODELS = {
     "qwen_vl_api": "Qwen_VL_API",
     "qwen_vl": "Qwen_VL",
     "qwen2_5_omni": "Qwen2_5_Omni",
+    "qwen3_omni": "Qwen3_Omni",
     "qwen2_5_vl_interleave": "Qwen2_5_VL_Interleave",
     "qwen2_5_vl": "Qwen2_5_VL",
     "qwen2_audio": "Qwen2_Audio",
