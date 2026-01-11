@@ -8,7 +8,7 @@ export HF_HOME="~/.cache/huggingface"
 
 COMPRESSOR=vidcom2 R_RATIO=0.25 accelerate launch --num_processes=8 --main_process_port=12346 -m lmms_eval \
     --model qwen3_vl \
-    --model_args=pretrained=Qwen/Qwen3-VL-8B-Instruct,max_pixels=12845056,max_num_frames=32,attn_implementation=flash_attention_2,interleave_visuals=False \
+    --model_args=pretrained=Qwen/Qwen3-VL-8B-Instruct,max_num_frames=32,attn_implementation=flash_attention_2,interleave_visuals=False \
     --tasks "videomme" \
     --batch_size 1 \
     --log_samples \
