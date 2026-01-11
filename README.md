@@ -102,14 +102,32 @@ COMPRESSOR=vidcom2 R_RATIO=0.25 accelerate launch --num_processes=8 \
 * `VIDCOM_TOKEN_STATS=1` prints average pre/post token stats table.
 * `VIDCOM_TOKEN_STATS_CASE=1` prints per-case pre/post token counts and the average table.
 
+## 📐 Performance Evaluation
+
+Results on **Qwen2.5-Omni-7B-Instruct** using the configuration below. You can adjust the settings directly in [`qwen-omni-utils/src/qwen_omni_utils/v2_5/vision_process.py`](https://github.com/xuyang-liu16/VidCom2/blob/omni/qwen-omni-utils/src/qwen_omni_utils/v2_5/vision_process.py#L32).
+
+```
+VIDEO_MIN_PIXELS = 128 * 28 * 28
+VIDEO_MAX_PIXELS = 320 * 28 * 28
+FRAME_FACTOR = 2
+FPS = 2.0
+FPS_MIN_FRAMES = 4
+FPS_MAX_FRAMES = 728
+```
+
+| Method | WorldSense | AV-SpeakerBench |
+| --- | --- | --- |
+| Qwen2.5-Omni-7B-Instruct | 45.2 | 46.6 |
+| + VidCom<sup>2</sup> (R=25%) | 44.9 | 42.8 |
+
 ## ⚡ Efficiency Analysis
 Example format for Qwen2.5-Omni-7B with VidCom<sup>2</sup> (R_RATIO=0.25) on 8*H100 GPUs:
 
 | Metric | Value |
 | --- | --- |
-| LLM_time_s | 3137.764 |
-| Total_time_s | 5604.339 |
-| Peak_mem_MB | 33961.6 |
+| LLM_time_s | 3059.417 |
+| Total_time_s | 5523.415 |
+| Peak_mem_MB | 33090.0 |
 
 ## 📌 Citation
 
