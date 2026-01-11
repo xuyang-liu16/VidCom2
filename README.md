@@ -101,6 +101,16 @@ COMPRESSOR=vidcom2 R_RATIO=0.25 accelerate launch --num_processes=8 \
   --output_path ./logs/
 ```
 
+## 📐 Performance Evaluation
+
+Results on Qwen3-VL-8B-Instruct with `max_num_frames=32` and `R_RATIO=0.25`.
+
+| Method | MLVU_dev | VideoMME (Overall) | VideoMME (Short) | VideoMME (Medium) | VideoMME (Long) |
+| --- | --- | --- | --- | --- | --- |
+| Qwen3-VL-8B-Instruct | 63.5 | 64.5 | 76.0 | 60.4 | 57.0 |
+| + VidCom<sup>2</sup> (R=25%) | 62.4 | 62.4 | 72.1 | 59.1 | 56.1 |
+
+
 ## ⚡ Efficiency Analysis
 Example format for Qwen3-VL-7B with VidCom<sup>2</sup> (R_RATIO=0.25) on 8*H100 GPUs:
 
@@ -109,6 +119,7 @@ Example format for Qwen3-VL-7B with VidCom<sup>2</sup> (R_RATIO=0.25) on 8*H100 
 | LLM_time_s | 135.056 |
 | Total_time_s | 950.597 |
 | Peak_mem_MB | 19478.9 |
+
 
 ## 📌 Citation
 
