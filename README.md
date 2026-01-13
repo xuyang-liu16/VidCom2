@@ -26,7 +26,7 @@
 
 ## 🔥 News
 
-* **`2026.01.08`** ✅✅ Added support for **Qwen2.5-Omni** and **Qwen3-Omni** in the [`omni`](https://github.com/xuyang-liu16/VidCom2/tree/omni) branch, with evaluation results.
+* **`2026.01.08`** ✅✅ Added support for **Qwen2.5-Omni** and **Qwen3-Omni** in the [`omni`](https://github.com/xuyang-liu16/VidCom2/tree/omni) branch, with evaluation results. To date, VidCom<sup>2</sup> has been fully adapted to the [Qwen-VL](https://github.com/xuyang-liu16/VidCom2/tree/qwen), [Qwen-Omni](https://github.com/xuyang-liu16/VidCom2/tree/omni), and [LLaVA](https://github.com/xuyang-liu16/VidCom2/tree/llava) model series.
 * **`2025.12.30`** ✅✅ Added support for **Qwen2.5-VL** and **Qwen3-VL** in the [`qwen`](https://github.com/xuyang-liu16/VidCom2/tree/qwen) branch, with evaluation results.
 * **`2025.12.02`** 🤗🤗 We release our latest work [STC](https://arxiv.org/pdf/2512.00891), **the first** plug-and-play inference acceleration framework for streaming video understanding! [Code](https://github.com/lern-to-write/STC) is available!
 * **`2025.08.21`** 🎉🎉 Our [VidCom<sup>2</sup>](https://arxiv.org/abs/2505.14454) has been accepted by **EMNLP 2025** main conference!
