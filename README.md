@@ -62,6 +62,41 @@ The core implementation of our code is in [`token_compressor/vidcom2/vidcom2.py`
 | Qwen2.5-Omni | [`token_compressor/vidcom2/models/qwen2_5_omni.py`](https://github.com/xuyang-liu16/VidCom2/blob/omni/token_compressor/vidcom2/models/qwen2_5_omni.py) |
 | Qwen3-Omni | [`token_compressor/vidcom2/models/qwen3_omni.py`](https://github.com/xuyang-liu16/VidCom2/blob/omni/token_compressor/vidcom2/models/qwen3_omni.py) |
 
+<details>
+<summary><strong>Minimal Integration Snippets (click to expand)</strong></summary>
+
+These changes are implemented in the **lmms-eval model wrappers**:
+
+**LLaVA-OneVision** ([`lmms-eval/lmms_eval/models/llava_onevision.py`](https://github.com/xuyang-liu16/VidCom2/blob/main/lmms-eval/lmms_eval/models/llava_onevision.py#L157))  
+```python
+import os
+import types
+from token_compressor.vidcom2.models.llava import cus_prepare_inputs_labels_for_multimodal
+
+if os.getenv("COMPRESSOR") == "vidcom2":
+    self.model.prepare_inputs_labels_for_multimodal = types.MethodType(
+        cus_prepare_inputs_labels_for_multimodal, self.model
+    )
+    eval_logger.info("[VidCom2] Successfully integrated VidCom2 with LLaVA-OneVision-7B.")
+```
+
+**Qwen3-VL** ([`lmms-eval/lmms_eval/models/qwen3_vl.py`](https://github.com/xuyang-liu16/VidCom2/blob/qwen/lmms_eval/models/simple/qwen3_vl.py#L117))  
+```python
+import os
+import types
+from token_compressor.vidcom2.models.qwen3_vl import Qwen3VLModel_forward
+
+if os.getenv("COMPRESSOR") == "vidcom2":
+    self._model.model.forward = types.MethodType(Qwen3VLModel_forward, self._model.model)
+    eval_logger.success("[VidCom2] Successfully integrated VidCom2 with Qwen3-VL.")
+```
+
+**Env knobs**  
+- Enable compression: `COMPRESSOR=vidcom2`  
+- Set retention ratio: `R_RATIO=0.25` (default 0.25)
+
+</details>
+
 ## 🛠 Preparation
 
 1. Clone this repository：
