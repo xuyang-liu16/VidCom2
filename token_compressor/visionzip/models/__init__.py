@@ -1,0 +1,2 @@
+"""VisionZip model-specific implementations."""
+

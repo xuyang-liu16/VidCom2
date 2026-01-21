@@ -114,13 +114,36 @@ class Qwen3_VL(lmms):
         match = re.search(r"A\d+B", pretrained)
         model_fn = Qwen3VLMoeForConditionalGeneration if match else Qwen3VLForConditionalGeneration
         self._model = model_fn.from_pretrained(pretrained, **model_kwargs).eval()
-        if os.getenv("COMPRESSOR") == "vidcom2":
+        
+        # Token compression integration based on COMPRESSOR environment variable
+        compressor = os.getenv("COMPRESSOR")
+        if compressor == "vidcom2":
             import types
-
             from token_compressor.vidcom2.models.qwen3_vl import Qwen3VLModel_forward
-
             self._model.model.forward = types.MethodType(Qwen3VLModel_forward, self._model.model)
             eval_logger.success("[VidCom2] Successfully integrated VidCom2 with Qwen3-VL.")
+        elif compressor == "fastv":
+            import types
+            from token_compressor.fastv.models.qwen3_vl import Qwen3VLModel_forward
+            self._model.model.forward = types.MethodType(Qwen3VLModel_forward, self._model.model)
+            fastv_k = os.getenv("FASTV_K", "2")
+            r_ratio = os.getenv("R_RATIO", "0.5")
+            eval_logger.success(f"[FastV] Successfully integrated FastV with Qwen3-VL. (K={fastv_k}, R_RATIO={r_ratio})")
+        elif compressor == "visionzip":
+            import types
+            from token_compressor.visionzip.models.qwen3_vl import Qwen3VLModel_forward
+            self._model.model.forward = types.MethodType(Qwen3VLModel_forward, self._model.model)
+            r_ratio = os.getenv("R_RATIO", "0.2")
+            eval_logger.success(f"[VisionZip] Successfully integrated VisionZip with Qwen3-VL. (R_RATIO={r_ratio})")
+        elif compressor == "holitom":
+            import types
+            from token_compressor.holitom.models.qwen3_vl import Qwen3VLModel_forward
+            self._model.model.forward = types.MethodType(Qwen3VLModel_forward, self._model.model)
+            r_ratio = os.getenv("R_RATIO", "0.15")
+            tau = os.getenv("HOLITOM_T", "0.8")
+            eval_logger.success(f"[HoliTom] Successfully integrated HoliTom with Qwen3-VL. (R_RATIO={r_ratio}, T={tau})")
+        elif compressor is not None:
+            eval_logger.warning(f"[Warning] Unknown COMPRESSOR value: {compressor}. Supported values: vidcom2, fastv, visionzip, holitom")
         self.max_pixels = max_pixels
         self.min_pixels = min_pixels
         self.max_num_frames = max_num_frames
