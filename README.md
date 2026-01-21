@@ -101,6 +101,108 @@ COMPRESSOR=vidcom2 R_RATIO=0.25 accelerate launch --num_processes=8 \
   --output_path ./logs/
 ```
 
+## 🔬 Additional Token Compression Baselines
+
+We provide implementations of popular token compression baselines for comparison on Qwen3-VL:
+
+### FastV (ECCV 2024 Oral)
+
+**Paper:** [An Image is Worth 1/2 Tokens After Layer 2](https://github.com/pkunlp-icler/FastV)
+
+**Key Features:**
+- Prunes visual tokens at early LLM layers based on attention scores
+- Training-free, plug-and-play implementation
+- Default: Keep 50% tokens after layer 2
+
+**⚠️ Important:** FastV requires `attn_implementation=eager` to obtain attention weights for token pruning. Flash Attention does not return attention weights, so it cannot be used with FastV.
+
+**Usage:**
+```bash
+COMPRESSOR=fastv R_RATIO=0.5 FASTV_K=2 accelerate launch --num_processes=8 \
+  -m lmms_eval \
+  --model qwen3_vl \
+  --model_args pretrained=Qwen/Qwen3-VL-8B-Instruct,attn_implementation=eager,max_num_frames=32 \
+  --tasks videomme \
+  --batch_size 1 \
+  --log_samples \
+  --log_samples_suffix qwen3_vl_fastv \
+  --output_path ./logs/
+```
+
+**Parameters:**
+- `R_RATIO`: Retention ratio (default: 0.5 for 50%)
+- `FASTV_K`: Layer after which to apply pruning (default: 2)
+
+### VisionZip (CVPR 2025)
+
+**Paper:** [VisionZip: Longer is Better but Not Necessary in Vision Language Models](https://github.com/dvlab-research/VisionZip)
+
+**Key Features:**
+- Selects dominant tokens and merges remaining via density-based clustering
+- Compresses tokens after vision encoder
+- Training-free, achieves high compression ratios
+
+**Usage:**
+```bash
+COMPRESSOR=visionzip R_RATIO=0.2 accelerate launch --num_processes=8 \
+  -m lmms_eval \
+  --model qwen3_vl \
+  --model_args pretrained=Qwen/Qwen3-VL-8B-Instruct,attn_implementation=flash_attention_2,max_num_frames=32 \
+  --tasks videomme \
+  --batch_size 1 \
+  --log_samples \
+  --log_samples_suffix qwen3_vl_visionzip \
+  --output_path ./logs/
+```
+
+**Parameters:**
+- `R_RATIO`: Retention ratio (default: 0.2 for 20%)
+
+### HoliTom(w/o M) (NeurIPS 2025)
+
+**Paper:** [HoliTom: Holistic Token Merging for Fast Video Large Language Models](https://github.com/cokeshao/HoliTom)
+
+**Key Features:**
+- Holistic token merging with temporal segmentation and DPC-KNN clustering
+- Separates static and dynamic features across temporal windows
+- Training-free, achieves over 90% token reduction while maintaining performance
+
+**Usage:**
+```bash
+COMPRESSOR=holitom R_RATIO=0.15 HOLITOM_T=0.8 accelerate launch --num_processes=8 \
+  -m lmms_eval \
+  --model qwen3_vl \
+  --model_args pretrained=Qwen/Qwen3-VL-8B-Instruct,attn_implementation=flash_attention_2,max_num_frames=32 \
+  --tasks videomme \
+  --batch_size 1 \
+  --log_samples \
+  --log_samples_suffix qwen3_vl_holitom \
+  --output_path ./logs/
+```
+
+**Parameters:**
+- `R_RATIO`: Base retention ratio (default: 0.15 for 15%)
+- `HOLITOM_T`: Similarity threshold for static detection (default: 0.8)
+- `HOLITOM_BETA`: Clustering merge weight (default: 0.6)
+- `HOLITOM_D`: Dominant token ratio (default: 0.0)
+- `HOLITOM_K`: KNN neighbors (default: 7)
+- `HOLITOM_MAX_WINDOW_SIZE`: Maximum temporal window size (default: 1024)
+
+### Comparison of Methods
+
+| Method | Compression Stage | Strategy 
+| --- | --- | --- |
+| **VidCom²** (Ours) | After vision encoder | Gaussian similarity + dynamic frame budget |
+| **FastV** | After LLM layer 2 | Attention-based pruning |
+| **VisionZip** | After vision encoder | Dominant token + density merging |
+| **HoliTom(w/o M)** | After vision encoder | Temporal segmentation + DPC-KNN merging |
+
+**Implementation Location:**
+- VidCom²: [`token_compressor/vidcom2/`](token_compressor/vidcom2/)
+- FastV: [`token_compressor/fastv/`](token_compressor/fastv/)
+- VisionZip: [`token_compressor/visionzip/`](token_compressor/visionzip/)
+- HoliTom(w/o M): [`token_compressor/holitom/`](token_compressor/holitom/)
+
 ## 📐 Performance Evaluation
 
 Results on Qwen3-VL-8B-Instruct with `max_num_frames=32` and `R_RATIO=0.25`.
