@@ -26,6 +26,7 @@
 
 ## 🔥 News
 
+* **`2026.01.22`** ✅✅ We further integrate three representative baselines [FastV](https://github.com/pkunlp-icler/FastV), [VisionZip](https://github.com/JIA-Lab-research/VisionZip), and [HoliTom](https://github.com/cokeshao/HoliTom) into our codebase, and have already added support for **Qwen3-VL**.
 * **`2025.12.30`** ✅✅ We further support **Qwen2.5-VL** and **Qwen3-VL** in this [`qwen`](https://github.com/xuyang-liu16/VidCom2/tree/qwen) branch. Thanks for using!
 * **`2025.12.02`** 🤗🤗 We release our latest work [STC](https://arxiv.org/pdf/2512.00891), **the first** plug-and-play inference acceleration framework for streaming video understanding! [Code](https://github.com/lern-to-write/STC) is available!
 * **`2025.08.21`** 🎉🎉 Our [VidCom<sup>2</sup>](https://arxiv.org/abs/2505.14454) has been accepted by **EMNLP 2025** main conference!
@@ -192,13 +193,13 @@ COMPRESSOR=holitom R_RATIO=0.15 HOLITOM_T=0.8 accelerate launch --num_processes=
 
 | Method | Compression Stage | Strategy 
 | --- | --- | --- |
-| **VidCom²** (Ours) | After vision encoder | Gaussian similarity + dynamic frame budget |
+| **VidCom<sup>2</sup>** (Ours) | After vision encoder | Gaussian similarity + dynamic frame budget |
 | **FastV** | After LLM layer 2 | Attention-based pruning |
 | **VisionZip** | After vision encoder | Dominant token + density merging |
 | **HoliTom(w/o M)** | After vision encoder | Temporal segmentation + DPC-KNN merging |
 
 **Implementation Location:**
-- VidCom²: [`token_compressor/vidcom2/`](token_compressor/vidcom2/)
+- VidCom<sup>2</sup>: [`token_compressor/vidcom2/`](token_compressor/vidcom2/)
 - FastV: [`token_compressor/fastv/`](token_compressor/fastv/)
 - VisionZip: [`token_compressor/visionzip/`](token_compressor/visionzip/)
 - HoliTom(w/o M): [`token_compressor/holitom/`](token_compressor/holitom/)
