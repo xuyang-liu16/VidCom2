@@ -26,6 +26,7 @@
 
 ## 🔥 News
 
+* **`2026.01.23`** ✅✅ We add four more ViT-based compression baselines: [IPCV](https://github.com/Perkzi/IPCV), [iLLaVA](https://github.com/hulianyuyy/iLLaVA), [ToMe](https://github.com/facebookresearch/ToMe), and **Pooling** for comprehensive comparison.
 * **`2026.01.22`** ✅✅ We further integrate three representative baselines [FastV](https://github.com/pkunlp-icler/FastV), [VisionZip](https://github.com/JIA-Lab-research/VisionZip), and [HoliTom](https://github.com/cokeshao/HoliTom) into our codebase, and have already added support for **Qwen3-VL**.
 * **`2025.12.30`** ✅✅ We further support **Qwen2.5-VL** and **Qwen3-VL** in this [`qwen`](https://github.com/xuyang-liu16/VidCom2/tree/qwen) branch. Thanks for using!
 * **`2025.12.02`** 🤗🤗 We release our latest work [STC](https://arxiv.org/pdf/2512.00891), **the first** plug-and-play inference acceleration framework for streaming video understanding! [Code](https://github.com/lern-to-write/STC) is available!
@@ -189,20 +190,230 @@ COMPRESSOR=holitom R_RATIO=0.15 HOLITOM_T=0.8 accelerate launch --num_processes=
 - `HOLITOM_K`: KNN neighbors (default: 7)
 - `HOLITOM_MAX_WINDOW_SIZE`: Maximum temporal window size (default: 1024)
 
+### IPCV (Information-Preserving Compression)
+
+**Paper:** [IPCV: Information-Preserving Compression for MLLM Visual Encoders](https://github.com/Perkzi/IPCV)
+
+**Key Features:**
+- Compresses tokens **INSIDE the ViT** with multi-layer AS (Accumulated Similarity) restoration
+- Prunes at layer K based on feature difference between layer K and K-1
+- Uses delta-based restoration with nearest neighbor interpolation for subsequent AS layers
+- Training-free, remaining ViT layers continue processing compressed tokens
+
+**Mechanism:**
+1. At layer K-1: Save hidden states as reference
+2. At layer K: Compute diff, select tokens with largest changes, save delta for removed tokens
+3. Layers K+1 to K+AS_layers: Restore full sequence with delta, process, re-prune
+4. Continue with pruned tokens for remaining layers
+
+**Usage:**
+```bash
+COMPRESSOR=ipcv R_RATIO=0.25 IPCV_LAYER=5 IPCV_AS_LAYERS=4 accelerate launch --num_processes=8 \
+  -m lmms_eval \
+  --model qwen3_vl \
+  --model_args pretrained=Qwen/Qwen3-VL-8B-Instruct,attn_implementation=flash_attention_2,max_num_frames=32 \
+  --tasks videomme \
+  --batch_size 1 \
+  --log_samples \
+  --log_samples_suffix qwen3_vl_ipcv \
+  --output_path ./logs/
+```
+
+**Parameters:**
+- `R_RATIO`: Retention ratio (default: 0.25 for 25%)
+- `IPCV_LAYER`: ViT layer at which to start pruning (default: middle layer)
+- `IPCV_AS_LAYERS`: Number of AS restoration layers (default: 4)
+- `IPCV_TOP_K`: Number of nearest neighbors for delta computation (default: 10)
+
+### iLLaVA (Token Merging for VLMs)
+
+**Paper:** [iLLaVA: An Image is Worth Fewer Tokens in Large Vision-Language Models](https://github.com/hulianyuyy/iLLaVA)
+
+**Key Features:**
+- Applies token merging **progressively INSIDE the ViT** at multiple layers
+- Uses bipartite soft matching to merge similar visual tokens
+- Remaining ViT layers continue processing merged tokens
+- Training-free, preserves important visual information
+
+**Usage:**
+```bash
+COMPRESSOR=illava R_RATIO=0.25 ILLAVA_MERGE_RATIO=0.5 accelerate launch --num_processes=8 \
+  -m lmms_eval \
+  --model qwen3_vl \
+  --model_args pretrained=Qwen/Qwen3-VL-8B-Instruct,attn_implementation=flash_attention_2,max_num_frames=32 \
+  --tasks videomme \
+  --batch_size 1 \
+  --log_samples \
+  --log_samples_suffix qwen3_vl_illava \
+  --output_path ./logs/
+```
+
+**Parameters:**
+- `R_RATIO`: Retention ratio (default: 0.25 for 25%)
+- `ILLAVA_MERGE_RATIO`: Ratio of tokens to merge per layer (default: 0.5)
+- `ILLAVA_LAYERS`: Comma-separated layer indices to apply merging (default: 1/3 and 2/3 of layers)
+
+### ToMe (Token Merging)
+
+**Paper:** [Token Merging: Your ViT But Faster](https://github.com/facebookresearch/ToMe) (ICLR 2023)
+
+**Key Features:**
+- Classic token merging method from Facebook Research
+- Merges tokens **after every N blocks INSIDE the ViT** (not after ViT)
+- Uses bipartite soft matching on feature vectors
+- Remaining ViT layers continue processing merged tokens
+
+**Usage:**
+```bash
+COMPRESSOR=tome R_RATIO=0.25 TOME_R=8 TOME_APPLY_EVERY=2 accelerate launch --num_processes=8 \
+  -m lmms_eval \
+  --model qwen3_vl \
+  --model_args pretrained=Qwen/Qwen3-VL-8B-Instruct,attn_implementation=flash_attention_2,max_num_frames=32 \
+  --tasks videomme \
+  --batch_size 1 \
+  --log_samples \
+  --log_samples_suffix qwen3_vl_tome \
+  --output_path ./logs/
+```
+
+**Parameters:**
+- `R_RATIO`: Retention ratio (default: 0.25 for 25%)
+- `TOME_R`: Number of tokens to merge per layer (auto-computed if not set)
+- `TOME_APPLY_EVERY`: Apply merging every N layers (default: 2)
+
+### Pooling (Spatial Pooling)
+
+**Key Features:**
+- Applies spatial pooling **INSIDE the ViT** at a specific layer (not after ViT)
+- Supports average pooling, max pooling, and stride sampling
+- Remaining ViT layers continue processing pooled tokens
+- Simple and efficient baseline
+
+**Usage:**
+```bash
+COMPRESSOR=pooling R_RATIO=0.25 POOLING_TYPE=avg POOLING_LAYER=14 accelerate launch --num_processes=8 \
+  -m lmms_eval \
+  --model qwen3_vl \
+  --model_args pretrained=Qwen/Qwen3-VL-8B-Instruct,attn_implementation=flash_attention_2,max_num_frames=32 \
+  --tasks videomme \
+  --batch_size 1 \
+  --log_samples \
+  --log_samples_suffix qwen3_vl_pooling \
+  --output_path ./logs/
+```
+
+**Parameters:**
+- `R_RATIO`: Retention ratio (default: 0.25 for 25%)
+- `POOLING_TYPE`: Pooling type - "avg", "max", or "stride" (default: avg)
+- `POOLING_LAYER`: ViT layer after which to apply pooling (default: middle layer)
+
 ### Comparison of Methods
 
-| Method | Compression Stage | Strategy 
+| Method | Compression Stage | Strategy |
 | --- | --- | --- |
 | **VidCom<sup>2</sup>** (Ours) | After vision encoder | Gaussian similarity + dynamic frame budget |
-| **FastV** | After LLM layer 2 | Attention-based pruning |
+| **FastV** | Inside LLM (layer K) | Attention-based pruning |
 | **VisionZip** | After vision encoder | Dominant token + density merging |
 | **HoliTom(w/o M)** | After vision encoder | Temporal segmentation + DPC-KNN merging |
+| **IPCV** | **Inside ViT** (layer K + AS layers) | Diff-based pruning + multi-layer AS restoration |
+| **iLLaVA** | **Inside ViT** (multiple layers) | Progressive bipartite soft matching |
+| **ToMe** | **Inside ViT** (every N layers) | Bipartite matching per block |
+| **Pooling** | **Inside ViT** (layer K) | Spatial pooling (avg/max/stride) |
 
 **Implementation Location:**
 - VidCom<sup>2</sup>: [`token_compressor/vidcom2/`](token_compressor/vidcom2/)
 - FastV: [`token_compressor/fastv/`](token_compressor/fastv/)
 - VisionZip: [`token_compressor/visionzip/`](token_compressor/visionzip/)
 - HoliTom(w/o M): [`token_compressor/holitom/`](token_compressor/holitom/)
+- IPCV: [`token_compressor/ipcv/`](token_compressor/ipcv/)
+- iLLaVA: [`token_compressor/illava/`](token_compressor/illava/)
+- ToMe: [`token_compressor/tome/`](token_compressor/tome/)
+- Pooling: [`token_compressor/pooling/`](token_compressor/pooling/)
+
+## 🔄 Batch Baseline Comparison
+
+We provide a convenient script to run all baselines with multiple parameter configurations automatically.
+
+### Quick Start
+
+```bash
+# Run all baselines with default settings (R_RATIO=0.1, 0.25, 0.5)
+bash scripts/run_all_baselines.sh
+
+# Run specific baselines only
+bash scripts/run_all_baselines.sh --baselines "vidcom2 fastv visionzip"
+
+# Customize R_RATIO values
+bash scripts/run_all_baselines.sh --ratios "0.25 0.5"
+
+# Run on a different task
+bash scripts/run_all_baselines.sh --task mlvu_dev
+
+# Dry run to preview commands without executing
+bash scripts/run_all_baselines.sh --dry-run
+```
+
+### Full Options
+
+```bash
+bash scripts/run_all_baselines.sh [OPTIONS]
+
+Options:
+  --task TASK           Evaluation task (default: videomme)
+  --model MODEL         Model path (default: Qwen/Qwen3-VL-8B-Instruct)
+  --gpus NUM            Number of GPUs (default: 8)
+  --frames NUM          Max number of frames (default: 32)
+  --ratios "r1 r2 ..."  R_RATIO values to test (default: "0.1 0.25 0.5")
+  --baselines "b1 b2"   Specific baselines to run (default: all)
+  --output DIR          Output directory (default: ./benchmark_results/TIMESTAMP)
+  --resume              Skip completed experiments (useful for resuming failed runs)
+  --dry-run             Print commands without executing
+```
+
+### Example Workflows
+
+**1. Full benchmark comparison:**
+```bash
+# Run all 8 methods with 3 R_RATIO values = 24+ experiments
+bash scripts/run_all_baselines.sh --task videomme
+```
+
+**2. Quick comparison of key methods:**
+```bash
+# Compare only the main methods at R=0.25
+bash scripts/run_all_baselines.sh --baselines "vidcom2 visionzip holitom" --ratios "0.25"
+```
+
+**3. Resume a failed batch:**
+```bash
+# Continue from where it stopped
+bash scripts/run_all_baselines.sh --resume --output ./benchmark_results/20260124_120000
+```
+
+### Output Structure
+
+```
+benchmark_results/TIMESTAMP/
+├── logs/                      # Individual experiment logs
+│   ├── vidcom2_r0.25.log
+│   ├── fastv_r0.25_k2.log
+│   └── ...
+├── results/                   # lmms_eval output for each experiment
+│   ├── vidcom2_r0.25/
+│   └── ...
+├── comparison_table.md        # Markdown comparison table
+├── comparison_table.csv       # CSV for further analysis
+├── results.jsonl              # Raw results in JSONL format
+└── experiment_summary.txt     # Experiment summary
+```
+
+### Collect Results Manually
+
+If you need to re-generate the comparison table:
+
+```bash
+python scripts/collect_results.py --input ./benchmark_results/TIMESTAMP
+```
 
 ## 📐 Performance Evaluation
 

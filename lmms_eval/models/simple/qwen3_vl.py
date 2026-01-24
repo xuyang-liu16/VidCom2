@@ -142,8 +142,42 @@ class Qwen3_VL(lmms):
             r_ratio = os.getenv("R_RATIO", "0.15")
             tau = os.getenv("HOLITOM_T", "0.8")
             eval_logger.success(f"[HoliTom] Successfully integrated HoliTom with Qwen3-VL. (R_RATIO={r_ratio}, T={tau})")
+        elif compressor == "ipcv":
+            import types
+            from token_compressor.ipcv.models.qwen3_vl import Qwen3VLModel_forward
+            self._model.model.forward = types.MethodType(Qwen3VLModel_forward, self._model.model)
+            r_ratio = os.getenv("R_RATIO", "0.25")
+            num_blocks = len(self._model.model.visual.blocks)
+            ipcv_layer = os.getenv("IPCV_LAYER", str(num_blocks // 2))
+            as_layers = os.getenv("IPCV_AS_LAYERS", "4")
+            top_k = os.getenv("IPCV_TOP_K", "5")
+            eval_logger.success(f"[IPCV] Successfully integrated IPCV with Qwen3-VL. Multi-layer pruning INSIDE ViT starting at layer {ipcv_layer} with {as_layers} AS layers. (R_RATIO={r_ratio}, TOP_K={top_k})")
+        elif compressor == "illava":
+            import types
+            from token_compressor.illava.models.qwen3_vl import Qwen3VLModel_forward
+            self._model.model.forward = types.MethodType(Qwen3VLModel_forward, self._model.model)
+            r_ratio = os.getenv("R_RATIO", "0.25")
+            merge_ratio = os.getenv("ILLAVA_MERGE_RATIO", "0.5")
+            eval_logger.success(f"[iLLaVA] Successfully integrated iLLaVA with Qwen3-VL. Merging INSIDE ViT progressively. (R_RATIO={r_ratio}, MERGE_RATIO={merge_ratio})")
+        elif compressor == "tome":
+            import types
+            from token_compressor.tome.models.qwen3_vl import Qwen3VLModel_forward
+            self._model.model.forward = types.MethodType(Qwen3VLModel_forward, self._model.model)
+            r_ratio = os.getenv("R_RATIO", "0.25")
+            tome_r = os.getenv("TOME_R", "auto")
+            apply_every = os.getenv("TOME_APPLY_EVERY", "2")
+            eval_logger.success(f"[ToMe] Successfully integrated ToMe with Qwen3-VL. Merging INSIDE ViT every {apply_every} layers. (R_RATIO={r_ratio}, TOME_R={tome_r})")
+        elif compressor == "pooling":
+            import types
+            from token_compressor.pooling.models.qwen3_vl import Qwen3VLModel_forward
+            self._model.model.forward = types.MethodType(Qwen3VLModel_forward, self._model.model)
+            r_ratio = os.getenv("R_RATIO", "0.25")
+            pool_type = os.getenv("POOLING_TYPE", "avg")
+            num_blocks = len(self._model.model.visual.blocks)
+            pool_layer = os.getenv("POOLING_LAYER", str(num_blocks // 2))
+            eval_logger.success(f"[Pooling] Successfully integrated Pooling with Qwen3-VL. Pooling INSIDE ViT at layer {pool_layer}. (R_RATIO={r_ratio}, TYPE={pool_type})")
         elif compressor is not None:
-            eval_logger.warning(f"[Warning] Unknown COMPRESSOR value: {compressor}. Supported values: vidcom2, fastv, visionzip, holitom")
+            eval_logger.warning(f"[Warning] Unknown COMPRESSOR value: {compressor}. Supported values: vidcom2, fastv, visionzip, holitom, ipcv, illava, tome, pooling")
         self.max_pixels = max_pixels
         self.min_pixels = min_pixels
         self.max_num_frames = max_num_frames
