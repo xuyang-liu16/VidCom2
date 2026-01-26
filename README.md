@@ -18,6 +18,7 @@ Yuchao Zhang<sup>1</sup>,
 
 ## 🔥 News
 
+* **`2026.01.26`** 🎊🎊 Our [MixKV](https://arxiv.org/abs/2510.20707) have been accepted by **ICLR 2026**! 
 * **`2025.10.24`** 🤗🤗 We release our latest work [MixKV](https://arxiv.org/pdf/2510.20707), a novel KV cache compression method of LVLMs. [Code](https://github.com/xuyang-liu16/MixKV) is available!
 
 ## 📌 Highlights
