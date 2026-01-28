@@ -208,10 +208,12 @@ COMPRESSOR=holitom R_RATIO=0.15 HOLITOM_T=0.8 accelerate launch --num_processes=
 
 Results on Qwen3-VL-8B-Instruct with `max_num_frames=32` and `R_RATIO=0.25`.
 
-| Method | MLVU_dev | VideoMME (Overall) | VideoMME (Short) | VideoMME (Medium) | VideoMME (Long) |
-| --- | --- | --- | --- | --- | --- |
-| Qwen3-VL-8B-Instruct | 63.5 | 64.5 | 76.0 | 60.4 | 57.0 |
-| + VidCom<sup>2</sup> (R=25%) | 62.4 | 62.4 | 72.1 | 59.1 | 56.1 |
+| Method | MVBench | LongVideoBench | MLVU | VideoMME (Overall) | VideoMME (Short) | VideoMME (Medium) | VideoMME (Long) |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| Qwen3-VL-8B-Instruct | 68.6 | 60.3 | 63.5 | 64.5 | 76.0 | 60.4 | 57.0 |
+| + VisionZip (R=25%) | 62.2 | 56.7 | 60.8 | 60.1 | 69.6 | 56.7 | 54.2 |
+| + HoliTom (R=25%) | 63.0 | 56.8 | 61.2 | 59.7 | 71.4 | 54.6 | 53.1 |
+| + VidCom<sup>2</sup> (R=25%) | 67.0 | 58.0 | 60.6 | 62.4 | 72.1 | 59.1 | 56.1 |
 
 
 ## ⚡ Efficiency Analysis
