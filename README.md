@@ -11,7 +11,7 @@ Yuchao Zhang<sup>1</sup>,
 
 </h4>
 
-<p align="center"><i> 💡 The <strong>first</strong> to identify <strong>heterogeneous head-wise redundancy</strong> in the KV cache of both LVLMs and LLMs. </i></p>
+<p align="center">💡<i>  The <strong>first</strong> to identify <strong>heterogeneous head-wise redundancy</strong> in the KV cache of both LVLMs and LLMs. </i></p>
 
 
 </div>
