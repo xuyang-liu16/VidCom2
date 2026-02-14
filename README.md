@@ -1,108 +1,80 @@
-<div align=center>
-<h1> ✂️ Mixing Importance with Diversity: Joint Optimization for KV Cache Compression in Large Vision-Language Models </h1>
-<h4 align="center"> 
+# Academic Project Page Template
 
-[Xuyang Liu](https://xuyang-liu16.github.io/)<sup>1,2*</sup>,
-Xiyan Gui<sup>3*</sup>,
-Yuchao Zhang<sup>1</sup>,
-[Linfeng Zhang](http://www.zhanglinfeng.tech/)<sup>1✉</sup>
+> **Update (September 2025)**: This template has been modernized with better design, SEO, and mobile support. For the original version, see the [original-version branch](https://github.com/eliahuhorwitz/Academic-project-page-template/tree/original-version).
 
-<sup>1</sup>EPIC Lab, Shanghai Jiao Tong University, <sup>2</sup>Sichuan University, <sup>3</sup>Huazhong University of Science and Technology
-
-</h4>
-
-<p align="center">💡<i>  The <strong>first</strong> to identify <strong>heterogeneous head-wise redundancy</strong> in the KV cache of both LVLMs and LLMs. </i></p>
+A clean, responsive template for academic project pages.
 
 
-</div>
+Example project pages built using this template are:
+- https://horwitz.ai/probex
+- https://vision.huji.ac.il/probegen
+- https://horwitz.ai/mother
+- https://horwitz.ai/spectral_detuning
+- https://vision.huji.ac.il/ladeda
+- https://vision.huji.ac.il/dsire
+- https://horwitz.ai/podd
+- https://dreamix-video-editing.github.io
+- https://horwitz.ai/conffusion
+- https://horwitz.ai/3d_ads/
+- https://vision.huji.ac.il/ssrl_ad
+- https://vision.huji.ac.il/deepsim
 
-## 🔥 News
 
-* **`2026.01.26`** 🎊🎊 Our [MixKV](https://arxiv.org/abs/2510.20707) have been accepted by **ICLR 2026**! 
-* **`2025.10.24`** 🤗🤗 We release our latest work [MixKV](https://arxiv.org/pdf/2510.20707), a novel KV cache compression method of LVLMs. [Code](https://github.com/xuyang-liu16/MixKV) is available!
 
-## 📌 Highlights
+## Start using the template
+To start using the template click on `Use this Template`.
 
-- **Model Compatibility:** Works with diverse LVLMs and LLMs (e.g., LLaVA, Qwen-VL, InternVL, Llama, Mistral).
-- **Seamless Integration:** Plugs into existing KV cache compressors (e.g., SnapKV, AdaKV, SparseMM).
-- **Universal Improvements:** Boosts baseline compressor performance across models and tasks.
-- **High Efficiency:** Delivers gains without compromising speed or memory efficiency.
+The template uses html for controlling the content and css for controlling the style. 
+To edit the websites contents edit the `index.html` file. It contains different HTML "building blocks", use whichever ones you need and comment out the rest.  
 
-  
-## 🛠 Preparation
+**IMPORTANT!** Make sure to replace the `favicon.ico` under `static/images/` with one of your own, otherwise your favicon is going to be a dreambooth image of me.
 
-1. Clone this repository:
-```bash 
-git clone https://github.com/xuyang-liu16/MixKV.git
-cd MixKV
-```
+## What's New
 
-2. Init your environment
-```bash
-conda create -n mixkv python=3.10 -y
-conda activate mixkv
-```
+- Modern, clean design with better mobile support
+- Improved SEO with proper meta tags and structured data
+- Performance improvements (lazy loading, optimized assets)
+- More Works dropdown
+- Copy button for BibTeX citations
+- Better accessibility
 
-3. Install packages
+## Components
 
-Compile CUDA code for Flatten Cache Storage. If you encounter a CUDA compile error, please check your [GPU Virtual Architecture](https://docs.nvidia.com/cuda/cuda-compiler-driver-nvcc/index.html#virtual-architecture-feature-list) and [GPU Feature](https://docs.nvidia.com/cuda/cuda-compiler-driver-nvcc/index.html#gpu-feature-list), then change the corresponding compile flag in [csrc/build.py](https://github.com/xuyang-liu16/MixKV/blob/main/csrc/build.py#L20)
-```bash
-pip install packaging torch==2.5.1
-pip uninstall ninja && pip cache purge && pip install ninja --no-cache-dir
-cd csrc && make
-cd ..
-```
+- Teaser video
+- Image carousel
+- YouTube video embedding
+- Video carousel
+- PDF poster viewer
+- BibTeX citation
 
-Install other packages
-```bash
-pip install -e .
-pip install flash-attn==2.4.1 --no-build-isolation # currently only support FlashAttention
-pip install qwen-vl-utils
-```
+## Customization
 
-4. Install lmms-eval for evaluation
+The HTML file has TODO comments showing what to replace:
 
-We use the [lmms-eval](https://github.com/EvolvingLMMs-Lab/lmms-eval) toolkit to evaluate all methods and models. Please install lmms-eval:
+- Paper title, authors, institution, conference
+- Links (arXiv, GitHub, etc.)
+- Abstract and descriptions  
+- Videos, images, and PDFs
+- Related works in the dropdown
+- Meta tags for SEO and social sharing
 
-```bash
-cd lmms-eval
-pip install -e . 
-```
-## 🚀 Performance Evaluation
+### Meta Tags
+The template includes meta tags for better search engine visibility and social media sharing. These appear in the `<head>` section and help with:
+- Google Scholar indexing
+- Social media previews (Twitter, Facebook, LinkedIn)
+- Search engine optimization
 
-<p align="center"> <img src="assets/performance.png" width="1000" align="center"> </p>
+Create a 1200x630px social preview image at `static/images/social_preview.png`.
 
-To evaluate LLaVA-NeXT-Mistral-7B, InternVL3-8B, and Qwen2-VL-7B, you can use:
+## Tips
 
-```bash
-bash scripts/eval/mistral.sh
-bash scripts/eval/internvl2.sh
-bash scripts/eval/qwen.sh
-```
+- Compress images with [TinyPNG](https://tinypng.com)
+- Use YouTube for large videos (>10MB)  
+- Replace the favicon in `static/images/`
+- Works with GitHub Pages
 
-## ⚡ Efficiency Analysis
+## Acknowledgments
+Parts of this project page were adopted from the [Nerfies](https://nerfies.github.io/) page.
 
-<p align="center"> <img src="assets/efficiency.png" width="1000" align="center"> </p>
-
-To evaluate the latency and peak memory by different settings, you can use:
-
-```bash
-bash scripts/others/speed_and_memory.sh
-```
-
-## 📌 Citation
-
-Please consider citing our paper in your publications, if our findings help your research.
-
-```bibtex
-@article{liu2025mixkv,
-  title={Mixing Importance with Diversity: Joint Optimization for KV Cache Compression in Large Vision-Language Models},
-  author={Liu, Xuyang and Gui, Xiyan and Zhang, Yuchao and Zhang, Linfeng},
-  journal={arXiv preprint arXiv:2510.20707},
-  year={2025}
-}
-```
-
-## 👍 Acknowledgment
-
-Our codebase is conducted on [SparseMM](https://github.com/CR400AF-A/SparseMM) and we extend our gratitude to the open-source efforts.
+## Website License
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
