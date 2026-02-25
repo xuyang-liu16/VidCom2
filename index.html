@@ -3,24 +3,24 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="title" content="Mixing Importance with Diversity: Joint Optimization for KV Cache Compression in Large Vision-Language Models">
-  <meta name="description" content="MixKV mixes importance with diversity for optimized KV cache compression in large vision-language models.">
-  <meta name="keywords" content="MixKV, KV cache compression, LVLM, LLM, inference acceleration">
-  <meta name="author" content="Xuyang Liu, Xiyan Gui, Yuchao Zhang, Linfeng Zhang">
+  <meta name="title" content="Video Compression Commander: Plug-and-Play Inference Acceleration for Video Large Language Models">
+  <meta name="description" content="VidCom2 is a plug-and-play token compression framework for VideoLLMs with dynamic frame budget allocation.">
+  <meta name="keywords" content="VidCom2, VideoLLM, token compression, inference acceleration, dynamic frame budget">
+  <meta name="author" content="Xuyang Liu, Yiyu Wang, Junpeng Ma, Linfeng Zhang">
   <meta name="robots" content="index, follow">
 
   <meta property="og:type" content="article">
-  <meta property="og:site_name" content="MixKV Project Page">
-  <meta property="og:title" content="Mixing Importance with Diversity: Joint Optimization for KV Cache Compression in Large Vision-Language Models">
-  <meta property="og:description" content="MixKV adapts to head-wise semantic redundancy and consistently improves KV cache compression methods.">
+  <meta property="og:site_name" content="VidCom2 Project Page">
+  <meta property="og:title" content="Video Compression Commander: Plug-and-Play Inference Acceleration for Video Large Language Models">
+  <meta property="og:description" content="VidCom2 is a plug-and-play VideoLLM token compression framework with dynamic frame budget allocation.">
   <meta property="og:image" content="static/images/logo.png">
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="MixKV Project Page">
-  <meta name="twitter:description" content="MixKV: Joint optimization for KV cache compression.">
+  <meta name="twitter:title" content="VidCom2 Project Page">
+  <meta name="twitter:description" content="VidCom2: VideoLLM token compression with dynamic frame budget allocation.">
   <meta name="twitter:image" content="static/images/logo.png">
 
-  <title>MixKV | Project Page</title>
+  <title>VidCom2 | Project Page</title>
 
   <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro">
@@ -119,6 +119,33 @@
       border: none;
     }
 
+    .text-muted {
+      color: #808080;
+    }
+
+    .tiny-note {
+      font-size: 0.75em;
+      color: #6b7280;
+      white-space: nowrap;
+    }
+
+    .metric-note {
+      font-size: 0.75em;
+      white-space: nowrap;
+    }
+
+    .metric-green {
+      color: #009051;
+    }
+
+    .metric-red {
+      color: #ff0000;
+    }
+
+    .metric-blue {
+      color: #0000ff;
+    }
+
     .publication-links .button.is-light {
       background: #222;
       color: #fff;
@@ -213,6 +240,11 @@
       background: inherit;
     }
 
+    .mixkv-table th:not(.method),
+    .mixkv-table td:not(.method) {
+      text-align: center !important;
+    }
+
     .mixkv-table th {
       background: #fff;
     }
@@ -220,8 +252,8 @@
     .mixkv-table td.method,
     .mixkv-table th.method {
       text-align: left;
-      position: sticky;
-      left: 0;
+      position: static;
+      left: auto;
       background: inherit !important;
       z-index: 1;
     }
@@ -475,39 +507,41 @@
     <section class="hero mixkv-hero">
       <div class="hero-body">
         <div class="container is-max-desktop has-text-centered">
-          <h1 class="title is-1 publication-title">Mixing Importance with Diversity: Joint Optimization for KV Cache Compression in Large Vision-Language Models</h1>
-          <div class="publication-conference">ICLR 2026</div>
+          <h1 class="title is-1 publication-title">Video Compression Commander: Plug-and-Play Inference Acceleration for Video Large Language Models</h1>
+          <div class="publication-conference">EMNLP 2025 Main</div>
 
           <div class="is-size-5 publication-authors">
             <span class="author-block"><a href="https://xuyang-liu16.github.io/" target="_blank">Xuyang Liu</a><sup>1,2*</sup>,</span>
-            <span class="author-block"><a href="#" onclick="return false;">Xiyan Gui</a><sup>1,3*</sup>,</span>
-            <span class="author-block"><a href="#" onclick="return false;">Yuchao Zhang</a><sup>1</sup>,</span>
+            <span class="author-block"><a href="https://github.com/lern-to-write" target="_blank">Yiyu Wang</a><sup>1*</sup>,</span>
+            <span class="author-block"><a href="https://scholar.google.com/citations?user=FH3u-hsAAAAJ" target="_blank">Junpeng Ma</a><sup>3</sup>,</span>
             <span class="author-block"><a href="http://www.zhanglinfeng.tech/" target="_blank">Linfeng Zhang</a><sup>1&#9993;</sup></span>
           </div>
 
           <div class="is-size-5 publication-affils" style="margin-top:0.15rem;">
             <span class="author-block"><sup>1</sup>EPIC Lab, Shanghai Jiao Tong University</span><br>
             <span class="author-block"><sup>2</sup>Sichuan University</span>
-            <span class="author-block">&nbsp;&nbsp;<sup>3</sup>Huazhong University of Science and Technology</span>
+            <span class="author-block">&nbsp;&nbsp;<sup>3</sup>Fudan University</span>
           </div>
 
           <p class="author-note"><sup>*</sup>Equal contribution. <sup>&#9993;</sup>Corresponding author: zhanglinfeng@sjtu.edu.cn.</p>
 
           <div class="publication-links">
-            <a href="https://arxiv.org/pdf/2510.20707" target="_blank" class="button is-light">
+            <a href="https://aclanthology.org/2025.emnlp-main.98/" target="_blank" class="button is-light">
               <span class="icon"><i class="fas fa-file-pdf"></i></span>
               <span>Paper</span>
             </a>
-            <a href="https://arxiv.org/abs/2510.20707" target="_blank" class="button is-light">
+            <a href="https://arxiv.org/abs/2505.14454" target="_blank" class="button is-light">
               <span class="icon"><i class="ai ai-arxiv"></i></span>
               <span>arXiv</span>
             </a>
-            <a href="https://github.com/xuyang-liu16/MixKV" target="_blank" class="button is-light">
+            <a href="https://github.com/xuyang-liu16/VidCom2" target="_blank" class="button is-light">
               <span class="icon"><i class="fab fa-github"></i></span>
               <span>Code</span>
             </a>
           </div>
-          <p class="hero-tagline">💡 <em>The <strong>first</strong> to identify <strong>heterogeneous head-wise redundancy</strong> in the KV cache of both LVLMs and LLMs.</em></p>
+          <div class="hero-tagline">
+            <i> ⚡ The <strong>first</strong> token compression framework for VideoLLMs featuring <strong>dynamic frame budget allocation</strong>. </i>
+          </div>
         </div>
       </div>
     </section>
@@ -516,69 +550,61 @@
       <div class="container is-max-desktop">
         <h2 class="title is-3 has-text-centered">Contributions</h2>
         <div class="contrib-content">
-          <p class="contrib-item"><strong>(1) Semantic Redundancy Analysis.</strong> We conduct in-depth analyses of KV caches in LVLMs, revealing substantial inherent semantic redundancy. Besides, we demonstrate that importance-based methods fail to preserve full KV distribution coverage, exposing fundamental limitations.</p>
-          <p class="contrib-item"><strong>(2) Mixing Importance with Diversity.</strong> Based on our analysis, we propose MixKV, a head-wise adaptive mechanism that quantifies semantic redundancy to create principled weighting between importance and diversity scores for joint optimization of KV cache compression.</p>
-          <p><strong>(3) Comprehensive Experimental Validation.</strong> Extensive experiments across diverse multi-modal and text benchmarks demonstrate that MixKV yields consistent performance improvements for existing importance-based compression methods while maintaining inference efficiency.</p>
+          <p class="contrib-item"><strong>(1) Empirical Method Analysis:</strong> We critically analyze existing token compression methods, unveiling their inherent limitations and delineating three key design principles for effective and efficient VideoLLM token compression.</p>
+          <p class="contrib-item"><strong>(2) Video Compression Commander:</strong> We are the first to propose a VideoLLM token compression framework based on frame uniqueness, offering a plug-and-play method with frame-wise dynamic compression.</p>
+          <p><strong>(3) Outstanding Performance &amp; Efficiency:</strong> Extensive experiments on diverse benchmarks demonstrate superior efficiency-performance trade-offs. With 15% tokens, VidCom<sup>2</sup> outperforms the second-best method by <strong>3.9%</strong> and <strong>2.2%</strong> on LLaVA-OV and LLaVA-Video.</p>
         </div>
       </div>
     </section>
 
     <section class="section">
       <div class="container is-max-desktop">
-        <h2 class="title is-3 section-title has-text-centered">Core Findings</h2>
+        <h2 class="title is-3 section-title has-text-centered">Motivation</h2>
 
-        <div class="finding-slider" id="finding-slider">
-          <button class="finding-nav prev" type="button" aria-label="Previous finding">&#9664;</button>
-          <button class="finding-nav next" type="button" aria-label="Next finding">&#9654;</button>
-          <div class="finding-track">
-            <div class="finding-slide active">
-              <div class="finding-card">
-                <img src="static/images/Finding1.png" alt="Finding 1" loading="lazy">
-                <div class="content has-text-justified">
-                  <p><strong>(I) Vision-Language Redundancy Differences:</strong> Visual information in LVLMs contains significantly more semantic redundancy than textual information in LLMs. Images often contain repetitive visual elements (<em>e.g.</em>, similar textures, repeated patterns), leading to higher semantic similarity among KV pairs during vision-language processing. Figure (a) shows that Qwen2-VL exhibits much denser high-similarity regions compared to the more diverse patterns of Qwen2, while Figure (b) reveals that keys in Qwen2 peak around 0.2-0.4 average similarity whereas Qwen2-VL keys peak around 0.6-0.8, a <strong>2-3x increase</strong>. This demonstrates that <strong><em>KV pairs in LVLMs exhibit substantially higher semantic redundancy than in LLMs</em></strong>.</p>
-                </div>
-              </div>
+        <div class="columns is-variable is-5">
+          <div class="column is-6">
+            <div class="panel-card">
+              <img src="images/Figure1.png" alt="Motivation figure 1" loading="lazy">
             </div>
-            <div class="finding-slide">
-              <div class="finding-card">
-                <img src="static/images/Finding2.png" alt="Finding 2" loading="lazy">
-                <div class="content has-text-justified">
-                  <p><strong>(II) Head-wise Redundancy Differences:</strong> Within LVLMs, different attention heads focus on distinct multi-modal aspects. Some heads capture global features with lower redundancy, while others focus on local details with higher semantic similarity. Figure illustrates this phenomenon across multiple tasks: for Qwen2-VL-7B, certain heads show extremely high average similarity exceeding <strong>0.9</strong>, while other heads maintain relatively low similarity below <strong>0.3</strong>. This pattern is consistent across different vision-language tasks, indicating that <strong><em>KV pairs in LVLMs show varying degrees of semantic redundancy across attention heads in the LLM</em></strong>.</p>
-                </div>
+          </div>
+          <div class="column is-6">
+            <div class="panel-card">
+              <img src="images/Figure2.png" alt="Motivation figure 2" loading="lazy">
+              <div class="content has-text-justified" style="margin-top: 0.3rem;">
+                <p>Existing token compression methods for VideoLLMs suffer from <strong><em>two critical issues</em></strong>: <strong>(I) Design Myopia</strong>—they ignore frame importance, so dropping redundant vs. unique frames affects performance very differently; <strong>(II) Implementation Constraints</strong>—some depend on CLS attention or explicit LLM-layer attention, conflicting with efficient operators.</p>
               </div>
             </div>
           </div>
-          <div class="finding-dots" id="finding-dots">
-            <button class="finding-dot active" data-index="0" aria-label="Finding 1"></button>
-            <button class="finding-dot" data-index="1" aria-label="Finding 2"></button>
-          </div>
         </div>
 
-        <div style="margin-top: 1rem;">
-          <img src="static/images/Findings.png" alt="Heterogeneous head-wise redundancy" loading="lazy">
-          <div class="content has-text-justified">
-            <p><strong>Heterogeneous head-wise redundancy in LLMs and LVLMs.</strong> For both pure-text and vision-language data, different heads exhibit markedly different redundancy levels, and their overall patterns are highly similar: a head that is relatively more redundant on text remains relatively more redundant on vision-language inputs. We hypothesize that this is because different heads focus on different types of information: some heads primarily attend to local patterns and therefore exhibit higher semantic redundancy, while others capture more global information and consequently show much lower redundancy.</p>
-          </div>
-        </div>
+        <p class="content has-text-justified" style="margin-top: 0.5rem;">
+          We summarize existing works and identify <strong><em>three key principles</em></strong> for designing effective and efficient token compression methods for VideoLLM:
+          <strong>(i) Model Adaptability:</strong> The method should be easily compatible with and adaptable to the majority of existing VideoLLMs; 
+          <strong>(ii) Frame Uniqueness:</strong> The method should consider varying distinctiveness across video frames;
+          <strong>(iii) Operator Compatibility:</strong> The method should maintain compatibility with efficient operators.
+        </p>
       </div>
     </section>
 
     <section class="section is-light">
       <div class="container is-max-desktop">
-        <h2 class="title is-3 section-title has-text-centered">Overview</h2>
-        <p class="content has-text-justified">We argue that beyond importance, preserving diverse KV pairs at per-head granularity is essential for minimizing semantic redundancy while maintaining comprehensive information coverage. To this end, we propose MixKV, which adopts a principled "<strong><strong>mixing importance with diversity</strong></strong>" approach. Specifically, MixKV extends existing importance-based KV compression methods by incorporating head-wise semantic diversity evaluation. By independently measuring semantic similarity within each attention head, MixKV adaptively balances importance and diversity per head to achieve fine-grained joint optimization of KV cache compression in LVLMs.</p>
+        <h2 class="title is-3 section-title has-text-centered">Video Compression Commander: VidCom<sup>2</sup></h2>
+        <p class="content has-text-justified">We present VidCom<sup>2</sup>, a plug-and-play framework that dynamically compresses video tokens based on frame uniqueness, achieving state-of-the-art efficiency and performance across various VideoLLMs and benchmarks.</p>
 
         <div class="columns is-variable is-5">
-          <div class="column is-6">
+          <div class="column is-12">
             <div class="panel-card">
-              <img src="static/images/MixKV.png" alt="MixKV algorithm pipeline" loading="lazy">
-              <p class="panel-caption">MixKV enables KV cache compression methods (e.g. SnapKV, AdaKV, and SparseMM) to approximate the full original semantic distribution of the uncompressed KV cache more effectively.</p>
+              <img src="images/Figure3.png" alt="VidCom2 framework" loading="lazy">
+              <p class="panel-caption"><strong>Overall framework of VidCom<sup>2</sup>.</strong> Our VidCom<sup>2</sup> performs plug-and-play token compression in two stages: <strong>(i) Frame Compression Adjustment</strong>: adjusts compression intensity based on frame uniqueness, <strong>(ii) Adaptive Token Compression</strong>: preserves tokens based on their within-frame and cross-video uniqueness.</p>
             </div>
           </div>
-          <div class="column is-6">
+        </div>
+
+        <div class="columns is-variable is-5">
+          <div class="column is-12">
             <div class="panel-card">
-              <img src="static/images/PCA.png" alt="PCA analysis" loading="lazy">
-              <p class="panel-caption">PCA analysis of semantic coverage under KV compression.</p>
+              <img src="images/Figure4.png" alt="Frame uniqueness visualization" loading="lazy">
+              <p class="panel-caption"><strong>Visualization of frame uniqueness quantified by our VidCom<sup>2</sup>.</strong> Taller and darker bars indicate frame uniqueness, where VidCom<sup>2</sup> allocates more tokens to unique frames to preserve critical visual information.</p>
             </div>
           </div>
         </div>
@@ -590,175 +616,316 @@
         <h2 class="title is-3 section-title has-text-centered">Experimental Results</h2>
 
         <div class="exp-block">
-          <div class="exp-title">Performance on multiple image understanding benchmarks.</div>
-          <p class="exp-caption">Since SparseMM does not provide head importance scores for InternVL3-8B, we cannot reproduce their results on this model. "Full KV" means caching all KV pairs (upper bound). Results here report only budget = 128.</p>
+          <div class="exp-title">Performance comparison with other baselines with LLaVA-OV-7B and LLaVA-Video-7B across different benchmarks.</div>
           <div class="table-wrap">
             <table class="table is-bordered is-fullwidth mixkv-table">
-            <tr>
-                  <th class="method">Methods</th>
-                  <th>DocVQA (%)</th>
-                  <th>OCRBench (%)</th>
-                  <th>TextVQA (%)</th>
-                  <th>ChartQA (%)</th>
-                  <th>TextCaps</th>
+              <thead>
+                <tr>
+                  <th class="method" rowspan="2">Methods</th>
+                  <th rowspan="2">MVBench</th>
+                  <th rowspan="2">LongVideoBench</th>
+                  <th rowspan="2">MLVU</th>
+                  <th colspan="4">VideoMME</th>
+                  <th rowspan="2">Average (%)</th>
                 </tr>
-<tr class="group-row"><td colspan="6">LLaVA-NeXT-Mistral-7B</td></tr>
-<tr class="fullkv-row"><td class="method">Full KV</td><td>63.6</td><td>52.9</td><td>65.7</td><td>52.9</td><td>0.707</td></tr>
-<tr class="baseline-row"><td class="method">SnapKV</td><td>55.2</td><td>39.0</td><td>61.0</td><td>47.5</td><td>0.558</td></tr>
-<tr class="mixkv-row"><td class="method"><strong>+ MixKV</strong></td><td><strong>58.1</strong></td><td><strong>44.7</strong></td><td><strong>64.3</strong></td><td><strong>47.7</strong></td><td><strong>0.659</strong></td></tr>
-<tr class="delta-row"><td class="method"><strong>&#9651;</strong></td><td class="up">+2.9</td><td class="up">+5.7</td><td class="up">+3.3</td><td class="up">+0.2</td><td class="up">+0.101</td></tr>
-<tr class="baseline-row"><td class="method">PyramidKV</td><td>54.3</td><td>39.4</td><td>60.9</td><td>47.1</td><td>0.553</td></tr>
-<tr class="mixkv-row"><td class="method"><strong>+ MixKV</strong></td><td><strong>57.2</strong></td><td><strong>43.7</strong></td><td><strong>63.8</strong></td><td><strong>47.5</strong></td><td><strong>0.656</strong></td></tr>
-<tr class="delta-row"><td class="method"><strong>&#9651;</strong></td><td class="up">+2.9</td><td class="up">+4.3</td><td class="up">+2.9</td><td class="up">+0.4</td><td class="up">+0.103</td></tr>
-<tr class="baseline-row"><td class="method">AdaKV</td><td>55.9</td><td>40.4</td><td>60.5</td><td>47.8</td><td>0.566</td></tr>
-<tr class="mixkv-row"><td class="method"><strong>+ MixKV</strong></td><td><strong>58.3</strong></td><td><strong>44.9</strong></td><td><strong>63.7</strong></td><td><strong>48.5</strong></td><td><strong>0.660</strong></td></tr>
-<tr class="delta-row"><td class="method"><strong>&#9651;</strong></td><td class="up">+2.4</td><td class="up">+4.5</td><td class="up">+3.2</td><td class="up">+0.7</td><td class="up">+0.094</td></tr>
-<tr class="baseline-row"><td class="method">SparseMM</td><td>60.8</td><td><strong>50.7</strong></td><td>64.7</td><td>51.2</td><td>0.634</td></tr>
-<tr class="mixkv-row"><td class="method"><strong>+ MixKV</strong></td><td><strong>61.0</strong></td><td>50.4</td><td><strong>65.0</strong></td><td><strong>51.5</strong></td><td><strong>0.652</strong></td></tr>
-<tr class="delta-row"><td class="method"><strong>&#9651;</strong></td><td class="up">+0.2</td><td class="down">-0.3</td><td class="up">+0.3</td><td class="up">+0.3</td><td class="up">+0.018</td></tr>
-<tr class="group-row"><td colspan="6">InternVL3-8B</td></tr>
-<tr class="fullkv-row"><td class="method">Full KV</td><td>90.96</td><td>84.2</td><td>81.1</td><td>86.36</td><td>1.042</td></tr>
-<tr class="baseline-row"><td class="method">SnapKV</td><td>85.4</td><td>69.0</td><td>78.2</td><td>84.6</td><td>0.901</td></tr>
-<tr class="mixkv-row"><td class="method"><strong>+ MixKV</strong></td><td><strong>86.2</strong></td><td><strong>71.1</strong></td><td><strong>78.8</strong></td><td><strong>84.8</strong></td><td><strong>0.949</strong></td></tr>
-<tr class="delta-row"><td class="method"><strong>&#9651;</strong></td><td class="up">+0.8</td><td class="up">+2.1</td><td class="up">+0.6</td><td class="up">+0.2</td><td class="up">+0.048</td></tr>
-<tr class="baseline-row"><td class="method">PyramidKV</td><td>82.7</td><td>58.4</td><td>75.3</td><td>84.0</td><td>0.809</td></tr>
-<tr class="mixkv-row"><td class="method"><strong>+ MixKV</strong></td><td><strong>83.5</strong></td><td><strong>60.0</strong></td><td><strong>76.6</strong></td><td><strong>84.4</strong></td><td><strong>0.850</strong></td></tr>
-<tr class="delta-row"><td class="method"><strong>&#9651;</strong></td><td class="up">+0.8</td><td class="up">+1.6</td><td class="up">+1.3</td><td class="up">+0.4</td><td class="up">+0.041</td></tr>
-<tr class="baseline-row"><td class="method">AdaKV</td><td>86.0</td><td>70.2</td><td>78.0</td><td>84.4</td><td>0.921</td></tr>
-<tr class="mixkv-row"><td class="method"><strong>+ MixKV</strong></td><td><strong>86.7</strong></td><td><strong>71.6</strong></td><td><strong>78.7</strong></td><td><strong>85.2</strong></td><td><strong>0.955</strong></td></tr>
-<tr class="delta-row"><td class="method"><strong>&#9651;</strong></td><td class="up">+0.7</td><td class="up">+1.4</td><td class="up">+0.7</td><td class="up">+0.8</td><td class="up">+0.034</td></tr>
-<tr class="group-row"><td colspan="6">Qwen2-VL-7B-Instruct</td></tr>
-<tr class="fullkv-row"><td class="method">Full KV</td><td>93.9</td><td>82.1</td><td>82.1</td><td>81.5</td><td>1.469</td></tr>
-<tr class="baseline-row"><td class="method">SnapKV</td><td>80.1</td><td>71.9</td><td>77.5</td><td>79.6</td><td>1.142</td></tr>
-<tr class="mixkv-row"><td class="method"><strong>+ MixKV</strong></td><td><strong>82.6</strong></td><td><strong>75.4</strong></td><td><strong>80.6</strong></td><td><strong>81.2</strong></td><td><strong>1.342</strong></td></tr>
-<tr class="delta-row"><td class="method"><strong>&#9651;</strong></td><td class="up">+2.5</td><td class="up">+3.5</td><td class="up">+3.1</td><td class="up">+1.6</td><td class="up">+0.200</td></tr>
-<tr class="baseline-row"><td class="method">PyramidKV</td><td>74.0</td><td>67.9</td><td>74.6</td><td>79.2</td><td>0.951</td></tr>
-<tr class="mixkv-row"><td class="method"><strong>+ MixKV</strong></td><td><strong>76.3</strong></td><td><strong>72.6</strong></td><td><strong>77.1</strong></td><td><strong>80.7</strong></td><td><strong>1.119</strong></td></tr>
-<tr class="delta-row"><td class="method"><strong>&#9651;</strong></td><td class="up">+2.3</td><td class="up">+4.7</td><td class="up">+2.5</td><td class="up">+1.5</td><td class="up">+0.168</td></tr>
-<tr class="baseline-row"><td class="method">AdaKV</td><td>81.2</td><td>71.0</td><td>77.0</td><td>79.6</td><td>1.146</td></tr>
-<tr class="mixkv-row"><td class="method"><strong>+ MixKV</strong></td><td><strong>82.1</strong></td><td><strong>74.7</strong></td><td><strong>79.6</strong></td><td><strong>80.9</strong></td><td><strong>1.275</strong></td></tr>
-<tr class="delta-row"><td class="method"><strong>&#9651;</strong></td><td class="up">+0.9</td><td class="up">+3.7</td><td class="up">+2.6</td><td class="up">+1.3</td><td class="up">+0.129</td></tr>
-<tr class="baseline-row"><td class="method">SparseMM</td><td>91.5</td><td>79.0</td><td>81.6</td><td>81.5</td><td>1.430</td></tr>
-<tr class="mixkv-row"><td class="method"><strong>+ MixKV</strong></td><td><strong>92.7</strong></td><td><strong>81.0</strong></td><td><strong>82.0</strong></td><td><strong>81.8</strong></td><td><strong>1.459</strong></td></tr>
-<tr class="delta-row"><td class="method"><strong>&#9651;</strong></td><td class="up">+1.2</td><td class="up">+2.0</td><td class="up">+0.4</td><td class="up">+0.3</td><td class="up">+0.029</td></tr>
-                      </table>
+                <tr>
+                  <th>Overall</th>
+                  <th>Short</th>
+                  <th>Medium</th>
+                  <th>Long</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="group-row"><td colspan="9"><em>Upper Bound</em></td></tr>
+                <tr class="fullkv-row">
+                  <td class="method text-muted">LLaVA-OV-7B</td>
+                  <td class="text-muted">56.9</td>
+                  <td class="text-muted">56.4</td>
+                  <td class="text-muted">63.0</td>
+                  <td class="text-muted">58.6</td>
+                  <td class="text-muted">70.3</td>
+                  <td class="text-muted">56.6</td>
+                  <td class="text-muted">48.8</td>
+                  <td class="text-muted">100.0</td>
+                </tr>
+                <tr class="group-row"><td colspan="9"><em>Retention Ratio=30%</em></td></tr>
+                <tr>
+                  <td class="method">DyCoke <span class="tiny-note">[CVPR'25]</span></td>
+                  <td>56.6</td><td>54.7</td><td>60.3</td><td>56.1</td><td>67.1</td><td>54.6</td><td>46.6</td><td>96.5</td>
+                </tr>
+                <tr class="group-row"><td colspan="9"><em>Retention Ratio=25%</em></td></tr>
+                <tr>
+                  <td class="method">Random</td>
+                  <td>54.2</td><td>52.7</td><td>59.7</td><td>55.6</td><td>65.4</td><td>53.0</td><td>48.3</td><td>94.8</td>
+                </tr>
+                <tr>
+                  <td class="method">FastV <span class="tiny-note">[ECCV'24]</span></td>
+                  <td>55.5</td><td>53.3</td><td>59.6</td><td>55.3</td><td>65.0</td><td>53.8</td><td>47.0</td><td>94.9</td>
+                </tr>
+                <tr>
+                  <td class="method">PDrop <span class="tiny-note">[CVPR'25]</span></td>
+                  <td>55.3</td><td>51.3</td><td>57.1</td><td>55.5</td><td>64.7</td><td>53.1</td><td>48.7</td><td>94.1</td>
+                </tr>
+                <tr>
+                  <td class="method">SparseVLM <span class="tiny-note">[ICML'25]</span></td>
+                  <td>56.4</td><td>53.9</td><td>60.7</td><td>57.3</td><td>68.4</td><td>55.2</td><td>48.1</td><td>97.5</td>
+                </tr>
+                <tr>
+                  <td class="method">DyCoke <span class="tiny-note">[CVPR'25]</span></td>
+                  <td>49.5</td><td>48.1</td><td>55.8</td><td>51.0</td><td>61.1</td><td>48.6</td><td>43.2</td><td>87.0</td>
+                </tr>
+                <tr class="mixkv-row">
+                  <td class="method"><strong>VidCom<sup>2</sup></strong></td>
+                  <td><strong>57.2</strong></td><td><strong>54.9</strong></td><td><strong>62.5</strong></td><td><strong>58.6</strong></td><td><strong>69.8</strong></td><td><strong>56.4</strong></td><td><strong>49.4</strong></td><td><strong>99.6</strong></td>
+                </tr>
+                <tr class="group-row"><td colspan="9"><em>Retention Ratio=15%</em></td></tr>
+                <tr>
+                  <td class="method">FastV <span class="tiny-note">[ECCV'24]</span></td>
+                  <td>51.6</td><td>48.3</td><td>55.0</td><td>48.1</td><td>51.4</td><td>49.4</td><td>43.3</td><td>85.0</td>
+                </tr>
+                <tr>
+                  <td class="method">PDrop <span class="tiny-note">[CVPR'25]</span></td>
+                  <td>53.2</td><td>47.6</td><td>54.7</td><td>50.1</td><td>58.7</td><td>48.7</td><td>45.0</td><td>87.4</td>
+                </tr>
+                <tr>
+                  <td class="method">SparseVLM <span class="tiny-note">[ICML'25]</span></td>
+                  <td>52.9</td><td>49.7</td><td>57.4</td><td>53.4</td><td>61.0</td><td>52.1</td><td>47.0</td><td>91.2</td>
+                </tr>
+                <tr class="mixkv-row">
+                  <td class="method"><strong>VidCom<sup>2</sup></strong></td>
+                  <td><strong>54.3</strong></td><td><strong>52.0</strong></td><td><strong>58.9</strong></td><td><strong>56.2</strong></td><td><strong>65.8</strong></td><td><strong>54.8</strong></td><td><strong>48.1</strong></td><td><strong>95.1</strong></td>
+                </tr>
+                <tr class="group-row"><td colspan="9"><em>Upper Bound</em></td></tr>
+                <tr class="fullkv-row">
+                  <td class="method text-muted">LLaVA-Video-7B</td>
+                  <td class="text-muted">60.4</td>
+                  <td class="text-muted">59.6</td>
+                  <td class="text-muted">70.3</td>
+                  <td class="text-muted">64.3</td>
+                  <td class="text-muted">77.2</td>
+                  <td class="text-muted">62.1</td>
+                  <td class="text-muted">53.4</td>
+                  <td class="text-muted">100.0</td>
+                </tr>
+                <tr class="group-row"><td colspan="9"><em>Retention Ratio=30%</em></td></tr>
+                <tr>
+                  <td class="method">DyCoke <span class="tiny-note">[CVPR'25]</span></td>
+                  <td>57.5</td><td>55.5</td><td>60.6</td><td>61.3</td><td>73.4</td><td>59.3</td><td>51.2</td><td>93.8</td>
+                </tr>
+                <tr class="group-row"><td colspan="9"><em>Retention Ratio=25%</em></td></tr>
+                <tr>
+                  <td class="method">FastV <span class="tiny-note">[ECCV'24]</span></td>
+                  <td>53.8</td><td>51.2</td><td>57.8</td><td>59.3</td><td>67.1</td><td>60.0</td><td><strong>50.8</strong></td><td>89.7</td>
+                </tr>
+                <tr>
+                  <td class="method">SparseVLM <span class="tiny-note">[ICML'25]</span></td>
+                  <td>55.4</td><td>54.2</td><td>58.9</td><td>60.1</td><td>71.1</td><td>59.1</td><td>50.1</td><td>91.6</td>
+                </tr>
+                <tr>
+                  <td class="method">DyCoke <span class="tiny-note">[CVPR'25]</span></td>
+                  <td>50.8</td><td>53.0</td><td>56.9</td><td>56.1</td><td>65.8</td><td>53.6</td><td>48.9</td><td>86.3</td>
+                </tr>
+                <tr class="mixkv-row">
+                  <td class="method"><strong>VidCom<sup>2</sup></strong></td>
+                  <td><strong>57.0</strong></td><td><strong>55.5</strong></td><td><strong>59.0</strong></td><td><strong>61.7</strong></td><td><strong>73.0</strong></td><td><strong>61.7</strong></td><td>50.0</td><td><strong>93.6</strong></td>
+                </tr>
+                <tr class="group-row"><td colspan="9"><em>Retention Ratio=15%</em></td></tr>
+                <tr>
+                  <td class="method">FastV <span class="tiny-note">[ECCV'24]</span></td>
+                  <td>44.0</td><td>44.6</td><td>53.8</td><td>51.3</td><td>56.4</td><td>51.1</td><td>46.2</td><td>78.0</td>
+                </tr>
+                <tr>
+                  <td class="method">SparseVLM <span class="tiny-note">[ICML'25]</span></td>
+                  <td>53.1</td><td><strong>52.7</strong></td><td>56.2</td><td>55.7</td><td>65.0</td><td>53.9</td><td>48.3</td><td>86.3</td>
+                </tr>
+                <tr class="mixkv-row">
+                  <td class="method"><strong>VidCom<sup>2</sup></strong></td>
+                  <td><strong>53.3</strong></td><td>51.5</td><td><strong>56.8</strong></td><td><strong>58.3</strong></td><td><strong>68.0</strong></td><td><strong>57.3</strong></td><td><strong>49.7</strong></td><td><strong>88.5</strong></td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
 
         <div class="exp-block">
-          <div class="exp-title">Performance on ScreenSpot-v2 GUI grounding benchmark with Qwen2.5-VL-7B-Instruct.</div>
-          <p class="exp-caption">"Full KV" refers to caching all KV pairs of the LLM (upper bound). Results here report only budget = 128.</p>
+          <div class="exp-title">Performance comparison with other baselines with Qwen3-VL-8B-Instruct across different benchmarks (max_num_frames=32, Retention Ratio=25%).</div>
           <div class="table-wrap">
             <table class="table is-bordered is-fullwidth mixkv-table">
-            <tr>
-                  <th class="method">Methods</th>
-                  <th>Mobile Text</th>
-                  <th>Mobile Icon/Widget</th>
-                  <th>Desktop Text</th>
-                  <th>Desktop Icon/Widget</th>
-                  <th>Web Text</th>
-                  <th>Web Icon/Widget</th>
-                  <th>Average</th>
+              <thead>
+                <tr>
+                  <th class="method" rowspan="2">Method</th>
+                  <th rowspan="2">MVBench</th>
+                  <th rowspan="2">LongVideoBench</th>
+                  <th rowspan="2">MLVU</th>
+                  <th colspan="4">VideoMME</th>
+                  <th rowspan="2">Average (%)</th>
                 </tr>
-<tr class="group-row"><td colspan="8">Qwen2.5-VL-7B-Instruct</td></tr>
-<tr class="fullkv-row"><td class="method">Full KV</td><td>97.2</td><td>87.7</td><td>91.2</td><td>77.1</td><td>88.5</td><td>82.3</td><td>88.5</td></tr>
-<tr class="baseline-row"><td class="method">SnapKV</td><td>65.5</td><td>78.7</td><td>86.1</td><td>74.3</td><td>76.9</td><td>74.4</td><td>75.3</td></tr>
-<tr class="mixkv-row"><td class="method"><strong>+ MixKV</strong></td><td><strong>86.6</strong></td><td><strong>85.3</strong></td><td><strong>87.1</strong></td><td><strong>75.0</strong></td><td><strong>85.0</strong></td><td><strong>76.4</strong></td><td><strong>83.3</strong></td></tr>
-<tr class="delta-row"><td class="method"><strong>&#9651;</strong></td><td class="up">+21.1</td><td class="up">+6.6</td><td class="up">+1.0</td><td class="up">+0.7</td><td class="up">+8.1</td><td class="up">+2.0</td><td class="up">+7.9</td></tr>
-<tr class="baseline-row"><td class="method">PyramidKV</td><td>45.5</td><td>62.1</td><td>82.0</td><td><strong>75.0</strong></td><td>69.2</td><td>71.4</td><td>65.6</td></tr>
-<tr class="mixkv-row"><td class="method"><strong>+ MixKV</strong></td><td><strong>64.1</strong></td><td><strong>74.4</strong></td><td><strong>87.1</strong></td><td>74.3</td><td><strong>76.9</strong></td><td><strong>71.9</strong></td><td><strong>74.1</strong></td></tr>
-<tr class="delta-row"><td class="method"><strong>&#9651;</strong></td><td class="up">+18.6</td><td class="up">+12.3</td><td class="up">+5.1</td><td class="down">-0.7</td><td class="up">+7.7</td><td class="up">+0.5</td><td class="up">+8.5</td></tr>
-<tr class="baseline-row"><td class="method">AdaKV</td><td>80.7</td><td>84.8</td><td><strong>90.2</strong></td><td>74.3</td><td>82.1</td><td>75.9</td><td>81.6</td></tr>
-<tr class="mixkv-row"><td class="method"><strong>+ MixKV</strong></td><td><strong>94.1</strong></td><td><strong>88.6</strong></td><td>89.7</td><td><strong>75.0</strong></td><td><strong>85.0</strong></td><td><strong>76.9</strong></td><td><strong>86.0</strong></td></tr>
-<tr class="delta-row"><td class="method"><strong>&#9651;</strong></td><td class="up">+13.4</td><td class="up">+3.8</td><td class="down">-0.5</td><td class="up">+0.7</td><td class="up">+2.9</td><td class="up">+1.0</td><td class="up">+4.4</td></tr>
-                      </table>
+                <tr>
+                  <th>Overall</th>
+                  <th>Short</th>
+                  <th>Medium</th>
+                  <th>Long</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="fullkv-row">
+                  <td class="method text-muted">Qwen3-VL-8B-Instruct</td>
+                  <td class="text-muted">68.6</td><td class="text-muted">60.3</td><td class="text-muted">63.5</td><td class="text-muted">64.5</td><td class="text-muted">76.0</td><td class="text-muted">60.4</td><td class="text-muted">57.0</td><td class="text-muted">64.3</td>
+                </tr>
+                <tr>
+                  <td class="method">+ VisionZip <span class="tiny-note">[CVPR'25]</span> (R=25%)</td>
+                  <td>62.2</td><td>56.7</td><td>60.8</td><td>60.1</td><td>69.6</td><td>56.7</td><td>54.2</td><td>60.0</td>
+                </tr>
+                <tr>
+                  <td class="method">+ HoliTom <span class="tiny-note">[NeurIPS'25]</span> (R=25%)</td>
+                  <td>63.0</td><td>56.8</td><td>61.2</td><td>59.7</td><td>71.4</td><td>54.6</td><td>53.1</td><td>60.0</td>
+                </tr>
+                <tr class="mixkv-row">
+                  <td class="method"><strong>+ VidCom<sup>2</sup> (R=25%)</strong></td>
+                  <td><strong>67.0</strong></td><td><strong>58.0</strong></td><td><strong>60.6</strong></td><td><strong>62.4</strong></td><td><strong>72.1</strong></td><td><strong>59.1</strong></td><td><strong>56.1</strong></td><td><strong>62.2</strong></td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
 
         <div class="exp-block">
-          <div class="exp-title">Performance on LongBench with Mistral-7B-Instruct-v0.2 and Llama-3.1-8B-Instruct.</div>
-          <p class="exp-caption">"Full KV" refers to caching all KV pairs of the LLM (upper bound). Results here report only budget = 512.</p>
+          <div class="exp-title">Efficiency comparisons on LLaVA-OV-7B.</div>
           <div class="table-wrap">
             <table class="table is-bordered is-fullwidth mixkv-table">
-            <tr>
-                  <th class="method">Methods</th>
-                  <th>NrtvQA</th><th>Qasper</th><th>MF-en</th><th>HotpotQA</th><th>2WikiMQA</th><th>Musique</th>
-                  <th>GovReport</th><th>QMSum</th><th>MultiNews</th><th>TREC</th><th>TriviaQA</th><th>SAMSum</th>
-                  <th>PCount</th><th>PRe</th><th>Lcc</th><th>RB-P</th><th>Avg</th>
+              <thead>
+                <tr>
+                  <th class="method" rowspan="2">Methods</th>
+                  <th>LLM Generation&#8595;</th>
+                  <th>Model Generation&#8595;</th>
+                  <th>Total&#8595;</th>
+                  <th>GPU Peak&#8595;</th>
+                  <th>Throughput&#8593;</th>
+                  <th rowspan="2">Performance&#8593;</th>
                 </tr>
-<tr class="group-row"><td colspan="18">Mistral-7B-Instruct-v0.2</td></tr>
-<tr class="fullkv-row"><td class="method">Full KV</td><td>26.81</td><td>33.19</td><td>49.26</td><td>43.02</td><td>27.12</td><td>18.78</td><td>32.80</td><td>24.16</td><td>27.02</td><td>71.00</td><td>86.23</td><td>42.64</td><td>2.75</td><td>86.98</td><td>55.09</td><td>53.01</td><td>42.49</td></tr>
-<tr class="group-row"><td colspan="18">KV Cache Budget = 512</td></tr>
-<tr class="baseline-row"><td class="method">SnapKV</td><td><strong>23.69</strong></td><td>27.71</td><td><strong>49.16</strong></td><td>39.70</td><td>25.44</td><td><strong>17.38</strong></td><td>23.31</td><td>23.28</td><td>24.20</td><td>66.00</td><td>86.17</td><td>41.54</td><td><strong>3.24</strong></td><td>86.29</td><td>53.71</td><td>51.19</td><td>40.13</td></tr>
-<tr class="mixkv-row"><td class="method"><strong>+ MixKV</strong></td><td>23.56</td><td><strong>28.19</strong></td><td>48.96</td><td><strong>40.36</strong></td><td><strong>25.86</strong></td><td>17.34</td><td><strong>24.63</strong></td><td><strong>23.36</strong></td><td><strong>25.32</strong></td><td><strong>66.00</strong></td><td><strong>86.23</strong></td><td><strong>42.25</strong></td><td>3.02</td><td><strong>87.66</strong></td><td><strong>53.87</strong></td><td><strong>51.40</strong></td><td><strong>40.50</strong></td></tr>
-<tr class="delta-row"><td class="method"><strong>&#9651;</strong></td><td class="down">-0.13</td><td class="up">+0.48</td><td class="down">-0.20</td><td class="up">+0.66</td><td class="up">+0.42</td><td class="down">-0.04</td><td class="up">+1.32</td><td class="up">+0.08</td><td class="up">+1.12</td><td>0.00</td><td class="up">+0.06</td><td class="up">+0.71</td><td class="down">-0.22</td><td class="up">+1.37</td><td class="up">+0.16</td><td class="up">+0.21</td><td class="up">+0.37</td></tr>
-<tr class="baseline-row"><td class="method">AdaKV</td><td><strong>24.35</strong></td><td>27.33</td><td>48.76</td><td>40.07</td><td><strong>26.38</strong></td><td><strong>17.97</strong></td><td>23.73</td><td><strong>23.51</strong></td><td>24.31</td><td>67.50</td><td>86.38</td><td>42.53</td><td>3.06</td><td><strong>86.65</strong></td><td>53.90</td><td>51.57</td><td>40.50</td></tr>
-<tr class="mixkv-row"><td class="method"><strong>+ MixKV</strong></td><td>24.26</td><td><strong>28.39</strong></td><td><strong>48.90</strong></td><td><strong>40.86</strong></td><td>26.33</td><td>17.07</td><td><strong>24.63</strong></td><td>23.32</td><td><strong>25.41</strong></td><td><strong>69.00</strong></td><td><strong>86.51</strong></td><td><strong>42.67</strong></td><td><strong>3.07</strong></td><td>86.44</td><td><strong>54.46</strong></td><td><strong>51.69</strong></td><td><strong>40.81</strong></td></tr>
-<tr class="delta-row"><td class="method"><strong>&#9651;</strong></td><td class="down">-0.09</td><td class="up">+1.06</td><td class="up">+0.14</td><td class="up">+0.79</td><td class="down">-0.05</td><td class="down">-0.90</td><td class="up">+0.90</td><td class="down">-0.19</td><td class="up">+1.10</td><td class="up">+1.50</td><td class="up">+0.13</td><td class="up">+0.14</td><td class="up">+0.01</td><td class="down">-0.21</td><td class="up">+0.56</td><td class="up">+0.12</td><td class="up">+0.31</td></tr>
-<tr class="group-row"><td colspan="18">Llama-3.1-8B-Instruct</td></tr>
-<tr class="fullkv-row"><td class="method">Full KV</td><td>30.22</td><td>45.37</td><td>55.80</td><td>55.97</td><td>45.00</td><td>31.26</td><td>35.12</td><td>25.38</td><td>27.20</td><td>72.50</td><td>91.64</td><td>43.57</td><td>9.41</td><td>99.50</td><td>62.88</td><td>56.43</td><td>49.20</td></tr>
-<tr class="group-row"><td colspan="18">KV Cache Budget = 512</td></tr>
-<tr class="baseline-row"><td class="method">SnapKV</td><td><strong>27.42</strong></td><td>38.95</td><td>53.57</td><td><strong>55.20</strong></td><td>44.68</td><td>29.75</td><td>25.55</td><td>24.21</td><td>24.28</td><td>64.50</td><td><strong>92.35</strong></td><td>41.04</td><td>9.98</td><td>99.50</td><td><strong>62.50</strong></td><td>54.93</td><td>46.53</td></tr>
-<tr class="mixkv-row"><td class="method"><strong>+ MixKV</strong></td><td>26.76</td><td><strong>41.77</strong></td><td><strong>53.77</strong></td><td>55.19</td><td><strong>44.72</strong></td><td><strong>30.02</strong></td><td><strong>26.03</strong></td><td><strong>24.28</strong></td><td><strong>25.27</strong></td><td><strong>69.00</strong></td><td>91.44</td><td><strong>42.24</strong></td><td><strong>9.98</strong></td><td><strong>99.50</strong></td><td>61.84</td><td><strong>55.17</strong></td><td><strong>47.37</strong></td></tr>
-<tr class="delta-row"><td class="method"><strong>&#9651;</strong></td><td class="down">-0.66</td><td class="up">+2.82</td><td class="up">+0.20</td><td class="down">-0.01</td><td class="up">+0.04</td><td class="up">+0.27</td><td class="up">+0.48</td><td class="up">+0.07</td><td class="up">+0.99</td><td class="up">+4.50</td><td class="down">-0.91</td><td class="up">+1.20</td><td class="up">+0.00</td><td class="up">+0.00</td><td class="down">-0.66</td><td class="up">+0.24</td><td class="up">+0.84</td></tr>
-<tr class="baseline-row"><td class="method">AdaKV</td><td>25.96</td><td>40.26</td><td>52.82</td><td>54.55</td><td>43.83</td><td><strong>30.43</strong></td><td>25.76</td><td><strong>24.06</strong></td><td>24.69</td><td>69.00</td><td><strong>92.05</strong></td><td>42.10</td><td><strong>9.45</strong></td><td>99.50</td><td>62.58</td><td>55.59</td><td>46.42</td></tr>
-<tr class="mixkv-row"><td class="method"><strong>+ MixKV</strong></td><td><strong>26.13</strong></td><td><strong>42.08</strong></td><td><strong>53.18</strong></td><td><strong>55.47</strong></td><td><strong>43.88</strong></td><td>28.80</td><td><strong>26.68</strong></td><td>24.03</td><td><strong>25.35</strong></td><td><strong>70.00</strong></td><td>91.01</td><td><strong>42.79</strong></td><td>9.41</td><td><strong>99.50</strong></td><td><strong>62.92</strong></td><td><strong>55.82</strong></td><td><strong>46.75</strong></td></tr>
-<tr class="delta-row"><td class="method"><strong>&#9651;</strong></td><td class="up">+0.17</td><td class="up">+1.82</td><td class="up">+0.36</td><td class="up">+0.92</td><td class="up">+0.05</td><td class="down">-1.63</td><td class="up">+0.92</td><td class="down">-0.03</td><td class="up">+0.66</td><td class="up">+1.00</td><td class="down">-1.04</td><td class="up">+0.69</td><td class="down">-0.04</td><td class="up">+0.00</td><td class="up">+0.34</td><td class="up">+0.23</td><td class="up">+0.33</td></tr>
-                      </table>
-          </div>
-        </div>
-
-        <div class="exp-block">
-          <div class="exp-title">Performance of Applying MixKV to InternVL3-38B.</div>
-          <p class="exp-caption">Results here report only budget = 128.</p>
-          <div class="table-wrap">
-            <table class="table is-bordered is-fullwidth mixkv-table">
-            <tr>
-                  <th class="method">Methods</th>
-                  <th>DocVQA (%)</th>
-                  <th>OCRBench (%)</th>
-                  <th>TextVQA (%)</th>
-                  <th>ChartQA (%)</th>
-                  <th>TextCaps</th>
+                <tr>
+                  <th>Latency (s)</th>
+                  <th>Latency (s)</th>
+                  <th>Latency (min:sec)</th>
+                  <th>Memory (GB)</th>
+                  <th>(samples/s)</th>
                 </tr>
-<tr class="group-row"><td colspan="6">InternVL3-38B</td></tr>
-<tr class="fullkv-row"><td class="method">Full KV</td><td>93.5</td><td>85.9</td><td>83.8</td><td>88.6</td><td>0.953</td></tr>
-<tr class="baseline-row"><td class="method">SnapKV</td><td>87.5</td><td>77.8</td><td>82.0</td><td>87.5</td><td>0.932</td></tr>
-<tr class="mixkv-row"><td class="method"><strong>+ MixKV</strong></td><td><strong>92.1</strong></td><td><strong>79.3</strong></td><td><strong>82.8</strong></td><td><strong>88.2</strong></td><td><strong>0.959</strong></td></tr>
-<tr class="delta-row"><td class="method"><strong>&#9651;</strong></td><td class="up">+4.6</td><td class="up">+1.5</td><td class="up">+0.8</td><td class="up">+0.7</td><td class="up">+0.027</td></tr>
-<tr class="baseline-row"><td class="method">AdaKV</td><td>92.0</td><td>79.6</td><td>82.0</td><td>87.4</td><td>0.940</td></tr>
-<tr class="mixkv-row"><td class="method"><strong>+ MixKV</strong></td><td><strong>92.3</strong></td><td><strong>81.1</strong></td><td><strong>82.9</strong></td><td><strong>88.2</strong></td><td><strong>0.961</strong></td></tr>
-<tr class="delta-row"><td class="method"><strong>&#9651;</strong></td><td class="up">+0.3</td><td class="up">+1.5</td><td class="up">+0.9</td><td class="up">+0.8</td><td class="up">+0.021</td></tr>
-                      </table>
-          </div>
-        </div>
-
-        <div class="exp-block">
-          <div class="exp-title">Performance of Applying MixKV to Qwen3-VL-30B-A3B-Instruct.</div>
-          <p class="exp-caption">Results here report only budget = 128.</p>
-          <div class="table-wrap">
-            <table class="table is-bordered is-fullwidth mixkv-table">
-            <tr>
-                  <th class="method">Methods</th>
-                  <th>DocVQA (%)</th>
-                  <th>OCRBench (%)</th>
-                  <th>TextVQA (%)</th>
-                  <th>ChartQA (%)</th>
-                  <th>TextCaps</th>
+              </thead>
+              <tbody>
+                <tr class="fullkv-row">
+                  <td class="method text-muted">LLaVA-OV-7B</td>
+                  <td class="text-muted">618.0</td>
+                  <td class="text-muted">1008.4</td>
+                  <td class="text-muted">26:03</td>
+                  <td class="text-muted">17.7</td>
+                  <td class="text-muted">0.64</td>
+                  <td class="text-muted">56.9</td>
                 </tr>
-<tr class="group-row"><td colspan="6">Qwen3-VL-30B-A3B-Instruct</td></tr>
-<tr class="fullkv-row"><td class="method">Full KV</td><td>94.5</td><td>84.0</td><td>83.5</td><td>85.1</td><td>0.287</td></tr>
-<tr class="baseline-row"><td class="method">SnapKV</td><td>91.9</td><td>71.0</td><td>75.3</td><td>83.8</td><td>0.314</td></tr>
-<tr class="mixkv-row"><td class="method"><strong>+ MixKV</strong></td><td><strong>93.2</strong></td><td><strong>80.7</strong></td><td><strong>80.8</strong></td><td><strong>84.5</strong></td><td><strong>0.411</strong></td></tr>
-<tr class="delta-row"><td class="method"><strong>&#9651;</strong></td><td class="up">+1.3</td><td class="up">+9.7</td><td class="up">+5.5</td><td class="up">+0.7</td><td class="up">+0.097</td></tr>
-                      </table>
+                <tr class="group-row"><td colspan="7"><em>Retention Ratio=25%</em></td></tr>
+                <tr>
+                  <td class="method">Random</td>
+                  <td>178.2 <span class="metric-note metric-green">(↓71.2%)</span></td>
+                  <td>566.0 <span class="metric-note metric-green">(↓43.9%)</span></td>
+                  <td>18:44 <span class="metric-note metric-green">(↓28.1%)</span></td>
+                  <td>16.0 <span class="metric-note metric-green">(↓9.6%)</span></td>
+                  <td>0.89 <span class="metric-note metric-green">(1.39×)</span></td>
+                  <td>54.6 <span class="metric-note metric-green">(↓2.3)</span></td>
+                </tr>
+                <tr>
+                  <td class="method">FastV <span class="tiny-note">[ECCV'24]</span></td>
+                  <td>260.9 <span class="metric-note metric-green">(↓57.8%)</span></td>
+                  <td>648.6 <span class="metric-note metric-green">(↓35.7%)</span></td>
+                  <td>20:07 <span class="metric-note metric-green">(↓22.8%)</span></td>
+                  <td>24.7 <span class="metric-note metric-red">(↑39.5%)</span></td>
+                  <td>0.83 <span class="metric-note metric-green">(1.30×)</span></td>
+                  <td>55.5 <span class="metric-note metric-green">(↓1.4)</span></td>
+                </tr>
+                <tr>
+                  <td class="method">PDrop <span class="tiny-note">[CVPR'25]</span></td>
+                  <td>205.6 <span class="metric-note metric-green">(↓66.7%)</span></td>
+                  <td>592.6 <span class="metric-note metric-green">(↓41.2%)</span></td>
+                  <td>18:50 <span class="metric-note metric-green">(↓27.7%)</span></td>
+                  <td>24.5 <span class="metric-note metric-red">(↑38.4%)</span></td>
+                  <td>0.88 <span class="metric-note metric-green">(1.38×)</span></td>
+                  <td>55.3 <span class="metric-note metric-green">(↓1.6)</span></td>
+                </tr>
+                <tr>
+                  <td class="method">SparseVLM <span class="tiny-note">[ICML'25]</span></td>
+                  <td>410.6 <span class="metric-note metric-green">(↓33.6%)</span></td>
+                  <td>807.7 <span class="metric-note metric-green">(↓19.9%)</span></td>
+                  <td>25:03 <span class="metric-note metric-green">(↓3.8%)</span></td>
+                  <td>27.1 <span class="metric-note metric-red">(↑53.1%)</span></td>
+                  <td>0.67 <span class="metric-note metric-green">(1.05×)</span></td>
+                  <td>56.4 <span class="metric-note metric-green">(↓0.5)</span></td>
+                </tr>
+                <tr>
+                  <td class="method">DyCoke <span class="tiny-note">[CVPR'25]</span></td>
+                  <td>205.2 <span class="metric-note metric-green">(↓66.8%)</span></td>
+                  <td>598.0 <span class="metric-note metric-green">(↓40.7%)</span></td>
+                  <td>18:56 <span class="metric-note metric-green">(↓27.4%)</span></td>
+                  <td>16.1 <span class="metric-note metric-green">(↓9.0%)</span></td>
+                  <td>0.88 <span class="metric-note metric-green">(1.38×)</span></td>
+                  <td>49.5 <span class="metric-note metric-green">(↓7.4)</span></td>
+                </tr>
+                <tr class="mixkv-row">
+                  <td class="method"><strong>VidCom<sup>2</sup></strong></td>
+                  <td><strong>180.7 <span class="metric-note metric-green">(↓70.8%)</span></strong></td>
+                  <td><strong>574.7 <span class="metric-note metric-green">(↓43.0%)</span></strong></td>
+                  <td><strong>18:46 <span class="metric-note metric-green">(↓28.0%)</span></strong></td>
+                  <td><strong>16.0 <span class="metric-note metric-green">(↓9.6%)</span></strong></td>
+                  <td><strong>0.88 <span class="metric-note metric-green">(1.38×)</span></strong></td>
+                  <td><strong>57.2 <span class="metric-note metric-red">(↑0.3)</span></strong></td>
+                </tr>
+                <tr class="group-row"><td colspan="7"><em>Retention Ratio=15%</em></td></tr>
+                <tr>
+                  <td class="method">Random</td>
+                  <td>130.3 <span class="metric-note metric-green">(↓78.9%)</span></td>
+                  <td>532.5 <span class="metric-note metric-green">(↓47.2%)</span></td>
+                  <td>18:02 <span class="metric-note metric-green">(↓30.8%)</span></td>
+                  <td>15.8 <span class="metric-note metric-green">(↓10.7%)</span></td>
+                  <td>0.92 <span class="metric-note metric-green">(1.44×)</span></td>
+                  <td>53.1 <span class="metric-note metric-green">(↓3.8)</span></td>
+                </tr>
+                <tr>
+                  <td class="method">FastV <span class="tiny-note">[ECCV'24]</span></td>
+                  <td>172.4 <span class="metric-note metric-green">(↓72.1%)</span></td>
+                  <td>599.3 <span class="metric-note metric-green">(↓40.6%)</span></td>
+                  <td>18:19 <span class="metric-note metric-green">(↓29.7%)</span></td>
+                  <td>24.6 <span class="metric-note metric-red">(↑39.0%)</span></td>
+                  <td>0.91 <span class="metric-note metric-green">(1.42×)</span></td>
+                  <td>51.6 <span class="metric-note metric-green">(↓5.3)</span></td>
+                </tr>
+                <tr>
+                  <td class="method">PDrop <span class="tiny-note">[CVPR'25]</span></td>
+                  <td>165.3 <span class="metric-note metric-green">(↓73.3%)</span></td>
+                  <td>552.6 <span class="metric-note metric-green">(↓45.2%)</span></td>
+                  <td>18:32 <span class="metric-note metric-green">(↓28.9%)</span></td>
+                  <td>24.5 <span class="metric-note metric-red">(↑38.4%)</span></td>
+                  <td>0.90 <span class="metric-note metric-green">(1.41×)</span></td>
+                  <td>53.2 <span class="metric-note metric-green">(↓3.7)</span></td>
+                </tr>
+                <tr>
+                  <td class="method">SparseVLM <span class="tiny-note">[ICML'25]</span></td>
+                  <td>370.4 <span class="metric-note metric-green">(↓40.1%)</span></td>
+                  <td>764.8 <span class="metric-note metric-green">(↓24.2%)</span></td>
+                  <td>24:09 <span class="metric-note metric-green">(↓7.3%)</span></td>
+                  <td>27.1 <span class="metric-note metric-red">(↑53.1%)</span></td>
+                  <td>0.69 <span class="metric-note metric-green">(1.08×)</span></td>
+                  <td>52.9 <span class="metric-note metric-green">(↓4.0)</span></td>
+                </tr>
+                <tr class="mixkv-row">
+                  <td class="method"><strong>VidCom<sup>2</sup></strong></td>
+                  <td><strong>129.2 <span class="metric-note metric-green">(↓79.1%)</span></strong></td>
+                  <td><strong>533.0 <span class="metric-note metric-green">(↓47.1%)</span></strong></td>
+                  <td><strong>18:11 <span class="metric-note metric-green">(↓30.2%)</span></strong></td>
+                  <td><strong>15.8 <span class="metric-note metric-green">(↓10.7%)</span></strong></td>
+                  <td><strong>0.92 <span class="metric-note metric-green">(1.44×)</span></strong></td>
+                  <td><strong>54.3 <span class="metric-note metric-green">(↓2.6)</span></strong></td>
+                </tr>
+              </tbody>
+            </table>
           </div>
-        </div>
-
-        <div class="exp-block">
-          <div class="exp-title">Efficiency comparisons of total latency and peak memory.</div>
-          <img src="static/images/efficiency.png" class="exp-image" alt="Efficiency comparison" loading="lazy">
-          <p class="panel-caption">For a context length of 32,000, “Full KV” refers to caching the entire sequence, whereas KV compression strategies employ a budget of 64. The upper part is total time, while the lower part is peak memory.</p>
+          <p class="exp-caption">"LLM Generation Latency": time for LLM-only response generation; "Model Generation Latency": time for model to generate response; "Total Latency": total time to complete MVBench; and "Throughput": number of MVBench samples processed per second.</p>
         </div>
       </div>
     </section>
@@ -773,10 +940,10 @@
           </button>
         </div>
 <p>If you find this project helpful, please consider citing our paper with:</p>
-<pre id="bibtex-code"><code>@article{liu2025mixkv,
-  title={Mixing Importance with Diversity: Joint Optimization for KV Cache Compression in Large Vision-Language Models},
-  author={Liu, Xuyang and Gui, Xiyan and Zhang, Yuchao and Zhang, Linfeng},
-  journal={arXiv preprint arXiv:2510.20707},
+<pre id="bibtex-code"><code>@article{liu2025vidcom2,
+  title={Video Compression Commander: Plug-and-Play Inference Acceleration for Video Large Language Models},
+  author={Liu, Xuyang and Wang, Yiyu and Ma, Junpeng and Zhang, Linfeng},
+  journal={arXiv preprint arXiv:2505.14454},
   year={2025}
 }</code></pre>
       </div>
