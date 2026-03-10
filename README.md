@@ -20,6 +20,7 @@
 [![EMNLP](https://img.shields.io/badge/EMNLP-2025-pink)](https://aclanthology.org/2025.emnlp-main.98/)
 [![PR](https://img.shields.io/badge/PR-@机器之心-green)](https://www.jiqizhixin.com/articles/2025-12-15-6)
 [![PR](https://img.shields.io/badge/PR-@PaperWeekly-blue)](https://mp.weixin.qq.com/s/hQhEPlBWd4noVGSOWT4_XQ)
+[![GitHub closed issues](https://img.shields.io/github/issues-closed/xuyang-liu16/VidCom2?color=success&label=Closed%20Issues)](https://github.com/xuyang-liu16/VidCom2/issues?q=is%3Aissue+is%3Aclosed)
 [![Stars](https://img.shields.io/github/stars/xuyang-liu16/VidCom2?style=social)](https://github.com/xuyang-liu16/VidCom2/stargazers)
 
 </div>
