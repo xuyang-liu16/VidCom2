@@ -775,7 +775,7 @@
                 <!-- Max Input Frames = 64 -->
                 <!-- ========================= -->
                 <tr class="group-row"><td colspan="9"><em>Max Input Frames=64</em></td></tr>
-        
+              
                 <!-- Upper Bound (no compression) -->
                 <tr class="fullkv-row baseline-ref">
                   <td class="method text-muted">Qwen3-VL-8B-Instruct</td>
@@ -788,39 +788,68 @@
                   <td class="text-muted">55.8</td>
                   <td class="text-muted">100.0</td>
                 </tr>
-        
+              
+                <!-- ===== NEW: Retention Ratio=35% (inserted above 25%) ===== -->
+                <tr class="group-row"><td colspan="9"><em>Retention Ratio=35%</em></td></tr>
+              
+                <tr>
+                  <td class="method">VisionZip <span class="tiny-note">[CVPR'25]</span></td>
+                  <td>65.7</td><td>58.9</td><td>64.3</td><td>64.3</td><td>74.9</td><td>62.2</td><td><strong>55.9</strong></td>
+                  <td>95.3</td>
+                </tr>
+              
+                <tr>
+                  <td class="method">FastVID <span class="tiny-note">[NeurIPS'25]</span></td>
+                  <td>66.5</td><td>60.7</td><td><strong>66.1</strong></td><td>63.0</td><td>74.2</td><td>60.3</td><td>54.4</td>
+                  <td>95.1</td>
+                </tr>
+              
+                <tr>
+                  <td class="method">HoliTom <span class="tiny-note">[NeurIPS'25]</span></td>
+                  <td>65.8</td><td>60.4</td><td>64.4</td><td>64.0</td><td>75.8</td><td>61.8</td><td>54.3</td>
+                  <td>95.3</td>
+                </tr>
+              
+                <tr class="mixkv-row">
+                  <td class="method">VidCom<sup>2</sup></td>
+                  <td><strong>68.9</strong></td><td><strong>61.0</strong></td><td>65.5</td><td><strong>66.0</strong></td>
+                  <td><strong>77.3</strong></td><td><strong>64.9</strong></td><td>55.8</td>
+                  <td><strong>98.1</strong></td>
+                </tr>
+              
+                <!-- ===== existing Retention Ratio=25% ===== -->
                 <tr class="group-row"><td colspan="9"><em>Retention Ratio=25%</em></td></tr>
-        
+              
                 <tr>
                   <td class="method">VisionZip <span class="tiny-note">[CVPR'25]</span></td>
                   <td>64.8</td><td>58.9</td><td>63.4</td><td>63.1</td><td>73.7</td><td>60.3</td><td>55.4</td>
                   <td>94.0</td>
                 </tr>
-        
+              
                 <tr>
                   <td class="method">FastVID <span class="tiny-note">[NeurIPS'25]</span></td>
                   <td>66.8</td><td><strong>60.4</strong></td><td><strong>65.0</strong></td><td>62.3</td><td>73.9</td><td>60.7</td><td>52.2</td>
                   <td>94.2</td>
                 </tr>
-        
+              
                 <tr>
                   <td class="method">HoliTom <span class="tiny-note">[NeurIPS'25]</span></td>
                   <td>64.9</td><td>58.9</td><td>63.4</td><td>62.7</td><td>74.4</td><td>60.6</td><td>53.2</td>
                   <td>93.5</td>
                 </tr>
-        
+              
                 <tr class="mixkv-row">
                   <td class="method">VidCom<sup>2</sup></td>
                   <td><strong>67.5</strong></td><td>59.6</td><td>64.0</td><td><strong>64.9</strong></td>
                   <td><strong>75.4</strong></td><td><strong>63.4</strong></td><td><strong>55.9</strong></td>
                   <td><strong>96.3</strong></td>
                 </tr>
-        
+              
                 <!-- ========================= -->
                 <!-- Max Input Frames = 32 -->
                 <!-- ========================= -->
                 <tr class="group-row"><td colspan="9"><em>Max Input Frames=32</em></td></tr>
-        
+              
                 <!-- Upper Bound (no compression) -->
                 <tr class="fullkv-row baseline-ref">
                   <td class="method text-muted">Qwen3-VL-8B-Instruct</td>
@@ -833,27 +862,56 @@
                   <td class="text-muted">57.0</td>
                   <td class="text-muted">100.0</td>
                 </tr>
-        
+              
+                <!-- ===== NEW: Retention Ratio=35% (inserted above 25%) ===== -->
+                <tr class="group-row"><td colspan="9"><em>Retention Ratio=35%</em></td></tr>
+              
+                <tr>
+                  <td class="method">VisionZip <span class="tiny-note">[CVPR'25]</span></td>
+                  <td>64.4</td><td>56.8</td><td>61.3</td><td>60.8</td><td>70.9</td><td>57.0</td><td>54.6</td>
+                  <td>94.6</td>
+                </tr>
+              
+                <tr>
+                  <td class="method">FastVID <span class="tiny-note">[NeurIPS'25]</span></td>
+                  <td>67.5</td><td><strong>58.7</strong></td><td><strong>62.3</strong></td><td>61.9</td><td>73.1</td><td>59.1</td><td>53.6</td>
+                  <td>96.8</td>
+                </tr>
+              
+                <tr>
+                  <td class="method">HoliTom <span class="tiny-note">[NeurIPS'25]</span></td>
+                  <td>65.0</td><td>57.8</td><td>62.0</td><td>61.3</td><td>71.9</td><td>57.9</td><td>54.0</td>
+                  <td>95.5</td>
+                </tr>
+              
+                <tr class="mixkv-row">
+                  <td class="method">VidCom<sup>2</sup></td>
+                  <td><strong>68.1</strong></td><td>58.6</td><td>62.0</td><td><strong>62.9</strong></td>
+                  <td><strong>73.6</strong></td><td><strong>59.9</strong></td><td><strong>55.1</strong></td>
+                  <td><strong>97.8</strong></td>
+                </tr>
+              
+                <!-- ===== existing Retention Ratio=25% ===== -->
                 <tr class="group-row"><td colspan="9"><em>Retention Ratio=25%</em></td></tr>
-        
+              
                 <tr>
                   <td class="method">VisionZip <span class="tiny-note">[CVPR'25]</span></td>
                   <td>62.2</td><td>56.7</td><td>60.8</td><td>60.1</td><td>69.6</td><td>56.7</td><td>54.2</td>
                   <td>93.5</td>
                 </tr>
-        
+              
                 <tr>
                   <td class="method">FastVID <span class="tiny-note">[NeurIPS'25]</span></td>
                   <td><strong>67.3</strong></td><td><strong>58.7</strong></td><td>60.7</td><td>60.5</td><td>72.0</td><td>56.8</td><td>52.7</td>
                   <td>95.2</td>
                 </tr>
-        
+              
                 <tr>
                   <td class="method">HoliTom <span class="tiny-note">[NeurIPS'25]</span></td>
                   <td>63.0</td><td>56.8</td><td><strong>61.2</strong></td><td>59.7</td><td>71.4</td><td>54.6</td><td>53.1</td>
                   <td>93.2</td>
                 </tr>
-        
+              
                 <tr class="mixkv-row">
                   <td class="method">VidCom<sup>2</sup></td>
                   <td>67.0</td><td>58.0</td><td>60.6</td><td><strong>62.4</strong></td>
@@ -937,6 +995,62 @@
           </div>
         </div>
 
+        <div class="exp-block">
+          <div class="exp-title">
+            Performance comparison with other baselines on MoE-based model
+            Qwen3-VL-30B-A3B-Instruct across different benchmarks.
+          </div>
+        
+          <div class="table-wrap">
+            <table class="table is-bordered is-fullwidth mixkv-table">
+              <thead>
+                <tr>
+                  <th class="method" rowspan="2">Method</th>
+                  <th rowspan="2">MVBench</th>
+                  <th rowspan="2">LongVideoBench</th>
+                  <th rowspan="2">MLVU</th>
+                  <th colspan="4">VideoMME</th>
+                  <th rowspan="2">Average Score</th>
+                </tr>
+                <tr>
+                  <th>Overall</th>
+                  <th>Short</th>
+                  <th>Medium</th>
+                  <th>Long</th>
+                </tr>
+              </thead>
+        
+              <tbody>
+                <tr class="group-row"><td colspan="9"><em>Retention Ratio=25%</em></td></tr>
+        
+                <tr>
+                  <td class="method">VisionZip <span class="tiny-note">[CVPR'25]</span></td>
+                  <td>61.3</td><td>62.4</td><td>64.1</td><td>62.7</td><td>70.7</td><td>61.3</td><td>56.0</td>
+                  <td>62.6</td>
+                </tr>
+        
+                <tr>
+                  <td class="method">FastVID <span class="tiny-note">[NeurIPS'25]</span></td>
+                  <td>68.2</td><td>60.7</td><td>64.8</td><td>62.4</td><td>70.3</td><td>61.6</td><td>55.2</td>
+                  <td>63.3</td>
+                </tr>
+        
+                <tr>
+                  <td class="method">HoliTom <span class="tiny-note">[NeurIPS'25]</span></td>
+                  <td>66.0</td><td>63.9</td><td>64.7</td><td>64.6</td><td>73.6</td><td>63.9</td><td>56.2</td>
+                  <td>64.7</td>
+                </tr>
+        
+                <tr class="mixkv-row">
+                  <td class="method">VidCom<sup>2</sup></td>
+                  <td><strong>69.7</strong></td><td><strong>65.5</strong></td><td><strong>68.5</strong></td>
+                  <td><strong>68.1</strong></td><td><strong>79.1</strong></td><td><strong>68.0</strong></td><td><strong>58.9</strong></td>
+                  <td><strong>68.3</strong></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
         <div class="exp-block">
           <div class="exp-title">Efficiency comparisons on LLaVA-OV-7B.</div>
           <div class="table-wrap">
