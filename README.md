@@ -27,6 +27,7 @@
 
 ## 🔥 News
 
+* **`2026.03.31`** 🤗🤗 We release [V-CAST](https://arxiv.org/pdf/2603.27650), a **curvature-aware** spatio-temporal pruning framework for efficient long-context video inference. V-CAST achieves new SOTA of VideoLLM acceleration! [Code](https://github.com/xinyouu/V-CAST) is available!
 * **`2026.02.21`** 🎊🎊 Our [STC](https://arxiv.org/pdf/2512.00891) has been accepted by **CVPR 2026**! [Code](https://github.com/lern-to-write/STC) is available!
 * **`2026.01.22`** ✅✅ Integrated three representative baselines: [FastV](https://github.com/pkunlp-icler/FastV), [VisionZip](https://github.com/JIA-Lab-research/VisionZip), and [HoliTom](https://github.com/cokeshao/HoliTom) into our codebase ([`qwen`](https://github.com/xuyang-liu16/VidCom2/tree/qwen) branch) with full **Qwen3-VL** support. **More comparison results** are frequently updated on this [**`page`**](https://xuyang-liu16.github.io/VidCom2/).
 * **`2026.01.08`** ✅✅ Added support for **Qwen2.5-Omni** and **Qwen3-Omni** in the [`omni`](https://github.com/xuyang-liu16/VidCom2/tree/omni) branch, with evaluation results. To date, VidCom<sup>2</sup> has been fully adapted to the [Qwen-VL](https://github.com/xuyang-liu16/VidCom2/tree/qwen), [Qwen-Omni](https://github.com/xuyang-liu16/VidCom2/tree/omni), and [LLaVA](https://github.com/xuyang-liu16/VidCom2/tree/llava) model series.
