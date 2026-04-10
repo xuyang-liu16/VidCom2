@@ -182,14 +182,29 @@ Example format for LLaVA-OV-7B with VidCom<sup>2</sup> (R_RATIO=0.25) on 8*H100 
 
 ## 📌 Citation
 
-Please consider citing our paper in your publications, if our findings help your research.
+Please consider citing our works in your publications, if our findings help your research.
 
 ```bibtex
-@article{liu2025vidcom2,
-  title={Video Compression Commander: Plug-and-Play Inference Acceleration for Video Large Language Models},
+@inproceedings{liu2025vidcom2,
+  title={Video compression commander: Plug-and-play inference acceleration for video large language models},
   author={Liu, Xuyang and Wang, Yiyu and Ma, Junpeng and Zhang, Linfeng},
-  journal={arXiv preprint arXiv:2505.14454},
+  booktitle={Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing},
+  pages={1910--1924},
   year={2025}
+}
+
+@article{wang2025stc,
+  title={Accelerating Streaming Video Large Language Models via Hierarchical Token Compression},
+  author={Wang, Yiyu and Liu, Xuyang and Gui, Xiyan and Lin, Xinying and Yang, Boxue and Liao, Chenfei and Chen, Tailai and Zhang, Linfeng},
+  journal={arXiv preprint arXiv:2512.00891},
+  year={2025}
+}
+
+@article{lin2026vcast,
+  title={V-CAST: Video Curvature-Aware Spatio-Temporal Pruning for Efficient Video Large Language Models},
+  author={Lin, Xinying and Liu, Xuyang and Wang, Yiyu and Ma, Teng and Ren, Wenqi},
+  journal={arXiv preprint arXiv:2603.27650},
+  year={2026}
 }
 ```
 
