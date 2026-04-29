@@ -27,14 +27,13 @@
 
 ## 🔥 News
 
+* **`2026.04.29`** ✅✅ Integrated representative baselines: [VisionZip](https://github.com/JIA-Lab-research/VisionZip), [DyCoke](https://github.com/kd-tao/dycoke), [FastVID](https://github.com/LunarShen/FastVID), and [HoliTom](https://github.com/cokeshao/HoliTom) into our codebase ([`omni`](https://github.com/xuyang-liu16/VidCom2/tree/omni) branch) with full **Qwen2.5-Omni** and **Qwen3-Omni** support.
 * **`2026.03.31`** 🤗🤗 We release [V-CAST](https://arxiv.org/pdf/2603.27650), a **curvature-aware** spatio-temporal pruning framework for efficient long-context video inference. V-CAST achieves new SOTA of VideoLLM acceleration! [Code](https://github.com/xinyouu/V-CAST) is available!
-* **`2026.02.21`** 🎊🎊 Our [STC](https://arxiv.org/pdf/2512.00891) has been accepted by **CVPR 2026**! [Code](https://github.com/lern-to-write/STC) is available!
+* **`2026.02.21`** 🎊🎊 Our [STC](https://arxiv.org/pdf/2512.00891), the first plug-and-play inference acceleration framework for **streaming video understanding**, has been accepted by **CVPR 2026**! [Code](https://github.com/lern-to-write/STC) is available!
 * **`2026.01.22`** ✅✅ Integrated three representative baselines: [FastV](https://github.com/pkunlp-icler/FastV), [VisionZip](https://github.com/JIA-Lab-research/VisionZip), and [HoliTom](https://github.com/cokeshao/HoliTom) into our codebase ([`qwen`](https://github.com/xuyang-liu16/VidCom2/tree/qwen) branch) with full **Qwen3-VL** support. **More comparison results** are frequently updated on this [**`page`**](https://xuyang-liu16.github.io/VidCom2/).
 * **`2026.01.08`** ✅✅ Added support for **Qwen2.5-Omni** and **Qwen3-Omni** in the [`omni`](https://github.com/xuyang-liu16/VidCom2/tree/omni) branch, with evaluation results. To date, VidCom<sup>2</sup> has been fully adapted to the [Qwen-VL](https://github.com/xuyang-liu16/VidCom2/tree/qwen), [Qwen-Omni](https://github.com/xuyang-liu16/VidCom2/tree/omni), and [LLaVA](https://github.com/xuyang-liu16/VidCom2/tree/llava) model series.
 * **`2025.12.30`** ✅✅ Added support for **Qwen2.5-VL** and **Qwen3-VL** in the [`qwen`](https://github.com/xuyang-liu16/VidCom2/tree/qwen) branch, with evaluation results.
-* **`2025.12.02`** 🤗🤗 We release our latest work [STC](https://arxiv.org/pdf/2512.00891), **the first** plug-and-play inference acceleration framework for streaming video understanding! [Code](https://github.com/lern-to-write/STC) is available!
 * **`2025.08.21`** 🎉🎉 Our [VidCom<sup>2</sup>](https://arxiv.org/abs/2505.14454) has been accepted by **EMNLP 2025** main conference!
-* **`2025.05.30`** ⚡⚡ We are excited to release VidCom<sup>2</sup> implementation for **Qwen2-VL**!
 * **`2025.05.21`** 🤗🤗 We release [VidCom<sup>2</sup>](https://arxiv.org/abs/2505.14454), a plug-and-play inference acceleration method of **VideoLLMs**. [Code](https://github.com/xuyang-liu16/VidCom2) is available!
 
 ## 🎯 Highlights
@@ -44,6 +43,7 @@
 - **Strong Performance:** Uses only 25% of tokens while maintaining 99.6% performance of LLaVA-OV.
 - **High Efficiency:** Cuts LLaVA-OV generation time by 70.8% and overall latency by 43.0%.
 
+🌟 **Unified Acceleration Codebase:** We have integrated representative baselines, including [VisionZip](https://github.com/JIA-Lab-research/VisionZip), [DyCoke](https://github.com/kd-tao/dycoke), [FastVID](https://github.com/LunarShen/FastVID), and [HoliTom](https://github.com/cokeshao/HoliTom), into our codebase, providing a unified plug-and-play framework for efficient VideoLLM inference.
 
 ## ✨ Overview
 
