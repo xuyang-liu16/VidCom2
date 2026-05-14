@@ -110,13 +110,50 @@ class Qwen2_5_VL(lmms):
             model_kwargs["attn_implementation"] = attn_implementation
 
         self._model = Qwen2_5_VLForConditionalGeneration.from_pretrained(pretrained, **model_kwargs).eval()
-        if os.getenv("COMPRESSOR") == "vidcom2":
+        compressor = os.getenv("COMPRESSOR")
+        if compressor == "vidcom2":
             import types
 
             from token_compressor.vidcom2.models.qwen2_5_vl import Qwen2_5_VLModel_forward
 
             self._model.model.forward = types.MethodType(Qwen2_5_VLModel_forward, self._model.model)
             eval_logger.success("[VidCom2] Successfully integrated VidCom2 with Qwen2.5-VL.")
+        elif compressor == "dycoke":
+            import types
+
+            from token_compressor.dycoke.models.qwen2_5_vl import Qwen2_5_VLModel_forward
+
+            self._model.model.forward = types.MethodType(Qwen2_5_VLModel_forward, self._model.model)
+            r_ratio = os.getenv("R_RATIO", "0.25")
+            dycoke_k = os.getenv("DYCOKE_K", str(1.0 - float(r_ratio)))
+            eval_logger.success(f"[DyCoke] Successfully integrated DyCoke with Qwen2.5-VL. (R_RATIO={r_ratio}, DYCOKE_K={dycoke_k})")
+        elif compressor == "fastvid":
+            import types
+
+            from token_compressor.fastvid.models.qwen2_5_vl import Qwen2_5_VLModel_forward
+
+            self._model.model.forward = types.MethodType(Qwen2_5_VLModel_forward, self._model.model)
+            r_ratio = os.getenv("R_RATIO", "0.25")
+            eval_logger.success(f"[FastVID] Successfully integrated FastVID with Qwen2.5-VL. (R_RATIO={r_ratio})")
+        elif compressor == "visionzip":
+            import types
+
+            from token_compressor.visionzip.models.qwen2_5_vl import Qwen2_5_VLModel_forward
+
+            self._model.model.forward = types.MethodType(Qwen2_5_VLModel_forward, self._model.model)
+            r_ratio = os.getenv("R_RATIO", "0.25")
+            eval_logger.success(f"[VisionZip] Successfully integrated VisionZip with Qwen2.5-VL. (R_RATIO={r_ratio})")
+        elif compressor == "holitom":
+            import types
+
+            from token_compressor.holitom.models.qwen2_5_vl import Qwen2_5_VLModel_forward
+
+            self._model.model.forward = types.MethodType(Qwen2_5_VLModel_forward, self._model.model)
+            r_ratio = os.getenv("R_RATIO", "0.25")
+            tau = os.getenv("HOLITOM_T", "0.8")
+            eval_logger.success(f"[HoliTom] Successfully integrated HoliTom with Qwen2.5-VL. (R_RATIO={r_ratio}, T={tau})")
+        elif compressor is not None:
+            eval_logger.warning(f"[Warning] Unknown COMPRESSOR value: {compressor}. Supported values: vidcom2, dycoke, fastvid, visionzip, holitom")
         self.max_pixels = max_pixels
         self.min_pixels = min_pixels
         self.max_num_frames = max_num_frames

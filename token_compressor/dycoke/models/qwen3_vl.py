@@ -11,7 +11,7 @@ from transformers.models.qwen3_vl.modeling_qwen3_vl import (
     is_torchdynamo_compiling,
 )
 
-from token_compressor.holitom import compress_features
+from token_compressor.dycoke import compress_features
 
 
 
@@ -137,7 +137,7 @@ def Qwen3VLModel_forward(
             position_ids = position_ids.add(delta).unsqueeze(0).expand(3, -1, -1)
 
     compression_on = (
-        os.getenv("COMPRESSOR") == "holitom"
+        os.getenv("COMPRESSOR") == "dycoke"
         and pixel_values_videos is not None
         and video_grid_thw is not None
         and _prefill_stage(past_key_values, cache_position)

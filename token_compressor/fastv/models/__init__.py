@@ -1,2 +1,0 @@
-"""FastV model-specific implementations."""
-

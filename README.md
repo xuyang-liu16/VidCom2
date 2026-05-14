@@ -26,8 +26,7 @@
 
 ## 🔥 News
 
-* **`2026.01.22`** ✅✅ We further integrate three representative baselines [FastV](https://github.com/pkunlp-icler/FastV), [VisionZip](https://github.com/JIA-Lab-research/VisionZip), and [HoliTom](https://github.com/cokeshao/HoliTom) into our codebase, and have already added support for **Qwen3-VL**.
-* **`2025.12.30`** ✅✅ We further support **Qwen2.5-VL** and **Qwen3-VL** in this [`qwen`](https://github.com/xuyang-liu16/VidCom2/tree/qwen) branch. Thanks for using!
+* **`2025.12.30`** ✅✅ We further support **Qwen2.5-VL** and **Qwen3-VL** in this [`qwen`](https://github.com/xuyang-liu16/VidCom2/tree/qwen) branch, and provide implementations of popular token compression baselines [DyCoke](https://github.com/KD-TAO/DyCoke), [FastVID](https://github.com/LunarShen/FastVID), [VisionZip](https://github.com/JIA-Lab-research/VisionZip), and [HoliTom](https://github.com/cokeshao/HoliTom) for comparison on **Qwen3-VL**. Thanks for using!
 * **`2025.12.02`** 🤗🤗 We release our latest work [STC](https://arxiv.org/pdf/2512.00891), **the first** plug-and-play inference acceleration framework for streaming video understanding! [Code](https://github.com/lern-to-write/STC) is available!
 * **`2025.08.21`** 🎉🎉 Our [VidCom<sup>2</sup>](https://arxiv.org/abs/2505.14454) has been accepted by **EMNLP 2025** main conference!
 * **`2025.05.30`** ⚡⚡ We are excited to release VidCom<sup>2</sup> implementation for **Qwen2-VL**!
@@ -106,103 +105,14 @@ COMPRESSOR=vidcom2 R_RATIO=0.25 accelerate launch --num_processes=8 \
 
 We provide implementations of popular token compression baselines for comparison on Qwen3-VL:
 
-### FastV (ECCV 2024 Oral)
+| Compressor | Paper | Code | Path |
+| --- | --- | --- | --- |
+| `dycoke` | [arXiv:2411.15024](https://arxiv.org/abs/2411.15024) | [KD-TAO/DyCoke](https://github.com/KD-TAO/DyCoke) | [`token_compressor/dycoke/`](token_compressor/dycoke/) |
+| `fastvid` | [arXiv:2503.11187](https://arxiv.org/abs/2503.11187) | [LunarShen/FastVID](https://github.com/LunarShen/FastVID) | [`token_compressor/fastvid/`](token_compressor/fastvid/) |
+| `visionzip` | [arXiv:2412.04467](https://arxiv.org/abs/2412.04467) | [JIA-Lab-research/VisionZip](https://github.com/JIA-Lab-research/VisionZip) | [`token_compressor/visionzip/`](token_compressor/visionzip/) |
+| `holitom` | [arXiv:2505.21334](https://arxiv.org/abs/2505.21334) | [cokeshao/HoliTom](https://github.com/cokeshao/HoliTom) | [`token_compressor/holitom/`](token_compressor/holitom/) |
 
-**Paper:** [An Image is Worth 1/2 Tokens After Layer 2](https://github.com/pkunlp-icler/FastV)
-
-**Key Features:**
-- Prunes visual tokens at early LLM layers based on attention scores
-- Training-free, plug-and-play implementation
-- Default: Keep 50% tokens after layer 2
-
-**⚠️ Important:** FastV requires `attn_implementation=eager` to obtain attention weights for token pruning. Flash Attention does not return attention weights, so it cannot be used with FastV.
-
-**Usage:**
-```bash
-COMPRESSOR=fastv R_RATIO=0.5 FASTV_K=2 accelerate launch --num_processes=8 \
-  -m lmms_eval \
-  --model qwen3_vl \
-  --model_args pretrained=Qwen/Qwen3-VL-8B-Instruct,attn_implementation=eager,max_num_frames=32 \
-  --tasks videomme \
-  --batch_size 1 \
-  --log_samples \
-  --log_samples_suffix qwen3_vl_fastv \
-  --output_path ./logs/
-```
-
-**Parameters:**
-- `R_RATIO`: Retention ratio (default: 0.5 for 50%)
-- `FASTV_K`: Layer after which to apply pruning (default: 2)
-
-### VisionZip (CVPR 2025)
-
-**Paper:** [VisionZip: Longer is Better but Not Necessary in Vision Language Models](https://github.com/dvlab-research/VisionZip)
-
-**Key Features:**
-- Selects dominant tokens and merges remaining via density-based clustering
-- Compresses tokens after vision encoder
-- Training-free, achieves high compression ratios
-
-**Usage:**
-```bash
-COMPRESSOR=visionzip R_RATIO=0.2 accelerate launch --num_processes=8 \
-  -m lmms_eval \
-  --model qwen3_vl \
-  --model_args pretrained=Qwen/Qwen3-VL-8B-Instruct,attn_implementation=flash_attention_2,max_num_frames=32 \
-  --tasks videomme \
-  --batch_size 1 \
-  --log_samples \
-  --log_samples_suffix qwen3_vl_visionzip \
-  --output_path ./logs/
-```
-
-**Parameters:**
-- `R_RATIO`: Retention ratio (default: 0.2 for 20%)
-
-### HoliTom(w/o M) (NeurIPS 2025)
-
-**Paper:** [HoliTom: Holistic Token Merging for Fast Video Large Language Models](https://github.com/cokeshao/HoliTom)
-
-**Key Features:**
-- Holistic token merging with temporal segmentation and DPC-KNN clustering
-- Separates static and dynamic features across temporal windows
-- Training-free, achieves over 90% token reduction while maintaining performance
-
-**Usage:**
-```bash
-COMPRESSOR=holitom R_RATIO=0.15 HOLITOM_T=0.8 accelerate launch --num_processes=8 \
-  -m lmms_eval \
-  --model qwen3_vl \
-  --model_args pretrained=Qwen/Qwen3-VL-8B-Instruct,attn_implementation=flash_attention_2,max_num_frames=32 \
-  --tasks videomme \
-  --batch_size 1 \
-  --log_samples \
-  --log_samples_suffix qwen3_vl_holitom \
-  --output_path ./logs/
-```
-
-**Parameters:**
-- `R_RATIO`: Base retention ratio (default: 0.15 for 15%)
-- `HOLITOM_T`: Similarity threshold for static detection (default: 0.8)
-- `HOLITOM_BETA`: Clustering merge weight (default: 0.6)
-- `HOLITOM_D`: Dominant token ratio (default: 0.0)
-- `HOLITOM_K`: KNN neighbors (default: 7)
-- `HOLITOM_MAX_WINDOW_SIZE`: Maximum temporal window size (default: 1024)
-
-### Comparison of Methods
-
-| Method | Compression Stage | Strategy 
-| --- | --- | --- |
-| **VidCom<sup>2</sup>** (Ours) | After vision encoder | Gaussian similarity + dynamic frame budget |
-| **FastV** | After LLM layer 2 | Attention-based pruning |
-| **VisionZip** | After vision encoder | Dominant token + density merging |
-| **HoliTom(w/o M)** | After vision encoder | Temporal segmentation + DPC-KNN merging |
-
-**Implementation Location:**
-- VidCom<sup>2</sup>: [`token_compressor/vidcom2/`](token_compressor/vidcom2/)
-- FastV: [`token_compressor/fastv/`](token_compressor/fastv/)
-- VisionZip: [`token_compressor/visionzip/`](token_compressor/visionzip/)
-- HoliTom(w/o M): [`token_compressor/holitom/`](token_compressor/holitom/)
+Set `COMPRESSOR` to `dycoke`, `fastvid`, `visionzip`, or `holitom` and keep the other Qwen evaluation arguments unchanged.
 
 ## 📐 Performance Evaluation
 
@@ -212,6 +122,7 @@ Results on Qwen3-VL-8B-Instruct with `max_num_frames=32` and `R_RATIO=0.25`.
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
 | Qwen3-VL-8B-Instruct | 68.6 | 60.3 | 63.5 | 64.5 | 76.0 | 60.4 | 57.0 |
 | + VisionZip (R=25%) | 62.2 | 56.7 | 60.8 | 60.1 | 69.6 | 56.7 | 54.2 |
+| + FastVID (R=25%) | 67.3 | 58.7 | 60.7 | 60.5 | 72.0 | 56.8 | 52.7 |
 | + HoliTom (R=25%) | 63.0 | 56.8 | 61.2 | 59.7 | 71.4 | 54.6 | 53.1 |
 | + VidCom<sup>2</sup> (R=25%) | 67.0 | 58.0 | 60.6 | 62.4 | 72.1 | 59.1 | 56.1 |
 
